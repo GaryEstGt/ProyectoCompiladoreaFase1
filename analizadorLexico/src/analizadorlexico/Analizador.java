@@ -42,7 +42,8 @@ public class Analizador extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,10 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,7 +70,7 @@ public class Analizador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -79,9 +84,9 @@ public class Analizador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(28, 28, 28)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,26 +106,26 @@ public class Analizador extends javax.swing.JFrame {
                      String salida="";
       
             try {
-                Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+                Reader lector = new BufferedReader(new FileReader(rutaArchivo));
                  Lexer analizador=new Lexer(lector);
         
                  while (true) {
                 Tokens tokens = analizador.yylex();
                 if (tokens == null) {
                     salida += "FIN";
-                    jTextField2.setText(salida);
+                    jTextArea1.setText(salida);
                    // txtResultado.setText(resultado);
                     return;
                 }
                 switch (tokens) {
                     case ERROR:
-                        salida += "Simbolo no definido\n";
+                        salida += "Simbolo no definido en la linea "+analizador.line+"\n";
                         break;
-                    case Identificador: case Numero: case Reservadas:
-                        salida += analizador.lexeme + ": Es un " + tokens + "en la linea"+0+"\n";
+                    case Identificador: case Numero: case Reservadas: case Float: case String: case Bit:
+                        salida += analizador.lexeme + ": Es un " + tokens + " en la linea "+analizador.line+"\n";
                         break;
                     default:
-                        salida += "Token: " + tokens + "\n";
+                        salida += "Token: " + tokens +" en la linea "+analizador.line+ "\n";
                         break;
                 }
              }
@@ -171,7 +176,8 @@ public class Analizador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

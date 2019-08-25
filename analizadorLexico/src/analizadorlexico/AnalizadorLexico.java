@@ -18,7 +18,7 @@ public class AnalizadorLexico {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String path="C:/Users/garya/Desktop/analizadorLexico/src/analizadorlexico/Lexer.flex";
+        String path="C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorLexico/Lexer.flex";
         generarAnalizador(path);
         //Analizador frame=new Analizador();
         //frame.setVisible(true);

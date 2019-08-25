@@ -3,12 +3,15 @@ import static analizadorlexico.Tokens.*;
 %%
 %class Lexer
 %type Tokens
+%line
+%column
 L=[a-z]+
 L2=[A-Z_]+
 D=[0-9]+
 espacio=[ ,\t,\r,\n]+
 %{
     public String lexeme;
+    int line;
 %}
 %%
 ADD |
@@ -321,45 +324,45 @@ WORK |
 WRITE |
 YEAR |
 ZONE |
-WRITETEXT {lexeme=yytext(); return Reservadas;}
+WRITETEXT {lexeme=yytext(); line=yyline; return Reservadas;}
 {espacio} {/*Ignore*/}
 "//".* {/*Ignore*/}
-"=" {return Igual;}
-"+" {return Suma;}
-"-" {return Resta;}
-"*" {return Multiplicacion;}
-"/" {return Division;}
-"_" {return Guionbajo;}
-"%" {return Porcentaje;}
-"<" {return Menor;}
-">" {return Mayor;}
-"<=" {return MenorIgual;}
-">=" {return MayorIgual;}
-"==" {return IgualIgual;}
-"!=" {return NoIgual;}
-"&" {return y;}
-"&&" {return and;}
-"||" {return or;}
-"!" {return SignoExclamacion;}
-";" {return PuntoyComa;}
-"," {return Coma;}
-"." {return Punto;}
-"[" {return CorcheteAbierto;}
-"]" {return CorcheteCerrado;}
-"[]" {return Corchetes;}
-"(" {return ParentesisAbierto;}
-")" {return ParentesisCerrado;}
-"()" {return Parentesis;}
-"{" {return LlaveAbierta;}
-"}" {return LlaveCerrada;}
-"{}" {return Llaves;}
-"@" {return Arroba;}
-"#" {return Numeral;}
-"##" {return DobleNumeral;}
-({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); return Identificador;}
-(1)|(0)| NULL {lexeme=yytext(); return Bit;}
-("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
-(({D}+)"."({D}*))|(({D}+)"."({D}*)E"+"(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); return Float;}
-"'".*"'"? {lexeme=yytext(); return String;}
-"/*".*"*/"? {/*Ignore*/}
- . {return ERROR;}
+"=" {line=yyline; return Igual;}
+"+" {line=yyline; return Suma;}
+"-" {line=yyline; return Resta;}
+"*" {line=yyline; return Multiplicacion;}
+"/" {line=yyline; return Division;}
+"_" {line=yyline; return Guionbajo;}
+"%" {line=yyline; return Porcentaje;}
+"<" {line=yyline; return Menor;}
+">" {line=yyline; return Mayor;}
+"<=" {line=yyline; return MenorIgual;}
+">=" {line=yyline; return MayorIgual;}
+"==" {line=yyline; return IgualIgual;}
+"!=" {line=yyline; return NoIgual;}
+"&" {line=yyline; return y;}
+"&&" {line=yyline; return and;}
+"||" {line=yyline; return or;}
+"!" {line=yyline; return SignoExclamacion;}
+";" {line=yyline; return PuntoyComa;}
+"," {line=yyline; return Coma;}
+"." {line=yyline; return Punto;}
+"[" {line=yyline; return CorcheteAbierto;}
+"]" {line=yyline; return CorcheteCerrado;}
+"[]" {line=yyline; return Corchetes;}
+"(" {line=yyline; return ParentesisAbierto;}
+")" {line=yyline; return ParentesisCerrado;}
+"()" {line=yyline; return Parentesis;}
+"{" {line=yyline; return LlaveAbierta;}
+"}" {line=yyline; return LlaveCerrada;}
+"{}" {line=yyline; return Llaves;}
+"@" {line=yyline; return Arroba;}
+"#" {line=yyline; return Numeral;}
+"##" {line=yyline; return DobleNumeral;}
+({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); line=yyline; return Identificador;}
+(1)|(0)| NULL {lexeme=yytext(); line=yyline; return Bit;}
+("(-"{D}+")")|{D}+ {lexeme=yytext(); line=yyline; return Numero;}
+(({D}+)"."({D}*))|(({D}+)"."({D}*)E"+"(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); line=yyline; return Float;}
+"'".*"'"? {lexeme=yytext(); line=yyline; return String;}
+"/*" [^*] ~"*/" | "/*" "*"+ "/" {/*Ignore*/}
+ . {line=yyline; return ERROR;}
