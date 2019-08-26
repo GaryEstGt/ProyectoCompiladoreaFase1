@@ -48,5 +48,7 @@ public enum Tokens {
     Bit,
     Float,
     String,
-    ERROR
+    ERROR,
+    ERRORComentario,
+    ERRORDecimal
 }
