@@ -5,36 +5,40 @@
 --0.930-- Token 'Float' linea= 4 columna Inicio= 0 columna Final= 5
 --20.20-- Token 'Float' linea= 6 columna Inicio= 0 columna Final= 5
 --2.2E+30-- Token 'Float' linea= 8 columna Inicio= 0 columna Final= 7
---'hola eso es texto != $ ´{+.k~'-- Token 'String' linea= 10 columna Inicio= 0 columna Final= 31
---SELECT-- Token 'Reservadas' linea= 14 columna Inicio= 0 columna Final= 6
-Token: --Multiplicacion-- linea= 14 columna Inicio= 7 columna Final= 8
---FROM-- Token 'Reservadas' linea= 14 columna Inicio= 9 columna Final= 13
---TABLA1-- Token 'Identificador' linea= 14 columna Inicio= 14 columna Final= 20
---A-- Token 'Identificador' linea= 14 columna Inicio= 21 columna Final= 22
---INNER-- Token 'Reservadas' linea= 14 columna Inicio= 23 columna Final= 28
---JOIN-- Token 'Reservadas' linea= 14 columna Inicio= 29 columna Final= 33
---TABLA2-- Token 'Identificador' linea= 14 columna Inicio= 34 columna Final= 40
---C-- Token 'Identificador' linea= 14 columna Inicio= 41 columna Final= 42
---ON-- Token 'Reservadas' linea= 14 columna Inicio= 43 columna Final= 45
---A-- Token 'Identificador' linea= 14 columna Inicio= 46 columna Final= 47
-Token: --Igual-- linea= 14 columna Inicio= 48 columna Final= 49
---C-- Token 'Identificador' linea= 14 columna Inicio= 50 columna Final= 51
---SELECTFROMTABLA1-- Token 'Identificador' linea= 15 columna Inicio= 0 columna Final= 16
-ERROR el identificador no debe tener mas de 31 caracteres, el identificador --pensandopensandopensandopensan-- en la linea 17 fue truncado
---select-- Token 'Identificador' linea= 19 columna Inicio= 0 columna Final= 6
---SELECT-- Token 'Reservadas' linea= 21 columna Inicio= 0 columna Final= 6
---FROM-- Token 'Reservadas' linea= 21 columna Inicio= 11 columna Final= 15
---SELECTFROM-- Token 'Identificador' linea= 22 columna Inicio= 0 columna Final= 10
-Error decimal .90 en linea 24 inválido
---SELECT-- Token 'Reservadas' linea= 26 columna Inicio= 0 columna Final= 6
-Token: --ParentesisAbierto-- linea= 26 columna Inicio= 6 columna Final= 7
---HOLA-- Token 'Identificador' linea= 26 columna Inicio= 7 columna Final= 11
-Token: --ParentesisCerrado-- linea= 26 columna Inicio= 11 columna Final= 12
---C-- Token 'Identificador' linea= 28 columna Inicio= 0 columna Final= 1
-Token: --Punto-- linea= 28 columna Inicio= 1 columna Final= 2
---JOLA-- Token 'Identificador' linea= 28 columna Inicio= 2 columna Final= 6
-Token: --Igual-- linea= 28 columna Inicio= 6 columna Final= 7
---D-- Token 'Identificador' linea= 28 columna Inicio= 7 columna Final= 8
-Token: --Punto-- linea= 28 columna Inicio= 8 columna Final= 9
---ADIOS-- Token 'Identificador' linea= 28 columna Inicio= 9 columna Final= 14
+Error String, String sin terminar o multilinea --'hola eso es texto != $ ´{+.
+-- en linea 10
+--k-- Token 'Identificador' linea= 12 columna Inicio= 0 columna Final= 1
+Simbolo no definido en la linea 12 columna Inicio= 1 columna Final= 2
+--SELECT-- Token 'Reservadas' linea= 16 columna Inicio= 0 columna Final= 6
+Token: --Multiplicacion-- linea= 16 columna Inicio= 7 columna Final= 8
+--FROM-- Token 'Reservadas' linea= 16 columna Inicio= 9 columna Final= 13
+--TABLA1-- Token 'Identificador' linea= 16 columna Inicio= 14 columna Final= 20
+--A-- Token 'Identificador' linea= 16 columna Inicio= 21 columna Final= 22
+--INNER-- Token 'Reservadas' linea= 16 columna Inicio= 23 columna Final= 28
+--JOIN-- Token 'Reservadas' linea= 16 columna Inicio= 29 columna Final= 33
+--TABLA2-- Token 'Identificador' linea= 16 columna Inicio= 34 columna Final= 40
+--C-- Token 'Identificador' linea= 16 columna Inicio= 41 columna Final= 42
+--ON-- Token 'Reservadas' linea= 16 columna Inicio= 43 columna Final= 45
+--A-- Token 'Identificador' linea= 16 columna Inicio= 46 columna Final= 47
+Token: --Igual-- linea= 16 columna Inicio= 48 columna Final= 49
+--C-- Token 'Identificador' linea= 16 columna Inicio= 50 columna Final= 51
+--SELECTFROMTABLA1-- Token 'Identificador' linea= 17 columna Inicio= 0 columna Final= 16
+ERROR el identificador no debe tener mas de 31 caracteres, el identificador --pensandopensandopensandopensan-- en la linea 19 fue truncado
+--select-- Token 'Identificador' linea= 21 columna Inicio= 0 columna Final= 6
+--SELECT-- Token 'Reservadas' linea= 23 columna Inicio= 0 columna Final= 6
+--FROM-- Token 'Reservadas' linea= 23 columna Inicio= 11 columna Final= 15
+--SELECTFROM-- Token 'Identificador' linea= 24 columna Inicio= 0 columna Final= 10
+Error Comentario sin cerrar en la linea 25
+Error decimal .90 en linea 26 inválido
+--SELECT-- Token 'Reservadas' linea= 28 columna Inicio= 0 columna Final= 6
+Token: --ParentesisAbierto-- linea= 28 columna Inicio= 6 columna Final= 7
+--HOLA-- Token 'Identificador' linea= 28 columna Inicio= 7 columna Final= 11
+Token: --ParentesisCerrado-- linea= 28 columna Inicio= 11 columna Final= 12
+--C-- Token 'Identificador' linea= 30 columna Inicio= 0 columna Final= 1
+Token: --Punto-- linea= 30 columna Inicio= 1 columna Final= 2
+--JOLA-- Token 'Identificador' linea= 30 columna Inicio= 2 columna Final= 6
+Token: --Igual-- linea= 30 columna Inicio= 6 columna Final= 7
+--D-- Token 'Identificador' linea= 30 columna Inicio= 7 columna Final= 8
+Token: --Punto-- linea= 30 columna Inicio= 8 columna Final= 9
+--ADIOS-- Token 'Identificador' linea= 30 columna Inicio= 9 columna Final= 14
 FIN

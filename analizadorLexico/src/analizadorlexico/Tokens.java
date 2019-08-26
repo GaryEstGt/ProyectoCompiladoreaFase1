@@ -50,5 +50,6 @@ public enum Tokens {
     String,
     ERROR,
     ERRORComentario,
-    ERRORDecimal
+    ERRORDecimal,
+    ERRORString
 }

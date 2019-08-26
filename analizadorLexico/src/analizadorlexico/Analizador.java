@@ -124,28 +124,31 @@ public class Analizador extends javax.swing.JFrame {
                 }
                 switch (tokens) {
                     case ERROR:
-                        salida += "Simbolo no definido en la linea "+analizador.line+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
+                        salida += "Simbolo no definido en la linea "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                      case Numero: case Reservadas: case Float: case String: case Bit:
-                        salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+analizador.line+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
+                        salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                         break;
                      case Identificador:
                             if(analizador.lexeme.length()>31){
                                 String token=analizador.lexeme.substring(0, 30);
-                                salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador --"+token+"-- en la linea "+analizador.line+" fue truncado\n";
+                                salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador --"+token+"-- en la linea "+(analizador.line+1)+" fue truncado\n";
                             }
                             else{
-                               salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+analizador.line+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
+                               salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                             }
                          break;
                     case ERRORComentario:
-                        salida+="Error Comentario sin cerrar en la linea "+analizador.line+"\n";
+                        salida+="Error Comentario sin cerrar en la linea "+(analizador.line+1)+"\n";
                         break;
                     case ERRORDecimal:
-                         salida+="Error decimal "+analizador.lexeme+" en linea "+analizador.line+" inválido\n";
+                         salida+="Error decimal "+analizador.lexeme+" en linea "+(analizador.line+1)+" inválido\n";
+                        break;
+                    case ERRORString:
+                        salida+="Error String, String sin terminar o multilinea --"+analizador.lexeme+"-- en linea "+(analizador.line+1)+"\n";
                         break;
                     default:
-                        salida += "Token: --" + tokens +"-- linea= "+analizador.line+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
+                        salida += "Token: --" + tokens +"-- linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                 }
              }

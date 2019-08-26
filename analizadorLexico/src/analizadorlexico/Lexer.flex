@@ -366,8 +366,9 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return Reservadas;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
 (({D}+)"."({D}*))|(({D}+)"."({D}*)E"+"(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
-"'".*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
+"'"{InputCharacter}*{LineTerminator}?"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
+"'"{InputCharacter}*{LineTerminator}? {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORString;}
 "/*" [^*] ~"*/" | "/*" "*"+ "/" {/*Ignore*/}
-"/*" [^*] | "/*" "*"+ {line=yyline; column=yycolumn; return ERRORComentario;}
+"/*" {InputCharacter}*{LineTerminator}? | "/*" "*"+ {line=yyline; column=yycolumn; return ERRORComentario;}
 "."{D}+ {line=yyline; column=yycolumn; lexeme=yytext(); return ERRORDecimal;}
  . {line=yyline; column=yycolumn; return ERROR;}
