@@ -51,5 +51,10 @@ public enum Tokens {
     ERROR,
     ERRORComentario,
     ERRORDecimal,
-    ERRORString
+    ERRORString,
+    ERRORComilla,
+    ERRORFloatSigno,
+    ERRORFloate,
+    ERRORFloatNumero,
+    ERRORComentarioAnidado
 }

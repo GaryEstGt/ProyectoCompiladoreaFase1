@@ -133,7 +133,7 @@ public class Analizador extends javax.swing.JFrame {
                             if(analizador.lexeme.length()>31){
                                 String token=analizador.lexeme.substring(0, 30);
                                 salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador --"+token+"-- en la linea "+(analizador.line+1)+" fue truncado\n";
-                            }
+                            }              
                             else{
                                salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                             }
@@ -146,6 +146,21 @@ public class Analizador extends javax.swing.JFrame {
                         break;
                     case ERRORString:
                         salida+="Error String, String sin terminar o multilinea --"+analizador.lexeme+"-- en linea "+(analizador.line+1)+"\n";
+                        break;
+                    case ERRORComilla:
+                        salida+="Error String no puede tener comillas linea "+analizador.line+"\n";
+                        break;
+                    case ERRORFloatSigno:
+                         salida+="Error en float "+analizador.lexeme+" falta signo despues de E en linea "+analizador.line+"\n";
+                        break;
+                    case ERRORFloate:
+                         salida+="Error en float invalido "+analizador.lexeme+" en linea "+analizador.line+"\n";
+                        break;
+                    case ERRORFloatNumero:
+                         salida+="Error en float "+analizador.lexeme+" falta numero despues de E(+|-) en linea "+analizador.line+"\n";
+                        break;
+                    case ERRORComentarioAnidado:
+                        salida+="Error comentario anidado no permitido en linea "+analizador.line+"\n";
                         break;
                     default:
                         salida += "Token: --" + tokens +"-- linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;

@@ -9,6 +9,8 @@ L=[a-z]+
 L2=[A-Z_]+
 D=[0-9]+
 InputCharacter = [^\r\n]
+InputCharacter2 = [^\r\n~"*/"]
+InputCharacterString = [^\r\n~"'"]
 LineTerminator = \r|\n|\r\n
 espacio=[ ,\t,\r,\n]+
 %{
@@ -365,10 +367,15 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return Reservadas;}
 ({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); line=yyline; column=yycolumn; return Identificador;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
-(({D}+)"."({D}*))|(({D}+)"."({D}*)E"+"(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
-"'"{InputCharacter}*{LineTerminator}?"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
-"'"{InputCharacter}*{LineTerminator}? {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORString;}
-"/*" [^*] ~"*/" | "/*" "*"+ "/" {/*Ignore*/}
-"/*" {InputCharacter}*{LineTerminator}? | "/*" "*"+ {line=yyline; column=yycolumn; return ERRORComentario;}
-"."{D}+ {line=yyline; column=yycolumn; lexeme=yytext(); return ERRORDecimal;}
+(({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
+(({D}+)"."({D}*)(E|e)(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloatSigno;}
+"."({D}*)("+"|"-")(1|2|3|4|5|6|7|8|9)({D}*) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloate;}
+(({D}+)"."({D}*)(E|e)("+"|"-")) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloatNumero;}
+("'"((.)*)(("'")+)"'")|("'"((.)*)(("'")+)((.)*)"'") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComilla;}
+"'"(.)*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
+"'"{InputCharacterString}* {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORString;}
+("/*" (.*)(("/*")+)(.*)(("*/")+)(.*)"*/") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComentarioAnidado;}
+("/*" [^*] ~"*/") | ("/*" "*"+ "/") {/*Ignore*/}
+("/*"{InputCharacter2}*) {line=yyline; column=yycolumn; return ERRORComentario;}
+("."{D}+)|("."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {line=yyline; column=yycolumn; lexeme=yytext(); return ERRORDecimal;}
  . {line=yyline; column=yycolumn; return ERROR;}
