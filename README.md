@@ -1,8 +1,8 @@
 # ProyectoCompiladoreaFase1
 Fase 1: Analizador Lexico
 ## Instrucciones
---En la primera ejecución se iniciar un form que le pedirá crear el analizador
---Al presionar el boton pasara a otra ventana y le pedire que abra un archivo con la extensión ".SQL"
+--En la primera ejecución al iniciar el form creará el analizador
+--Posteriormente le pedirá que abra un archivo con la extensión ".SQL"
 --Al seleccionar el archivo sera analizado, y en la misma ventana obtendrá el resultado.
 --Tambien tendrá un archivo de extensión .out con el resultado que se guardara en la carpeta del programa.
 
