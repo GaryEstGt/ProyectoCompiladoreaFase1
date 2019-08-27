@@ -47,6 +47,7 @@ public class Analizador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextField1.setEditable(false);
         jTextField1.setAutoscrolls(false);
         jTextField1.setName("txtArchivo"); // NOI18N
 
@@ -59,6 +60,7 @@ public class Analizador extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -69,8 +71,8 @@ public class Analizador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -80,13 +82,13 @@ public class Analizador extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,18 +126,18 @@ public class Analizador extends javax.swing.JFrame {
                 }
                 switch (tokens) {
                     case ERROR:
-                        salida += "Simbolo no definido en la linea "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
+                        salida += "Simbolo no definido en la linea "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                      case Numero: case Reservadas: case Float: case String: case Bit:
-                        salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
+                        salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+"| columna Inicio= "+analizador.column+"| columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                         break;
                      case Identificador:
                             if(analizador.lexeme.length()>31){
                                 String token=analizador.lexeme.substring(0, 30);
-                                salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador --"+token+"-- en la linea "+(analizador.line+1)+" fue truncado\n";
+                                salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador "+token+" en la linea "+(analizador.line+1)+" fue truncado\n";
                             }              
                             else{
-                               salida +="--"+analizador.lexeme + "-- Token '" + tokens + "' linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
+                               salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                             }
                          break;
                     case ERRORComentario:
@@ -145,7 +147,7 @@ public class Analizador extends javax.swing.JFrame {
                          salida+="Error decimal "+analizador.lexeme+" en linea "+(analizador.line+1)+" inválido\n";
                         break;
                     case ERRORString:
-                        salida+="Error String, String sin terminar o multilinea --"+analizador.lexeme+"-- en linea "+(analizador.line+1)+"\n";
+                        salida+="Error String, String sin terminar o multilinea | "+analizador.lexeme+" | en linea "+(analizador.line+1)+"\n";
                         break;
                     case ERRORComilla:
                         salida+="Error String no puede tener comillas linea "+analizador.line+"\n";
@@ -163,7 +165,7 @@ public class Analizador extends javax.swing.JFrame {
                         salida+="Error comentario anidado no permitido en linea "+analizador.line+"\n";
                         break;
                     default:
-                        salida += "Token: --" + tokens +"-- linea= "+(analizador.line+1)+" columna Inicio= "+analizador.column+" columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
+                        salida += analizador.lexeme+" | Token: " + tokens +"| linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                 }
              }

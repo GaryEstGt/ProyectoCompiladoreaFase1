@@ -12,6 +12,7 @@ InputCharacter = [^\r\n]
 InputCharacter2 = [^\r\n~"*/"]
 InputCharacterString = [^\r\n~"'"]
 LineTerminator = \r|\n|\r\n
+InputPoint=.|\r|\n
 espacio=[ ,\t,\r,\n]+
 %{
     public String lexeme;
@@ -366,7 +367,7 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return Reservadas;}
 "##" {lexeme=yytext(); line=yyline; column=yycolumn; return DobleNumeral;}
 ({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); line=yyline; column=yycolumn; return Identificador;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
-("(-"{D}+")")|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
+("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
 (({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
 (({D}+)"."({D}*)(E|e)(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloatSigno;}
 "."({D}*)("+"|"-")(1|2|3|4|5|6|7|8|9)({D}*) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloate;}
@@ -374,7 +375,7 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return Reservadas;}
 ("'"((.)*)(("'")+)"'")|("'"((.)*)(("'")+)((.)*)"'") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComilla;}
 "'"(.)*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
 "'"{InputCharacterString}* {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORString;}
-("/*" (.*)(("/*")+)(.*)(("*/")+)(.*)"*/") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComentarioAnidado;}
+("/*" ({InputPoint}*)(("/*")+)({InputPoint}*)(("*/")+)({InputPoint}*)"*/") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComentarioAnidado;}
 ("/*" [^*] ~"*/") | ("/*" "*"+ "/") {/*Ignore*/}
 ("/*"{InputCharacter2}*) {line=yyline; column=yycolumn; return ERRORComentario;}
 ("."{D}+)|("."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {line=yyline; column=yycolumn; lexeme=yytext(); return ERRORDecimal;}

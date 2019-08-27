@@ -19,12 +19,17 @@ public class AnalizadorLexico {
     public static void main(String[] args) {
         // TODO code application logic here
         String path="C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorLexico/Lexer.flex";
-        generarAnalizador(path);
-        //Analizador frame=new Analizador();
-        //frame.setVisible(true);
-    }
-    public static void generarAnalizador(String path){
         File archivo=new File(path);
+        generarAnalizador(archivo);
+         
+        if(archivo.exists()){
+         Analizador frame=new Analizador();
+          frame.setVisible(true);
+        }
+        
+    }
+    public static void generarAnalizador(File archivo){
+       
         JFlex.Main.generate(archivo);
                 
     }
