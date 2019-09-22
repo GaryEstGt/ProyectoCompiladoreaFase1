@@ -20,317 +20,317 @@ espacio=[ ,\t,\r,\n]+
     int column;
 %}
 %%
-ADD |
-ALL |
-ALTER |
-AND |
-ANY |
-AS |
-ASC |
-AUTHORIZATION |
-BACKUP |
-BEGIN |
-BETWEEN |
-BREAK |
-BROWSE |
-BULK |
-BY |
-CASCADE |
-CASE |
-CHECK |
-CHECKPOINT |
-CLOSE |
-CLUSTERED |
-COALESCE |
-COLLATE |
-COLUMN |
-COMMIT |
-COMPUTE |
-CONSTRAINT |
-CONTAINS |
-CONTAINSTABLE |
-CONTINUE |
-CONVERT |
-CREATE |
-CROSS |
-CURRENT |
-CURRENT_DATE |
-CURRENT_TIME |
-CURRENT_TIMESTAMP |
-CURRENT_USER |
-CURSOR |
-DATABASE |
-DBCC |
-DEALLOCATE |
-DECLARE |
-DEFAULT |
-DELETE |
-DENY |
-DESC |
-DISK |
-DISTINCT |
-DISTRIBUTED |
-DOUBLE |
-DROP |
-DUMP |
-ELSE |
-END |
-ERRLVL |
-ESCAPE |
-EXCEPT |
-EXEC |
-EXECUTE |
-EXISTS |
-EXIT |
-EXTERNAL |
-FETCH |
-FILE |
-FILLFACTOR |
-FOR |
-FOREIGN | 
-FREETEXT |
-FREETEXTTABLE |
-FROM |
-FULL |
-FUNCTION |
-GOTO |
-GRANT |
-GROUP |
-HAVING |
-HOLDLOCK |
-IDENTITY |
-IDENTITY_INSERT |
-IDENTITYCOL |
-IF |
-IN |
-INDEX |
-INNER |
-INSERT |
-INTERSECT |
-INTO |
-IS |
-JOIN |
-KEY |
-KILL |
-LEFT |
-LIKE |
-LINENO |
-LOAD |
-MERGE |
-NATIONAL |
-NOCHECK |
-NONCLUSTERED |
-NOT |
-NULL |
-NULLIF |
-OF |
-OFF |
-OFFSETS |
-ON |
-OPEN |
-OPENDATASOURCE |
-OPENQUERY  |
-OPENROWSET |
-OPENXML |
-OPTION |
-OR |
-ORDER |
-OUTER |
-OVER |
-PERCENT |
-PIVOT |
-PLAN |
-PRECISION |
-PRIMARY |
-PRINT |
-PROC |
-PROCEDURE |
-PUBLIC |
-RAISERROR |
-READ |
-READTEXT |
-RECONFIGURE |
-REFERENCES |
-REPLICATION |
-RESTORE |
-RESTRICT |
-RETURN |
-REVERT |
-REVOKE |
-RIGHT |
-ROLLBACK |
-ROWCOUNT |
-ROWGUIDCOL |
-RULE |
-SAVE |
-SCHEMA |
-SECUTIRYAUDIT |
-SELECT|
-SEMANTICKEYPHRASETABLE |
-SEMANTICSIMILARITYDETAILSTABLE |
-SEMANTICSIMILARITYTABLE |
-SESSION_USER |
-SET |
-SETUSER |
-SHUTDOWN |
-SOME |
-STATISTICS |
-SYSTEM_USER |
-TABLE |
-TABLESAMPLE |
-TEXTSIZE |
-THEN |
-TO |
-TOP |
-TRAN |
-TRANSACTION |
-TRIGGER |
-TRUNCATE |
-TRY_CONVERT |
-TSEQUAL |
-UNION |
-UNIQUE |
-UNPIVOT |
-UPDATE |
-UPDATETEXT |
-USE |
-USER |
-VALUES |
-VARYING |
-VIEW |
-WAITFOR |
-WHEN |
-WHERE |
-WHILE |
-WITH |
-ABSOLUTE |
-ACTION |
-ADA |
-ALLOCATE |
-AND |
-ARE |
-ASSERTION |
-AT |
-AVG |
-BIT |
-BIT_LENGTH |
-BOTH |
-CASCADED |
-CAST |
-CATALOG |
-CHAR |
-CHAR_LENGTH |
-CHARACTER |
-CHARACTER_LENGTH |
-COLLATION |
-CONNECT |
-CONNECTION |
-CONSTRAINTS |
-CORRESPONDING |
-COUNT |
-DATE |
-DAY |
-DEC |
-DECIMAL |
-DESCRIBE |
-DESCRIPTOR |
-DIAGNOSTICS |
-DISCONNECT |
-DOMAIN |
-END-EXEC |
-EXCEPTION |
-EXTRACT |
-FALSE |
-FIRST |
-FLOAT |
-FORTRAN |
-FOUND |
-GET |
-GLOBAL |
-GO |
-HOUR |
-IMMEDIATE |
-INCLUDE |
-INDICATOR |
-INITIALLY |
-INPUT |
-INSENSITIVE |
-INT |
-INTEGER |
-INTERVAL |
-ISOLARION |
-LENGUAGE |
-LAST |
-LEADING |
-LEVEL |
-LOCAL |
-LOWER |
-MATCH |
-MAX |
-MIN |
-MINUTE |
-MODULE |
-MONTH |
-NAMES |
-NATURAL |
-NCHAR |
-NEXT |
-NO |
-NONE |
-NUMERIC |
-OCTET_LENGTH |
-ONLY |
-OUTPUT |
-OVERLAPS |
-PAD |
-PARTIAL |
-PASCAL |
-POSITION |
-PREPARE |
-PRESERVE |
-PRIOR |
-PRIVILEGES |
-REAL |
-RELATIVE |
-ROWS |
-SCROLL |
-SECOND |
-SECTION |
-SESSION |
-SIZE |
-SMALLINT |
-SPACE |
-SQL |
-SQLCA |
-SQLCODE |
-SQLERROR |
-SQLSTATE |
-SQLWARNING |
-SUBSTRING |
-SUM |
-SYSTEM_USER |
-TEMPORARY |
-TIME |
-TIMESTAMP |
-TIMEZONE_HOUR |
-TIMEZONE_MINUTE |
-TRAILING |
-TRANSLATE |
-TRANSLATION |
-TRIM |
-TRUE |
-UNKNOWN |
-UPPER |
-USAGE |
-USING |
-VALUE |
-VARCHAR |
-WHENEVER |
-WORK |
-WRITE |
-YEAR |
-ZONE |
-WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return Reservadas;}
+ADD {lexeme=yytext(); line=yyline; column=yycolumn; return ADD;}
+ALL {lexeme=yytext(); line=yyline; column=yycolumn; return ALL;}
+ALTER {lexeme=yytext(); line=yyline; column=yycolumn; return ALTER;}
+AND {lexeme=yytext(); line=yyline; column=yycolumn; return AND;}
+ANY {lexeme=yytext(); line=yyline; column=yycolumn; return ANY;}
+AS {lexeme=yytext(); line=yyline; column=yycolumn; return AS;}
+ASC {lexeme=yytext(); line=yyline; column=yycolumn; return ASC;}
+AUTHORIZATION {lexeme=yytext(); line=yyline; column=yycolumn; return AUTHORIZATION;}
+BACKUP {lexeme=yytext(); line=yyline; column=yycolumn; return BACKUP;}
+BEGIN {lexeme=yytext(); line=yyline; column=yycolumn; return BEGIN;}
+BETWEEN {lexeme=yytext(); line=yyline; column=yycolumn; return BETWEEN;}
+BREAK {lexeme=yytext(); line=yyline; column=yycolumn; return BREAK;}
+BROWSE {lexeme=yytext(); line=yyline; column=yycolumn; return BROWSE;}
+BULK {lexeme=yytext(); line=yyline; column=yycolumn; return BULK;}
+BY {lexeme=yytext(); line=yyline; column=yycolumn; return BY;}
+CASCADE {lexeme=yytext(); line=yyline; column=yycolumn; return CASCADE;}
+CASE {lexeme=yytext(); line=yyline; column=yycolumn; return CASE;}
+CHECK {lexeme=yytext(); line=yyline; column=yycolumn; return CHECK;}
+CHECKPOINT {lexeme=yytext(); line=yyline; column=yycolumn; return CHECKPOINT;}
+CLOSE {lexeme=yytext(); line=yyline; column=yycolumn; return CLOSE;}
+CLUSTERED {lexeme=yytext(); line=yyline; column=yycolumn; return CLUSTERED;}
+COALESCE {lexeme=yytext(); line=yyline; column=yycolumn; return COALESCE;}
+COLLATE {lexeme=yytext(); line=yyline; column=yycolumn; return COLLATE;}
+COLUMN {lexeme=yytext(); line=yyline; column=yycolumn; return COLUMN;}
+COMMIT {lexeme=yytext(); line=yyline; column=yycolumn; return COMMIT;}
+COMPUTE {lexeme=yytext(); line=yyline; column=yycolumn; return COMPUTE;}
+CONSTRAINT {lexeme=yytext(); line=yyline; column=yycolumn; return CONSTRAINT;}
+CONTAINS {lexeme=yytext(); line=yyline; column=yycolumn; return CONTAINS;}
+CONTAINSTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return CONTAINSTABLE;}
+CONTINUE {lexeme=yytext(); line=yyline; column=yycolumn; return CONTINUE;}
+CONVERT {lexeme=yytext(); line=yyline; column=yycolumn; return CONVERT;}
+CREATE {lexeme=yytext(); line=yyline; column=yycolumn; return CREATE;}
+CROSS {lexeme=yytext(); line=yyline; column=yycolumn; return CROSS;}
+CURRENT {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT;}
+CURRENT_DATE {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_DATE;}
+CURRENT_TIME {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_TIME;}
+CURRENT_TIMESTAMP {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_TIMESTAMP;}
+CURRENT_USER {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_USER;}
+CURSOR {lexeme=yytext(); line=yyline; column=yycolumn; return CURSOR;}
+DATABASE {lexeme=yytext(); line=yyline; column=yycolumn; return DATABASE;}
+DBCC {lexeme=yytext(); line=yyline; column=yycolumn; return DBCC;}
+DEALLOCATE {lexeme=yytext(); line=yyline; column=yycolumn; return DEALLOCATE;}
+DECLARE {lexeme=yytext(); line=yyline; column=yycolumn; return DECLARE;}
+DEFAULT {lexeme=yytext(); line=yyline; column=yycolumn; return DEFAULT;}
+DELETE {lexeme=yytext(); line=yyline; column=yycolumn; return DELETE;}
+DENY {lexeme=yytext(); line=yyline; column=yycolumn; return DENY;}
+DESC {lexeme=yytext(); line=yyline; column=yycolumn; return DESC;}
+DISK {lexeme=yytext(); line=yyline; column=yycolumn; return DISK;}
+DISTINCT {lexeme=yytext(); line=yyline; column=yycolumn; return DISTINCT;}
+DISTRIBUTED {lexeme=yytext(); line=yyline; column=yycolumn; return DISTRIBUTED;}
+DOUBLE {lexeme=yytext(); line=yyline; column=yycolumn; return DOUBLE;}
+DROP {lexeme=yytext(); line=yyline; column=yycolumn; return DROP;}
+DUMP {lexeme=yytext(); line=yyline; column=yycolumn; return DUMP;}
+ELSE {lexeme=yytext(); line=yyline; column=yycolumn; return ELSE;}
+END {lexeme=yytext(); line=yyline; column=yycolumn; return END;}
+ERRLVL {lexeme=yytext(); line=yyline; column=yycolumn; return ERRLVL;}
+ESCAPE {lexeme=yytext(); line=yyline; column=yycolumn; return ESCAPE;}
+EXCEPT {lexeme=yytext(); line=yyline; column=yycolumn; return EXCEPT;}
+EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return EXEC;}
+EXECUTE {lexeme=yytext(); line=yyline; column=yycolumn; return EXECUTE;}
+EXISTS {lexeme=yytext(); line=yyline; column=yycolumn; return EXISTS;}
+EXIT {lexeme=yytext(); line=yyline; column=yycolumn; return EXIT;}
+EXTERNAL {lexeme=yytext(); line=yyline; column=yycolumn; return EXTERNAL;}
+FETCH {lexeme=yytext(); line=yyline; column=yycolumn; return FETCH;}
+FILE {lexeme=yytext(); line=yyline; column=yycolumn; return FILE;}
+FILLFACTOR {lexeme=yytext(); line=yyline; column=yycolumn; return FILLFACTOR;}
+FOR {lexeme=yytext(); line=yyline; column=yycolumn; return FOR;}
+FOREIGN {lexeme=yytext(); line=yyline; column=yycolumn; return FOREIGN;}
+FREETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return FREETEXT;}
+FREETEXTTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return FREETEXTTABLE;}
+FROM {lexeme=yytext(); line=yyline; column=yycolumn; return FROM;}
+FULL {lexeme=yytext(); line=yyline; column=yycolumn; return FULL;}
+FUNCTION {lexeme=yytext(); line=yyline; column=yycolumn; return FUNCTION;}
+GOTO {lexeme=yytext(); line=yyline; column=yycolumn; return GOTO;}
+GRANT {lexeme=yytext(); line=yyline; column=yycolumn; return GRANT;}
+GROUP {lexeme=yytext(); line=yyline; column=yycolumn; return GROUP;}
+HAVING {lexeme=yytext(); line=yyline; column=yycolumn; return HAVING;}
+HOLDLOCK {lexeme=yytext(); line=yyline; column=yycolumn; return HOLDLOCK;}
+IDENTITY {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITY;}
+IDENTITY_INSERT {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITY_INSERT;}
+IDENTITYCOL {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITYCOL;}
+IF {lexeme=yytext(); line=yyline; column=yycolumn; return IF;}
+IN {lexeme=yytext(); line=yyline; column=yycolumn; return IN;}
+INDEX {lexeme=yytext(); line=yyline; column=yycolumn; return INDEX;}
+INNER {lexeme=yytext(); line=yyline; column=yycolumn; return INNER;}
+INSERT {lexeme=yytext(); line=yyline; column=yycolumn; return INSERT;}
+INTERSECT {lexeme=yytext(); line=yyline; column=yycolumn; return INTERSECT;}
+INTO {lexeme=yytext(); line=yyline; column=yycolumn; return INTO;}
+IS {lexeme=yytext(); line=yyline; column=yycolumn; return IS;}
+JOIN {lexeme=yytext(); line=yyline; column=yycolumn; return JOIN;}
+KEY {lexeme=yytext(); line=yyline; column=yycolumn; return KEY;}
+KILL {lexeme=yytext(); line=yyline; column=yycolumn; return KILL;}
+LEFT {lexeme=yytext(); line=yyline; column=yycolumn; return LEFT;}
+LIKE {lexeme=yytext(); line=yyline; column=yycolumn; return LIKE;}
+LINENO {lexeme=yytext(); line=yyline; column=yycolumn; return LINENO;}
+LOAD {lexeme=yytext(); line=yyline; column=yycolumn; return LOAD;}
+MERGE {lexeme=yytext(); line=yyline; column=yycolumn; return MERGE;}
+NATIONAL {lexeme=yytext(); line=yyline; column=yycolumn; return NATIONAL;}
+NOCHECK {lexeme=yytext(); line=yyline; column=yycolumn; return NOCHECK;}
+NONCLUSTERED {lexeme=yytext(); line=yyline; column=yycolumn; return NONCLUSTERED;}
+NOT {lexeme=yytext(); line=yyline; column=yycolumn; return NOT;}
+NULL {lexeme=yytext(); line=yyline; column=yycolumn; return NULL;}
+NULLIF {lexeme=yytext(); line=yyline; column=yycolumn; return NULLIF;}
+OF {lexeme=yytext(); line=yyline; column=yycolumn; return OF;}
+OFF {lexeme=yytext(); line=yyline; column=yycolumn; return OFF;}
+OFFSETS {lexeme=yytext(); line=yyline; column=yycolumn; return OFFSETS;}
+ON {lexeme=yytext(); line=yyline; column=yycolumn; return ON;}
+OPEN {lexeme=yytext(); line=yyline; column=yycolumn; return OPEN;}
+OPENDATASOURCE {lexeme=yytext(); line=yyline; column=yycolumn; return OPENDATASOURCE;}
+OPENQUERY  {lexeme=yytext(); line=yyline; column=yycolumn; return OPENQUERY;}
+OPENROWSET {lexeme=yytext(); line=yyline; column=yycolumn; return OPENROWSET;}
+OPENXML {lexeme=yytext(); line=yyline; column=yycolumn; return OPENXML;}
+OPTION {lexeme=yytext(); line=yyline; column=yycolumn; return OPTION;}
+OR {lexeme=yytext(); line=yyline; column=yycolumn; return OR;}
+ORDER {lexeme=yytext(); line=yyline; column=yycolumn; return ORDER;}
+OUTER {lexeme=yytext(); line=yyline; column=yycolumn; return OUTER;}
+OVER {lexeme=yytext(); line=yyline; column=yycolumn; return OVER;}
+PERCENT {lexeme=yytext(); line=yyline; column=yycolumn; return PERCENT;}
+PIVOT {lexeme=yytext(); line=yyline; column=yycolumn; return PIVOT;}
+PLAN {lexeme=yytext(); line=yyline; column=yycolumn; return PLAN;}
+PRECISION {lexeme=yytext(); line=yyline; column=yycolumn; return PRECISION;}
+PRIMARY {lexeme=yytext(); line=yyline; column=yycolumn; return PRIMARY;}
+PRINT {lexeme=yytext(); line=yyline; column=yycolumn; return PRINT;}
+PROC {lexeme=yytext(); line=yyline; column=yycolumn; return PROC;}
+PROCEDURE {lexeme=yytext(); line=yyline; column=yycolumn; return PROCEDURE;}
+PUBLIC {lexeme=yytext(); line=yyline; column=yycolumn; return PUBLIC;}
+RAISERROR {lexeme=yytext(); line=yyline; column=yycolumn; return RAISERROR;}
+READ {lexeme=yytext(); line=yyline; column=yycolumn; return READ;}
+READTEXT {lexeme=yytext(); line=yyline; column=yycolumn; return READTEXT;}
+RECONFIGURE {lexeme=yytext(); line=yyline; column=yycolumn; return RECONFIGURE;}
+REFERENCES {lexeme=yytext(); line=yyline; column=yycolumn; return REFERENCES;}
+REPLICATION {lexeme=yytext(); line=yyline; column=yycolumn; return REPLICATION;}
+RESTORE {lexeme=yytext(); line=yyline; column=yycolumn; return RESTORE;}
+RESTRICT {lexeme=yytext(); line=yyline; column=yycolumn; return RESTRICT;}
+RETURN {lexeme=yytext(); line=yyline; column=yycolumn; return RETURN;}
+REVERT {lexeme=yytext(); line=yyline; column=yycolumn; return REVERT;}
+REVOKE {lexeme=yytext(); line=yyline; column=yycolumn; return REVOKE;}
+RIGHT {lexeme=yytext(); line=yyline; column=yycolumn; return RIGHT;}
+ROLLBACK {lexeme=yytext(); line=yyline; column=yycolumn; return ROLLBACK;}
+ROWCOUNT {lexeme=yytext(); line=yyline; column=yycolumn; return ROWCOUNT;}
+ROWGUIDCOL {lexeme=yytext(); line=yyline; column=yycolumn; return ROWGUIDCOL;}
+RULE {lexeme=yytext(); line=yyline; column=yycolumn; return RULE;}
+SAVE {lexeme=yytext(); line=yyline; column=yycolumn; return SAVE;}
+SCHEMA {lexeme=yytext(); line=yyline; column=yycolumn; return SCHEMA;}
+SECUTIRYAUDIT {lexeme=yytext(); line=yyline; column=yycolumn; return SECURITYAUDIT;}
+SELECT {lexeme=yytext(); line=yyline; column=yycolumn; return SELECT;}
+SEMANTICKEYPHRASETABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICKEYPHRASETABLE;}
+SEMANTICSIMILARITYDETAILSTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICSIMILARITYDETAILSTABLE;}
+SEMANTICSIMILARITYTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICSIMILARITYTABLE;}
+SESSION_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SESSION_USER;}
+SET {lexeme=yytext(); line=yyline; column=yycolumn; return SET;}
+SETUSER {lexeme=yytext(); line=yyline; column=yycolumn; return SETUSER;}
+SHUTDOWN {lexeme=yytext(); line=yyline; column=yycolumn; return SHUTDOWN;}
+SOME {lexeme=yytext(); line=yyline; column=yycolumn; return SOME;}
+STATISTICS {lexeme=yytext(); line=yyline; column=yycolumn; return STATISTICS;}
+SYSTEM_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SYSTEM_USER;}
+TABLE {lexeme=yytext(); line=yyline; column=yycolumn; return TABLE;}
+TABLESAMPLE {lexeme=yytext(); line=yyline; column=yycolumn; return TABLESAMPLE;}
+TEXTSIZE {lexeme=yytext(); line=yyline; column=yycolumn; return TEXTSIZE;}
+THEN {lexeme=yytext(); line=yyline; column=yycolumn; return THEN;}
+TO {lexeme=yytext(); line=yyline; column=yycolumn; return TO;}
+TOP {lexeme=yytext(); line=yyline; column=yycolumn; return TOP;}
+TRAN {lexeme=yytext(); line=yyline; column=yycolumn; return TRAN;}
+TRANSACTION {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSACTION;}
+TRIGGER {lexeme=yytext(); line=yyline; column=yycolumn; return TRIGGER;}
+TRUNCATE {lexeme=yytext(); line=yyline; column=yycolumn; return TRUNCATE;}
+TRY_CONVERT {lexeme=yytext(); line=yyline; column=yycolumn; return TRY_CONVERT;}
+TSEQUAL {lexeme=yytext(); line=yyline; column=yycolumn; return TSEQUAL;}
+UNION {lexeme=yytext(); line=yyline; column=yycolumn; return UNION;}
+UNIQUE {lexeme=yytext(); line=yyline; column=yycolumn; return UNIQUE;}
+UNPIVOT {lexeme=yytext(); line=yyline; column=yycolumn; return UNPIVOT;}
+UPDATE {lexeme=yytext(); line=yyline; column=yycolumn; return UPDATE;}
+UPDATETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return UPDATETEXT;}
+USE {lexeme=yytext(); line=yyline; column=yycolumn; return USE;}
+USER {lexeme=yytext(); line=yyline; column=yycolumn; return USER;}
+VALUES {lexeme=yytext(); line=yyline; column=yycolumn; return VALUES;}
+VARYING {lexeme=yytext(); line=yyline; column=yycolumn; return VARYING;}
+VIEW {lexeme=yytext(); line=yyline; column=yycolumn; return VIEW;}
+WAITFOR {lexeme=yytext(); line=yyline; column=yycolumn; return WAITFOR;}
+WHEN {lexeme=yytext(); line=yyline; column=yycolumn; return WHEN;}
+WHERE {lexeme=yytext(); line=yyline; column=yycolumn; return WHERE;}
+WHILE {lexeme=yytext(); line=yyline; column=yycolumn; return WHILE;}
+WITH {lexeme=yytext(); line=yyline; column=yycolumn; return WITH;}
+ABSOLUTE {lexeme=yytext(); line=yyline; column=yycolumn; return ABSOLUTE;}
+ACTION {lexeme=yytext(); line=yyline; column=yycolumn; return ACTION;}
+ADA {lexeme=yytext(); line=yyline; column=yycolumn; return ADA;}
+ALLOCATE {lexeme=yytext(); line=yyline; column=yycolumn; return ALLOCATE;}
+AND {lexeme=yytext(); line=yyline; column=yycolumn; return AND;}
+ARE {lexeme=yytext(); line=yyline; column=yycolumn; return ARE;}
+ASSERTION {lexeme=yytext(); line=yyline; column=yycolumn; return ASSERTION;}
+AT {lexeme=yytext(); line=yyline; column=yycolumn; return AT;}
+AVG {lexeme=yytext(); line=yyline; column=yycolumn; return AVG;}
+BIT {lexeme=yytext(); line=yyline; column=yycolumn; return BIT;}
+BIT_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return BIT_LENGHT;}
+BOTH {lexeme=yytext(); line=yyline; column=yycolumn; return BOTH;}
+CASCADED {lexeme=yytext(); line=yyline; column=yycolumn; return CASCADED;}
+CAST {lexeme=yytext(); line=yyline; column=yycolumn; return CAST;}
+CATALOG {lexeme=yytext(); line=yyline; column=yycolumn; return CATALOG;}
+CHAR {lexeme=yytext(); line=yyline; column=yycolumn; return CHAR;}
+CHAR_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return CHAR_LENGTH;}
+CHARACTER {lexeme=yytext(); line=yyline; column=yycolumn; return CHARACTER;}
+CHARACTER_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return CHARACTER_LENGTH;}
+COLLATION {lexeme=yytext(); line=yyline; column=yycolumn; return COLLATION;}
+CONNECT {lexeme=yytext(); line=yyline; column=yycolumn; return CONNECT;}
+CONNECTION {lexeme=yytext(); line=yyline; column=yycolumn; return CONNECTION;}
+CONSTRAINTS {lexeme=yytext(); line=yyline; column=yycolumn; return CONSTRAINTS;}
+CORRESPONDING {lexeme=yytext(); line=yyline; column=yycolumn; return CORRESPONDING;}
+COUNT {lexeme=yytext(); line=yyline; column=yycolumn; return COUNT;}
+DATE {lexeme=yytext(); line=yyline; column=yycolumn; return DATE;}
+DAY {lexeme=yytext(); line=yyline; column=yycolumn; return DAY;}
+DEC {lexeme=yytext(); line=yyline; column=yycolumn; return DEC;}
+DECIMAL {lexeme=yytext(); line=yyline; column=yycolumn; return DECIMAL;}
+DESCRIBE {lexeme=yytext(); line=yyline; column=yycolumn; return DESCRIBE;}
+DESCRIPTOR {lexeme=yytext(); line=yyline; column=yycolumn; return DESCRIPTOR;}
+DIAGNOSTICS {lexeme=yytext(); line=yyline; column=yycolumn; return DIAGNOSTICS;}
+DISCONNECT {lexeme=yytext(); line=yyline; column=yycolumn; return DISCONNECT;}
+DOMAIN {lexeme=yytext(); line=yyline; column=yycolumn; return DOMAIN;}
+END-EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return END-EXEC;}
+EXCEPTION {lexeme=yytext(); line=yyline; column=yycolumn; return EXCEPTION;}
+EXTRACT {lexeme=yytext(); line=yyline; column=yycolumn; return EXTRACT;}
+FALSE {lexeme=yytext(); line=yyline; column=yycolumn; return FALSE;}
+FIRST {lexeme=yytext(); line=yyline; column=yycolumn; return FIRST;}
+FLOAT {lexeme=yytext(); line=yyline; column=yycolumn; return FLOAT;}
+FORTRAN {lexeme=yytext(); line=yyline; column=yycolumn; return FORTRAN;}
+FOUND {lexeme=yytext(); line=yyline; column=yycolumn; return FOUND;}
+GET {lexeme=yytext(); line=yyline; column=yycolumn; return GET;}
+GLOBAL {lexeme=yytext(); line=yyline; column=yycolumn; return GLOBAL;}
+GO {lexeme=yytext(); line=yyline; column=yycolumn; return GO;}
+HOUR {lexeme=yytext(); line=yyline; column=yycolumn; return HOUR;}
+IMMEDIATE {lexeme=yytext(); line=yyline; column=yycolumn; return IMMEDIATE;}
+INCLUDE {lexeme=yytext(); line=yyline; column=yycolumn; return INCLUDE;}
+INDICATOR {lexeme=yytext(); line=yyline; column=yycolumn; return INDICATOR;}
+INITIALLY {lexeme=yytext(); line=yyline; column=yycolumn; return INITIALLY;}
+INPUT {lexeme=yytext(); line=yyline; column=yycolumn; return INPUT;}
+INSENSITIVE {lexeme=yytext(); line=yyline; column=yycolumn; return INSENSITIVE;}
+INT {lexeme=yytext(); line=yyline; column=yycolumn; return INT;}
+INTEGER {lexeme=yytext(); line=yyline; column=yycolumn; return INTEGER;}
+INTERVAL {lexeme=yytext(); line=yyline; column=yycolumn; return INTERVAL;}
+ISOLARION {lexeme=yytext(); line=yyline; column=yycolumn; return ISOLARION;}
+LENGUAGE {lexeme=yytext(); line=yyline; column=yycolumn; return LENGUAGE;}
+LAST {lexeme=yytext(); line=yyline; column=yycolumn; return LAST;}
+LEADING {lexeme=yytext(); line=yyline; column=yycolumn; return LEADING;}
+LEVEL {lexeme=yytext(); line=yyline; column=yycolumn; return LEVEL;}
+LOCAL {lexeme=yytext(); line=yyline; column=yycolumn; return LOCAL;}
+LOWER {lexeme=yytext(); line=yyline; column=yycolumn; return LOWER;}
+MATCH {lexeme=yytext(); line=yyline; column=yycolumn; return MATCH;}
+MAX {lexeme=yytext(); line=yyline; column=yycolumn; return MAX;}
+MIN {lexeme=yytext(); line=yyline; column=yycolumn; return MIN;}
+MINUTE {lexeme=yytext(); line=yyline; column=yycolumn; return MINUTE;}
+MODULE {lexeme=yytext(); line=yyline; column=yycolumn; return MODULE;}
+MONTH {lexeme=yytext(); line=yyline; column=yycolumn; return MONTH;}
+NAMES {lexeme=yytext(); line=yyline; column=yycolumn; return NAMES;}
+NATURAL {lexeme=yytext(); line=yyline; column=yycolumn; return NATURAL;}
+NCHAR {lexeme=yytext(); line=yyline; column=yycolumn; return NCHAR;}
+NEXT {lexeme=yytext(); line=yyline; column=yycolumn; return NEXT;}
+NO {lexeme=yytext(); line=yyline; column=yycolumn; return NO;}
+NONE {lexeme=yytext(); line=yyline; column=yycolumn; return NONE;}
+NUMERIC {lexeme=yytext(); line=yyline; column=yycolumn; return NUMERIC;}
+OCTET_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return OCTET_LENGHT;}
+ONLY {lexeme=yytext(); line=yyline; column=yycolumn; return ONLY;}
+OUTPUT {lexeme=yytext(); line=yyline; column=yycolumn; return OUTPUT;}
+OVERLAPS {lexeme=yytext(); line=yyline; column=yycolumn; return OVERLAPS;}
+PAD {lexeme=yytext(); line=yyline; column=yycolumn; return PAD;}
+PARTIAL {lexeme=yytext(); line=yyline; column=yycolumn; return PARTIAL;}
+PASCAL {lexeme=yytext(); line=yyline; column=yycolumn; return PASCAL;}
+POSITION {lexeme=yytext(); line=yyline; column=yycolumn; return POSITION;}
+PREPARE {lexeme=yytext(); line=yyline; column=yycolumn; return PREPARE;}
+PRESERVE {lexeme=yytext(); line=yyline; column=yycolumn; return PRESERVE;}
+PRIOR {lexeme=yytext(); line=yyline; column=yycolumn; return PRIOR;}
+PRIVILEGES {lexeme=yytext(); line=yyline; column=yycolumn; return PRIVILEGES;}
+REAL {lexeme=yytext(); line=yyline; column=yycolumn; return REAL;}
+RELATIVE {lexeme=yytext(); line=yyline; column=yycolumn; return RELATIVE;}
+ROWS {lexeme=yytext(); line=yyline; column=yycolumn; return ROWS;}
+SCROLL {lexeme=yytext(); line=yyline; column=yycolumn; return SCROLL;}
+SECOND {lexeme=yytext(); line=yyline; column=yycolumn; return SECOND;}
+SECTION {lexeme=yytext(); line=yyline; column=yycolumn; return SECTION;}
+SESSION {lexeme=yytext(); line=yyline; column=yycolumn; return SESSION;}
+SIZE {lexeme=yytext(); line=yyline; column=yycolumn; return SIZE;}
+SMALLINT {lexeme=yytext(); line=yyline; column=yycolumn; return SMALLINT;}
+SPACE {lexeme=yytext(); line=yyline; column=yycolumn; return SPACE;}
+SQL {lexeme=yytext(); line=yyline; column=yycolumn; return SQL;}
+SQLCA {lexeme=yytext(); line=yyline; column=yycolumn; return SQLCA;}
+SQLCODE {lexeme=yytext(); line=yyline; column=yycolumn; return SQLCODE;}
+SQLERROR {lexeme=yytext(); line=yyline; column=yycolumn; return SQLERROR;}
+SQLSTATE {lexeme=yytext(); line=yyline; column=yycolumn; return SQLSTATE;}
+SQLWARNING {lexeme=yytext(); line=yyline; column=yycolumn; return SQLWARNING;}
+SUBSTRING {lexeme=yytext(); line=yyline; column=yycolumn; return SUBSTRING;}
+SUM {lexeme=yytext(); line=yyline; column=yycolumn; return SUM;}
+SYSTEM_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SYSTEM_USER;}
+TEMPORARY {lexeme=yytext(); line=yyline; column=yycolumn; return TEMPORARY;}
+TIME {lexeme=yytext(); line=yyline; column=yycolumn; return TIME;}
+TIMESTAMP {lexeme=yytext(); line=yyline; column=yycolumn; return TIMESTAMP;}
+TIMEZONE_HOUR {lexeme=yytext(); line=yyline; column=yycolumn; return TIMEZONE_HOUR;}
+TIMEZONE_MINUTE {lexeme=yytext(); line=yyline; column=yycolumn; return TIMEZONE_MINUTE;}
+TRAILING {lexeme=yytext(); line=yyline; column=yycolumn; return TRAILING;}
+TRANSLATE {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSLATE;}
+TRANSLATION {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSLATION;}
+TRIM {lexeme=yytext(); line=yyline; column=yycolumn; return TRIM;}
+TRUE {lexeme=yytext(); line=yyline; column=yycolumn; return TRUE;}
+UNKNOWN {lexeme=yytext(); line=yyline; column=yycolumn; return UNKNOWN;}
+UPPER {lexeme=yytext(); line=yyline; column=yycolumn; return UPPER;}
+USAGE {lexeme=yytext(); line=yyline; column=yycolumn; return USAGE;}
+USING {lexeme=yytext(); line=yyline; column=yycolumn; return USING;}
+VALUE {lexeme=yytext(); line=yyline; column=yycolumn; return VALUE;}
+VARCHAR {lexeme=yytext(); line=yyline; column=yycolumn; return VARCHAR;}
+WHENEVER {lexeme=yytext(); line=yyline; column=yycolumn; return WHENEVER;}
+WORK {lexeme=yytext(); line=yyline; column=yycolumn; return WORK;}
+WRITE {lexeme=yytext(); line=yyline; column=yycolumn; return WRITE;}
+YEAR {lexeme=yytext(); line=yyline; column=yycolumn; return YEAR;}
+ZONE {lexeme=yytext(); line=yyline; column=yycolumn; return ZONE;}
+WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 {espacio} {/*Ignore*/}
 "--" {InputCharacter}*{LineTerminator}? {/*Ignore*/}
 "=" {lexeme=yytext(); line=yyline; column=yycolumn; return Igual;}
