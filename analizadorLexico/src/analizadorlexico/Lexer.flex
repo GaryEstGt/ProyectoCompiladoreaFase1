@@ -164,7 +164,7 @@ ROWGUIDCOL {lexeme=yytext(); line=yyline; column=yycolumn; return ROWGUIDCOL;}
 RULE {lexeme=yytext(); line=yyline; column=yycolumn; return RULE;}
 SAVE {lexeme=yytext(); line=yyline; column=yycolumn; return SAVE;}
 SCHEMA {lexeme=yytext(); line=yyline; column=yycolumn; return SCHEMA;}
-SECUTIRYAUDIT {lexeme=yytext(); line=yyline; column=yycolumn; return SECURITYAUDIT;}
+SECURITYAUDIT {lexeme=yytext(); line=yyline; column=yycolumn; return SECURITYAUDIT;}
 SELECT {lexeme=yytext(); line=yyline; column=yycolumn; return SELECT;}
 SEMANTICKEYPHRASETABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICKEYPHRASETABLE;}
 SEMANTICSIMILARITYDETAILSTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICSIMILARITYDETAILSTABLE;}
@@ -207,13 +207,12 @@ ABSOLUTE {lexeme=yytext(); line=yyline; column=yycolumn; return ABSOLUTE;}
 ACTION {lexeme=yytext(); line=yyline; column=yycolumn; return ACTION;}
 ADA {lexeme=yytext(); line=yyline; column=yycolumn; return ADA;}
 ALLOCATE {lexeme=yytext(); line=yyline; column=yycolumn; return ALLOCATE;}
-AND {lexeme=yytext(); line=yyline; column=yycolumn; return AND;}
 ARE {lexeme=yytext(); line=yyline; column=yycolumn; return ARE;}
 ASSERTION {lexeme=yytext(); line=yyline; column=yycolumn; return ASSERTION;}
 AT {lexeme=yytext(); line=yyline; column=yycolumn; return AT;}
 AVG {lexeme=yytext(); line=yyline; column=yycolumn; return AVG;}
 BIT {lexeme=yytext(); line=yyline; column=yycolumn; return BIT;}
-BIT_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return BIT_LENGHT;}
+BIT_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return BIT_LENGTH;}
 BOTH {lexeme=yytext(); line=yyline; column=yycolumn; return BOTH;}
 CASCADED {lexeme=yytext(); line=yyline; column=yycolumn; return CASCADED;}
 CAST {lexeme=yytext(); line=yyline; column=yycolumn; return CAST;}
@@ -237,7 +236,7 @@ DESCRIPTOR {lexeme=yytext(); line=yyline; column=yycolumn; return DESCRIPTOR;}
 DIAGNOSTICS {lexeme=yytext(); line=yyline; column=yycolumn; return DIAGNOSTICS;}
 DISCONNECT {lexeme=yytext(); line=yyline; column=yycolumn; return DISCONNECT;}
 DOMAIN {lexeme=yytext(); line=yyline; column=yycolumn; return DOMAIN;}
-END-EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return END-EXEC;}
+END-EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return ENDEXEC;}
 EXCEPTION {lexeme=yytext(); line=yyline; column=yycolumn; return EXCEPTION;}
 EXTRACT {lexeme=yytext(); line=yyline; column=yycolumn; return EXTRACT;}
 FALSE {lexeme=yytext(); line=yyline; column=yycolumn; return FALSE;}
@@ -278,7 +277,7 @@ NEXT {lexeme=yytext(); line=yyline; column=yycolumn; return NEXT;}
 NO {lexeme=yytext(); line=yyline; column=yycolumn; return NO;}
 NONE {lexeme=yytext(); line=yyline; column=yycolumn; return NONE;}
 NUMERIC {lexeme=yytext(); line=yyline; column=yycolumn; return NUMERIC;}
-OCTET_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return OCTET_LENGHT;}
+OCTET_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return OCTET_LENGTH;}
 ONLY {lexeme=yytext(); line=yyline; column=yycolumn; return ONLY;}
 OUTPUT {lexeme=yytext(); line=yyline; column=yycolumn; return OUTPUT;}
 OVERLAPS {lexeme=yytext(); line=yyline; column=yycolumn; return OVERLAPS;}
@@ -308,7 +307,6 @@ SQLSTATE {lexeme=yytext(); line=yyline; column=yycolumn; return SQLSTATE;}
 SQLWARNING {lexeme=yytext(); line=yyline; column=yycolumn; return SQLWARNING;}
 SUBSTRING {lexeme=yytext(); line=yyline; column=yycolumn; return SUBSTRING;}
 SUM {lexeme=yytext(); line=yyline; column=yycolumn; return SUM;}
-SYSTEM_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SYSTEM_USER;}
 TEMPORARY {lexeme=yytext(); line=yyline; column=yycolumn; return TEMPORARY;}
 TIME {lexeme=yytext(); line=yyline; column=yycolumn; return TIME;}
 TIMESTAMP {lexeme=yytext(); line=yyline; column=yycolumn; return TIMESTAMP;}
@@ -347,7 +345,7 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 "==" {lexeme=yytext(); line=yyline; column=yycolumn; return IgualIgual;}
 "!=" {lexeme=yytext(); line=yyline; column=yycolumn; return NoIgual;}
 "&" {lexeme=yytext(); line=yyline; column=yycolumn; return y;}
-"&&" {lexeme=yytext(); line=yyline; column=yycolumn; return and;}
+"&&" {lexeme=yytext(); line=yyline; column=yycolumn; return andS;}
 "||" {lexeme=yytext(); line=yyline; column=yycolumn; return or;}
 "!" {lexeme=yytext(); line=yyline; column=yycolumn; return SignoExclamacion;}
 ";" {lexeme=yytext(); line=yyline; column=yycolumn; return PuntoyComa;}
@@ -369,14 +367,6 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
 ("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
 (({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
-(({D}+)"."({D}*)(E|e)(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloatSigno;}
-"."({D}*)("+"|"-")(1|2|3|4|5|6|7|8|9)({D}*) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloate;}
-(({D}+)"."({D}*)(E|e)("+"|"-")) {lexeme=yytext(); column=yycolumn; line=yyline; return ERRORFloatNumero;}
-("'"((.)*)(("'")+)"'")|("'"((.)*)(("'")+)((.)*)"'") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComilla;}
 "'"(.)*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
-"'"{InputCharacterString}* {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORString;}
-("/*" ({InputPoint}*)(("/*")+)({InputPoint}*)(("*/")+)({InputPoint}*)"*/") {lexeme=yytext(); line=yyline; column=yycolumn; return ERRORComentarioAnidado;}
 ("/*" [^*] ~"*/") | ("/*" "*"+ "/") {/*Ignore*/}
-("/*"{InputCharacter2}*) {line=yyline; column=yycolumn; return ERRORComentario;}
-("."{D}+)|("."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {line=yyline; column=yycolumn; lexeme=yytext(); return ERRORDecimal;}
  . {line=yyline; column=yycolumn; return ERROR;}

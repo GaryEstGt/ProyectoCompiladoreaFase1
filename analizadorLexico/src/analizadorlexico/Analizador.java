@@ -128,7 +128,7 @@ public class Analizador extends javax.swing.JFrame {
                     case ERROR:
                         salida += "Simbolo no definido en la linea "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
-                     case Numero: case Reservadas: case Float: case String: case Bit:
+                     case Numero: case Float: case String: case Bit:
                         salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+"| columna Inicio= "+analizador.column+"| columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                         break;
                      case Identificador:
@@ -140,30 +140,7 @@ public class Analizador extends javax.swing.JFrame {
                                salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                             }
                          break;
-                    case ERRORComentario:
-                        salida+="Error Comentario sin cerrar en la linea "+(analizador.line+1)+"\n";
-                        break;
-                    case ERRORDecimal:
-                         salida+="Error decimal "+analizador.lexeme+" en linea "+(analizador.line+1)+" inválido\n";
-                        break;
-                    case ERRORString:
-                        salida+="Error String, String sin terminar o multilinea | "+analizador.lexeme+" | en linea "+(analizador.line+1)+"\n";
-                        break;
-                    case ERRORComilla:
-                        salida+="Error String no puede tener comillas linea "+analizador.line+"\n";
-                        break;
-                    case ERRORFloatSigno:
-                         salida+="Error en float "+analizador.lexeme+" falta signo despues de E en linea "+analizador.line+"\n";
-                        break;
-                    case ERRORFloate:
-                         salida+="Error en float invalido "+analizador.lexeme+" en linea "+analizador.line+"\n";
-                        break;
-                    case ERRORFloatNumero:
-                         salida+="Error en float "+analizador.lexeme+" falta numero despues de E(+|-) en linea "+analizador.line+"\n";
-                        break;
-                    case ERRORComentarioAnidado:
-                        salida+="Error comentario anidado no permitido en linea "+analizador.line+"\n";
-                        break;
+                         
                     default:
                         salida += analizador.lexeme+" | Token: " + tokens +"| linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
