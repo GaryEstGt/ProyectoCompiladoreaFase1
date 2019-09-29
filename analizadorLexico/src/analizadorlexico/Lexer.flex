@@ -10,7 +10,7 @@ L2=[A-Z_]+
 D=[0-9]+
 InputCharacter = [^\r\n]
 InputCharacter2 = [^\r\n~"*/"]
-InputCharacterString = [^\r\n~"'"]
+InputCharacterString = [^~"'"~\r~\n]
 LineTerminator = \r|\n|\r\n
 InputPoint=.|\r|\n
 espacio=[ ,\t,\r,\n]+
@@ -367,6 +367,6 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
 ("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
 (({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
-"'"(.)*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
-("/*" [^*] ~"*/") | ("/*" "*"+ "/") {/*Ignore*/}
+"'"{InputCharacterString}*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
+("/*"("*")* [^*] ("*")* ~"*/") | ("/*" ("*")+ "/") {/*Ignore*/}
  . {line=yyline; column=yycolumn; return ERROR;}

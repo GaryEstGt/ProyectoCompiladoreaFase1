@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -27,6 +29,7 @@ public class Analizador extends javax.swing.JFrame {
     /**
      * Creates new form Analizador
      */
+        LinkedList<Token> instrucciones=new LinkedList();
     public Analizador() {
         initComponents();
     }
@@ -110,8 +113,8 @@ public class Analizador extends javax.swing.JFrame {
             try {
                 Reader lector = new BufferedReader(new FileReader(rutaArchivo));
                  Lexer analizador=new Lexer(lector);
-        
-                 while (true) {
+                 boolean terminarCiclo=false;
+                 while (!terminarCiclo) {
                 Tokens tokens = analizador.yylex();
                 if (tokens == null) {
                     salida += "FIN";
@@ -121,20 +124,27 @@ public class Analizador extends javax.swing.JFrame {
                     escribir=new PrintWriter(archivoSalida);
                     escribir.print(salida);
                     escribir.close();
+                      terminarCiclo=true;
                    // txtResultado.setText(resultado);
-                    return;
+                  
                 }
+                else{
+                    
                 switch (tokens) {
                     case ERROR:
+                        instrucciones.add(new Token(tokens.toString(),analizador.line+1));
                         salida += "Simbolo no definido en la linea "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                      case Numero: case Float: case String: case Bit:
+                         instrucciones.add(new Token(tokens.toString(),analizador.line+1));
                         salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+"| columna Inicio= "+analizador.column+"| columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                         break;
                      case Identificador:
+                         instrucciones.add(new Token(tokens.toString(),analizador.line+1));
                             if(analizador.lexeme.length()>31){
                                 String token=analizador.lexeme.substring(0, 30);
                                 salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador "+token+" en la linea "+(analizador.line+1)+" fue truncado\n";
+                                
                             }              
                             else{
                                salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
@@ -142,10 +152,14 @@ public class Analizador extends javax.swing.JFrame {
                          break;
                          
                     default:
+                        instrucciones.add(new Token(tokens.toString(),analizador.line+1));
                         salida += analizador.lexeme+" | Token: " + tokens +"| linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";;
                         break;
                 }
+                }
              }
+                 analizadorSintactico analizadorS=new analizadorSintactico(instrucciones);
+                 JOptionPane.showMessageDialog(null,analizadorS.errores);
                  
                  
             } catch (FileNotFoundException ex) {
