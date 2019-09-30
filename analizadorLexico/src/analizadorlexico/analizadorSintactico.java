@@ -28,19 +28,25 @@ public class analizadorSintactico {
                 selectStatement();
             break;
             case "INSERT":
+                insertStatement();
             break;
             case "UPDATE":
+                updateStatement();
             break;
             case "DELETE":
+                deleteStatement();
             break;
             case "CREATE":
                 createStatement();
             break;
             case "ALTER":
+                alterStatement();
             break;
             case "DROP":
+                dropStatement();
             break;
             case "TRUNCATE":
+                truncateStatement();
             break;
             default:
                 errores+="error de sintaxis, se esperaba sentencia";
@@ -155,7 +161,7 @@ public class analizadorSintactico {
         if(salirMetodo){ return salirMetodo;} 
         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");    
         if(salirMetodo){ return salirMetodo;} 
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Numero");   
+        salirMetodo=expression();   
         if(salirMetodo){ return salirMetodo;} 
         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");    
         if(salirMetodo){ return salirMetodo;} 
@@ -832,8 +838,8 @@ public class analizadorSintactico {
         else if(instrucciones.get(posAnalizador).getToken().equals("ParentesisAbierto")){
             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
            if(salirMetodo){return salirMetodo;}
-           if(salirMetodo){return salirMetodo;}
            salirMetodo=expression();
+            if(salirMetodo){return salirMetodo;}
            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
            if(salirMetodo){return salirMetodo;}
         }
@@ -938,11 +944,11 @@ public class analizadorSintactico {
     }
     public boolean when_list(){
         boolean salirMetodo=false;
-            MatchToken(instrucciones.get(posAnalizador),"WHEN");
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WHEN");
             if(salirMetodo){return salirMetodo;}
             salirMetodo=search_condition();
             if(salirMetodo){return salirMetodo;}
-            MatchToken(instrucciones.get(posAnalizador),"THEN");
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"THEN");
             if(salirMetodo){return salirMetodo;}
         switch (instrucciones.get(posAnalizador).getToken()) {
             case "String":
@@ -963,11 +969,11 @@ public class analizadorSintactico {
                 return salirMetodo;
         }
             if(instrucciones.get(posAnalizador).getToken().equals("ELSE")){
-                MatchToken(instrucciones.get(posAnalizador),"ELSE");
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ELSE");
                 if(salirMetodo){return salirMetodo;}
             switch (instrucciones.get(posAnalizador).getToken()) {
                 case "String":
-                    MatchToken(instrucciones.get(posAnalizador),"String");
+                   salirMetodo= MatchToken(instrucciones.get(posAnalizador),"String");
                     if(salirMetodo){return salirMetodo;}
                     break;
                 case "Identificador":
@@ -1152,6 +1158,1111 @@ public class analizadorSintactico {
     }
     public boolean createStatement(){
         boolean salirMetodo=false;
+        MatchToken(instrucciones.get(posAnalizador),"CREATE");
+        if(salirMetodo){return salirMetodo;}
+        switch(instrucciones.get(posAnalizador).getToken()){
+            case "TABLE":
+                    salirMetodo=createTable();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+             case "DATABASE":
+                 salirMetodo=createDatabase();
+                    if(salirMetodo){return salirMetodo;}
+                break; 
+                case "USER":
+                    salirMetodo=createUser();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "INDEX":
+                    salirMetodo=createIndex();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "VIEW":
+                    salirMetodo=createView();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                default:
+                    errores="Error se esperaba CREATE en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+                   
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+        return salirMetodo;
+    }
+    public boolean createTable(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"TABLE");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+        }
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=columnDef();
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("CONSTRAINT")){
+            salirMetodo=constraint();
+            if(salirMetodo){return salirMetodo;}
+        }
+        
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+        if(salirMetodo){return salirMetodo;}
+        
+        
+        return salirMetodo;
+    }
+    public boolean columnDef(){
+        boolean salirMetodo=false;
+         salirMetodo=identExp();        
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=data_type();        
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("NOT")||instrucciones.get(posAnalizador).getToken().equals("NULL")){
+            if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NOT");
+                if(salirMetodo){return salirMetodo;}
+            }
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NULL");
+            if(salirMetodo){return salirMetodo;}
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("PRIMARY")){
+                
+           salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PRIMARY");
+           if(salirMetodo){return salirMetodo;}
+            
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"KEY");
+            if(salirMetodo){return salirMetodo;}
+            if(instrucciones.get(posAnalizador).getToken().equals("ASC")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ASC");    
+                    if(salirMetodo){ return salirMetodo;} 
+                }
+                else if(instrucciones.get(posAnalizador).getToken().equals("DESC")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DESC");    
+                    if(salirMetodo){ return salirMetodo;} 
+                }
+            
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+             if(salirMetodo){return salirMetodo;}
+             salirMetodo=columnDef();
+             if(salirMetodo){return salirMetodo;}
+         }
+        
+        return salirMetodo;
+    }
+     public boolean data_type(){
+        boolean salirMetodo=false;
+         switch (instrucciones.get(posAnalizador).getToken()) {
+            case "INT":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INT");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "FLOAT":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FLOAT");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "BIT":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"BIT");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "STRING":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"STRING");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            default:
+                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea();
+                recorrerFinal();
+                salirMetodo=true;
+                return salirMetodo;
+        }
+        return salirMetodo;
+    }
+     public boolean constraint(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CONSTRAINT");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PRIMARY");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"KEY");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+        if(salirMetodo){return salirMetodo;}
+            salirMetodo=constraint2();
+            if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+            salirMetodo= MatchToken(instrucciones.get(posAnalizador),"Coma");
+             if(salirMetodo){return salirMetodo;}
+             salirMetodo=constraint();
+             if(salirMetodo){return salirMetodo;}
+         }
+        
+        return salirMetodo;
+    }
+     public boolean constraint2(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("ASC")){
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ASC");    
+            if(salirMetodo){ return salirMetodo;} 
+       }
+        else if(instrucciones.get(posAnalizador).getToken().equals("DESC")){
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DESC");    
+            if(salirMetodo){ return salirMetodo;} 
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=constraint2();
+                    if(salirMetodo){return salirMetodo;}
+        }
+
+        
+        return salirMetodo;
+    }
+    public boolean createDatabase(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DATABASE");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ON");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("PRIMARY")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PRIMARY");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+        salirMetodo=database();
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("COLLATE")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"COLLATE");    
+              if(salirMetodo){ return salirMetodo;}   
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+        }
+        
+        return salirMetodo;
+    }
+    public boolean database(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=database();
+                    if(salirMetodo){return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean createUser(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"USER");    
+        if(salirMetodo){ return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+        if(salirMetodo){ return salirMetodo;}
+        return salirMetodo;
+    }
+    public boolean createIndex(){
+        boolean salirMetodo=false;
+            if(instrucciones.get(posAnalizador).getToken().equals("UNIQUE")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"UNIQUE");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("CLUSTERED")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CLUSTERED");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }else if(instrucciones.get(posAnalizador).getToken().equals("NONCLUSTERED")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NONCLUSTERED");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INDEX");    
+        if(salirMetodo){ return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+        if(salirMetodo){ return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ON");    
+        if(salirMetodo){ return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+        if(salirMetodo){ return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");    
+        if(salirMetodo){ return salirMetodo;}
+         salirMetodo=index();
+         if(salirMetodo){ return salirMetodo;}         
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");         
+        if(salirMetodo){ return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("INCLUDE")){
+                    salirMetodo=include();
+                    if(salirMetodo){ return salirMetodo;}   
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("WHERE")){
+                    salirMetodo=sigExp();
+                    if(salirMetodo){ return salirMetodo;}   
+        }
+        
+        return salirMetodo;
+    }
+    public boolean index(){
+        boolean salirMetodo=false;
+         salirMetodo=identExp();
+         if(salirMetodo){ return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("ASC")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ASC");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }
+        else if(instrucciones.get(posAnalizador).getToken().equals("DESC")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DESC");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=index();
+                    if(salirMetodo){ return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean include(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INCLUDE");         
+         if(salirMetodo){ return salirMetodo;}
+          salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");         
+        if(salirMetodo){ return salirMetodo;}
+            salirMetodo=index2();
+         if(salirMetodo){ return salirMetodo;}  
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");         
+        if(salirMetodo){ return salirMetodo;}
+        
+        return salirMetodo;
+    }
+    public boolean index2(){
+        boolean salirMetodo=false;
+         salirMetodo=identExp();
+         if(salirMetodo){ return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=index2();
+                    if(salirMetodo){ return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean createView(){
+        boolean salirMetodo=false;
+        if(instrucciones.get(posAnalizador).getToken().equals("OR")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"OR");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ALTER");    
+                    if(salirMetodo){ return salirMetodo;} 
+        }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"VIEW");    
+                    if(salirMetodo){ return salirMetodo;} 
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+                    if(salirMetodo){ return salirMetodo;}            
+        if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Punto");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+                    if(salirMetodo){ return salirMetodo;}                    
+        }
+        salirMetodo=col();
+        if(salirMetodo){ return salirMetodo;}  
+        if(instrucciones.get(posAnalizador).getToken().equals("WITH")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");    
+                    if(salirMetodo){ return salirMetodo;} 
+                     salirMetodo=col();
+                    if(salirMetodo){ return salirMetodo;}                   
+        }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"AS");    
+                    if(salirMetodo){ return salirMetodo;}
+           //preguntar si va esto
+           salirMetodo=selectExpression();
+        if(salirMetodo){ return salirMetodo;}
+        
+        if(instrucciones.get(posAnalizador).getToken().equals("WITH")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");    
+                    if(salirMetodo){ return salirMetodo;} 
+                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CHECK");    
+                    if(salirMetodo){ return salirMetodo;}                  
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"OPTION");    
+                    if(salirMetodo){ return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean col(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+         if(salirMetodo){ return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");    
+                    if(salirMetodo){ return salirMetodo;} 
+                    salirMetodo=col();
+                    if(salirMetodo){ return salirMetodo;}
+        }
+        return salirMetodo; 
+    }
+    public boolean alterStatement(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ALTER");
+        if(salirMetodo){return salirMetodo;}
+        switch(instrucciones.get(posAnalizador).getToken()){
+            case "TABLE":
+                    salirMetodo=alterTable();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+             case "DATABASE":
+                 salirMetodo=alterDatabase();
+                    if(salirMetodo){return salirMetodo;}
+                break; 
+                case "USER":
+                    salirMetodo=alterUser();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "INDEX":
+                    salirMetodo=alterIndex();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "VIEW":
+                    salirMetodo=alterView();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                default:
+                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+                   
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+        return salirMetodo;
+    }
+    public boolean alterTable(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"TABLE");    
+                if(salirMetodo){ return salirMetodo;} 
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+              MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+              salirMetodo= MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("ALTER")){
+              MatchToken(instrucciones.get(posAnalizador),"ALTER");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"COLUMN");
+                if(salirMetodo){return salirMetodo;}
+            if(instrucciones.get(posAnalizador).getToken().equals("Identificador")){   
+                salirMetodo=identExp();
+                if(salirMetodo){return salirMetodo;}
+                 if(instrucciones.get(posAnalizador).getToken().equals("COLLATE")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"COLLATE");    
+                     if(salirMetodo){ return salirMetodo;}   
+                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                       if(salirMetodo){return salirMetodo;}
+                }
+               if(instrucciones.get(posAnalizador).getToken().equals("NULL")){
+                    MatchToken(instrucciones.get(posAnalizador),"NULL");
+                     if(salirMetodo){return salirMetodo;}
+                }
+               else if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                                MatchToken(instrucciones.get(posAnalizador),"NOT");
+                                 if(salirMetodo){return salirMetodo;}
+                                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NULL");
+                                  if(salirMetodo){return salirMetodo;}
+                    }
+               if(instrucciones.get(posAnalizador).getToken().equals("ADD")||instrucciones.get(posAnalizador).getToken().equals("DROP")){
+                   if(instrucciones.get(posAnalizador).getToken().equals("ADD")){
+                    MatchToken(instrucciones.get(posAnalizador),"ADD");
+                     if(salirMetodo){return salirMetodo;}
+                    }
+                   else if(instrucciones.get(posAnalizador).getToken().equals("DROP")){
+                    MatchToken(instrucciones.get(posAnalizador),"DROP");
+                     if(salirMetodo){return salirMetodo;}
+                }
+                   if(instrucciones.get(posAnalizador).getToken().equals("ROWGUIDCOL")){
+                    MatchToken(instrucciones.get(posAnalizador),"ROWGUIDCOL");
+                     if(salirMetodo){return salirMetodo;}
+                    }
+                   else if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                    MatchToken(instrucciones.get(posAnalizador),"NOT");
+                     if(salirMetodo){return salirMetodo;}
+                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FOR");
+                     if(salirMetodo){return salirMetodo;}
+                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"REPLICATION");
+                     if(salirMetodo){return salirMetodo;}
+                }                                 
+               }
+             }
+            else if(instrucciones.get(posAnalizador).getToken().equals("ADD")){
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ADD");
+                     if(salirMetodo){return salirMetodo;}
+                 salirMetodo=altertable2();
+                 if(salirMetodo){return salirMetodo;}                
+            }else if(instrucciones.get(posAnalizador).getToken().equals("DROP")){
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DROP");
+                     if(salirMetodo){return salirMetodo;}        
+                 salirMetodo=altertable3();
+                 if(salirMetodo){return salirMetodo;} 
+        }
+                
+        }
+        
+        return salirMetodo;
+    }
+    public boolean altertable2(){
+        boolean salirMetodo=false;
+        if(instrucciones.get(posAnalizador).getToken().equals("Identificador")){
+                    salirMetodo=columnDef();
+                     if(salirMetodo){return salirMetodo;}
+        }else if(instrucciones.get(posAnalizador).getToken().equals("CONSTRAINT")){
+            salirMetodo=constraint();
+                     if(salirMetodo){return salirMetodo;}
+        }
+        else{
+            errores="Error se esperaba constraint o definicion de columna en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+            MatchToken(instrucciones.get(posAnalizador),"Coma");
+                    salirMetodo=altertable2();
+                     if(salirMetodo){return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean altertable3(){
+        boolean salirMetodo=false;
+         if(instrucciones.get(posAnalizador).getToken().equals("COLUMN")){
+            MatchToken(instrucciones.get(posAnalizador),"COLUMN");
+            if(salirMetodo){return salirMetodo;}
+                    }   
+        else  if(instrucciones.get(posAnalizador).getToken().equals("CONSTRAINT")){
+            MatchToken(instrucciones.get(posAnalizador),"CONSTRAINT");
+            if(salirMetodo){return salirMetodo;}
+                    }
+        else{
+                    errores="Error se esperaba COLUMN o CONSTRAINT en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;        
+         }
+         if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+            MatchToken(instrucciones.get(posAnalizador),"IF");
+            if(salirMetodo){return salirMetodo;}
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");
+            if(salirMetodo){return salirMetodo;}
+                    }
+         salirMetodo=col();
+         if(salirMetodo){return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+            MatchToken(instrucciones.get(posAnalizador),"Coma");
+            if(salirMetodo){return salirMetodo;}
+            salirMetodo=altertable3();
+         if(salirMetodo){return salirMetodo;}
+        } 
+        return salirMetodo;
+    }
+    public boolean alterDatabase(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DATABASE");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Identificador")){
+            MatchToken(instrucciones.get(posAnalizador),"Identificador");
+            if(salirMetodo){return salirMetodo;}
+                    }   
+        else  if(instrucciones.get(posAnalizador).getToken().equals("CURRENT")){
+            MatchToken(instrucciones.get(posAnalizador),"CURRENT");
+            if(salirMetodo){return salirMetodo;}
+                    }
+        else{
+                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;        
+         }
+        if(instrucciones.get(posAnalizador).getToken().equals("COLLATE")){
+            MatchToken(instrucciones.get(posAnalizador),"COLLATE");
+            if(salirMetodo){return salirMetodo;}
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+            if(salirMetodo){return salirMetodo;}
+                    }   
+        else  if(instrucciones.get(posAnalizador).getToken().equals("SET")){
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"SET");
+            if(salirMetodo){return salirMetodo;}
+            salirMetodo=col();
+            if(salirMetodo){return salirMetodo;}
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");
+            if(salirMetodo){return salirMetodo;}
+             salirMetodo=col();
+            if(salirMetodo){return salirMetodo;}
+                    }
+        else{
+                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;        
+         }
+        return salirMetodo;
+    }
+    public boolean alterIndex(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INDEX");
+        if(salirMetodo){return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("Identificador")){
+            MatchToken(instrucciones.get(posAnalizador),"Identificador");
+            if(salirMetodo){return salirMetodo;}
+                    }   
+        else  if(instrucciones.get(posAnalizador).getToken().equals("ALL")){
+            MatchToken(instrucciones.get(posAnalizador),"ALL");
+            if(salirMetodo){return salirMetodo;}
+                    }
+        else{
+                    errores="Error se esperaba Identificador o ALL en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;        
+         }
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ON");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+              MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+        }
+        
+        return salirMetodo;
+    }
+    public boolean alterUser(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"USER");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}      
+        return salirMetodo;
+    }
+    public boolean alterView(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"VIEW");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=index2();
+        if(salirMetodo){return salirMetodo;}
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"AS");    
+                    if(salirMetodo){ return salirMetodo;}
+           //preguntar si va esto
+           salirMetodo=selectExpression();
+        if(salirMetodo){ return salirMetodo;}
+        
+        if(instrucciones.get(posAnalizador).getToken().equals("WITH")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");    
+                    if(salirMetodo){ return salirMetodo;} 
+                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CHECK");    
+                    if(salirMetodo){ return salirMetodo;}                  
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"OPTION");    
+                    if(salirMetodo){ return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean dropStatement(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DROP");
+        if(salirMetodo){return salirMetodo;}
+        switch(instrucciones.get(posAnalizador).getToken()){
+            case "TABLE":
+                    salirMetodo=dropTable();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+             case "DATABASE":
+                 salirMetodo=dropDatabase();
+                    if(salirMetodo){return salirMetodo;}
+                break; 
+                case "USER":
+                    salirMetodo=dropUser();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "INDEX":
+                    salirMetodo=dropIndex();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                case "VIEW":
+                    salirMetodo=dropView();
+                    if(salirMetodo){return salirMetodo;}
+                break;
+                default:
+                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+                   
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+        return salirMetodo;
+    }
+    public boolean dropTable(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"TABLE");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IF");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+        salirMetodo=sigtabla();
+        if(salirMetodo){return salirMetodo;}
+        
+        return salirMetodo;
+    }
+     public boolean sigtabla(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+        }
+        if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=sigtabla();
+                if(salirMetodo){return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+     public boolean dropIndex(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INDEX");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IF");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
+         if(salirMetodo){ return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("ON")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ON");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=col();    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              salirMetodo=index2();    
+                if(salirMetodo){ return salirMetodo;} 
+         }
+        return salirMetodo;
+    }
+      public boolean dropUser(){
+        boolean salirMetodo=false;
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"USER");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IF");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+        salirMetodo=col();
+        if(salirMetodo){return salirMetodo;}
+        
+        return salirMetodo;
+    }
+       public boolean dropDatabase(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DATABASE");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IF");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+        salirMetodo=col();
+        if(salirMetodo){return salirMetodo;}
+        return salirMetodo;
+    }
+        public boolean dropView(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"VIEW");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("IF")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IF");    
+                if(salirMetodo){ return salirMetodo;}    
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"EXISTS");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         salirMetodo=index2();    
+                if(salirMetodo){ return salirMetodo;}
+        return salirMetodo;
+    }
+    public boolean truncateStatement(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"TRUNCATE");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"TABLE");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=sigtabla();
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+    return salirMetodo;
+    }
+    public boolean updateStatement(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"UPDATE");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("TOP")){ //evalue si hay TOP
+                 salirMetodo=TOP();//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+         }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("WITH")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");
+                if(salirMetodo){return salirMetodo;} 
+                salirMetodo=col();
+                if(salirMetodo){return salirMetodo;}
+         }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"SET");
+        if(salirMetodo){return salirMetodo;}
+        salirMetodo=sigUpdate();
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("FROM")){ //evalue si hay TOP
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FROM");
+            if(salirMetodo){return salirMetodo;}        
+            salirMetodo=sigtabla();
+            if(salirMetodo){return salirMetodo;}  
+           }
+        if(instrucciones.get(posAnalizador).getToken().equals("WHERE")){ //evalue si hay TOP       
+            salirMetodo=sigExp();
+            if(salirMetodo){return salirMetodo;}  
+        }     
+        if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+        return salirMetodo;
+    }
+    public boolean sigUpdate(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("Igual")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Igual");
+                  if(salirMetodo){return salirMetodo;} 
+                  
+            switch (instrucciones.get(posAnalizador).getToken()) {
+                case "DEFAULT":
+                    //evalue si hay default
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DEFAULT");
+                    if(salirMetodo){return salirMetodo;}
+                    break;
+                case "NULL":
+                    //evalue si hay null
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NULL");
+                    if(salirMetodo){return salirMetodo;}
+                    break;
+                default:
+                    salirMetodo=expression();
+                    if(salirMetodo){return salirMetodo;}
+                    break;
+            }
+                if(salirMetodo){return salirMetodo;} 
+                salirMetodo=col();
+                if(salirMetodo){return salirMetodo;}
+         }else if(instrucciones.get(posAnalizador).getToken().equals("Punto")){
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+               if(salirMetodo){return salirMetodo;}
+                switch (instrucciones.get(posAnalizador).getToken()) {
+                case "Igual":
+                    //evalue si hay default
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Igual");
+                    if(salirMetodo){return salirMetodo;}
+                    salirMetodo=expression();
+                    if(salirMetodo){return salirMetodo;}
+                    break;
+                case "ParentesisAbierto":
+                    //evalue si hay null
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                    if(salirMetodo){return salirMetodo;}
+                    salirMetodo=muchasExpresiones();
+                    if(salirMetodo){return salirMetodo;}  
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                    if(salirMetodo){return salirMetodo;}
+                    break;
+                default:
+                     errores="Error se esperaba ( o = en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+            }
+         }else if(instrucciones.get(posAnalizador).getToken().equals("ParentesisAbierto")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Punto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WRITE");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=expression();
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Numero");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Numero");
+               if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                 if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+         }else{
+              errores="Error se esperaba ( o . o = en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    recorrerFinal();
+                    salirMetodo=true;
+                    return salirMetodo;
+         }
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+               if(salirMetodo){return salirMetodo;}
+               salirMetodo=sigUpdate();
+                if(salirMetodo){return salirMetodo;}
+        }
+        return salirMetodo;
+    }
+    public boolean muchasExpresiones(){
+        boolean salirMetodo=false;
+         salirMetodo=expression();
+         if(salirMetodo){return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+                  if(salirMetodo){return salirMetodo;}          
+                  salirMetodo=muchasExpresiones();
+                  if(salirMetodo){return salirMetodo;}  
+           }
+        return salirMetodo;
+    }
+    public boolean insertStatement(){
+        boolean salirMetodo=false;
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INSERT");
+        if(salirMetodo){return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("TOP")){ //evalue si hay TOP
+                 salirMetodo=TOP();//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+         }
+        if(instrucciones.get(posAnalizador).getToken().equals("INTO")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"INTO");//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+         }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("ParentesisAbierto")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+                salirMetodo=index2();
+                if(salirMetodo){ return salirMetodo;} 
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+         }
+        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"VALUES");
+        if(salirMetodo){return salirMetodo;}
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");//ejecuta TOP
+            if(salirMetodo){ return salirMetodo;} 
+            salirMetodo=insertValues();
+            if(salirMetodo){ return salirMetodo;} 
+            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");//ejecuta TOP
+            if(salirMetodo){ return salirMetodo;} 
+        if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
+        return salirMetodo;
+    }
+    public boolean insertValues(){
+        boolean salirMetodo=false;
+        switch (instrucciones.get(posAnalizador).getToken()) {
+            case "CASE":
+                salirMetodo=caseState();
+                if(salirMetodo){ return salirMetodo;}
+                break;
+            case "String":
+                MatchToken(instrucciones.get(posAnalizador),"String");
+                break;
+            case "COUNT":
+            case "MAX":
+            case "MIN":
+            case "SUM":
+            case "AVG":
+                if(instrucciones.get(posAnalizador).getToken().equals("COUNT")){
+                    MatchToken(instrucciones.get(posAnalizador),"COUNT");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("MAX")){
+                    MatchToken(instrucciones.get(posAnalizador),"MAX");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("MIN")){
+                    MatchToken(instrucciones.get(posAnalizador),"MIN");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("AVG")){
+                    MatchToken(instrucciones.get(posAnalizador),"AVG");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("SUM")){
+                    MatchToken(instrucciones.get(posAnalizador),"SUM");
+                }
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=count_exp();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "Identificador":
+                MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                break;
+            case "Numero":
+                MatchToken(instrucciones.get(posAnalizador),"Numero");
+                break;
+            case "Float":
+                MatchToken(instrucciones.get(posAnalizador),"Float");
+                break;
+            case "Bit":
+                MatchToken(instrucciones.get(posAnalizador),"Bit");
+                break;
+            case "ParentesisAbierto":
+                MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                salirMetodo=expression();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            default:
+                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea();
+                recorrerFinal();
+                salirMetodo=true;
+                return salirMetodo;
+        }
+         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");
+                    if(salirMetodo){return salirMetodo;}
+                    salirMetodo=insertValues();
+                    if(salirMetodo){return salirMetodo;}
+                }
+        return salirMetodo;
+    }
+    public boolean deleteStatement(){
+        boolean salirMetodo=false;
+         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"DELETE");
+        if(salirMetodo){return salirMetodo;}
+         if(instrucciones.get(posAnalizador).getToken().equals("FROM")){ //evalue si hay TOP
+                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FROM");//ejecuta TOP
+                if(salirMetodo){ return salirMetodo;} 
+         }
+          salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        if(salirMetodo){return salirMetodo;}
+        if(instrucciones.get(posAnalizador).getToken().equals("WHERE")){ //evalue si hay TOP       
+            salirMetodo=sigExp();
+            if(salirMetodo){return salirMetodo;}  
+        } 
+        if(instrucciones.get(posAnalizador).getToken().equals("PuntoyComa")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PuntoyComa");    
+                if(salirMetodo){ return salirMetodo;}    
+         }
+         else if(instrucciones.get(posAnalizador).getToken().equals("GO")){
+             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
+                if(salirMetodo){ return salirMetodo;}    
+         }else{
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                        recorrerFinal();
+                        salirMetodo=true;
+                        return salirMetodo;  
+         }
         return salirMetodo;
     }
  }  
