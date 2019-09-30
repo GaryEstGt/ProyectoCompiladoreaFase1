@@ -13,7 +13,7 @@ InputCharacter2 = [^\r\n~"*/"]
 InputCharacterString = [^~"'"~\r~\n]
 LineTerminator = \r|\n|\r\n
 InputPoint=.|\r|\n
-espacio=[ ,\t,\r,\n]+
+espacio=[ \t\r\n]+
 %{
     public String lexeme;
     int line;
@@ -349,7 +349,6 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 "||" {lexeme=yytext(); line=yyline; column=yycolumn; return or;}
 "!" {lexeme=yytext(); line=yyline; column=yycolumn; return SignoExclamacion;}
 ";" {lexeme=yytext(); line=yyline; column=yycolumn; return PuntoyComa;}
-"," {lexeme=yytext(); line=yyline; column=yycolumn; return Coma;}
 "." {lexeme=yytext(); line=yyline; column=yycolumn; return Punto;}
 "[" {lexeme=yytext(); line=yyline; column=yycolumn; return CorcheteAbierto;}
 "]" {lexeme=yytext(); line=yyline; column=yycolumn; return CorcheteCerrado;}
@@ -363,6 +362,7 @@ WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
 "@" {lexeme=yytext(); line=yyline; column=yycolumn; return Arroba;}
 "#" {lexeme=yytext(); line=yyline; column=yycolumn; return Numeral;}
 "##" {lexeme=yytext(); line=yyline; column=yycolumn; return DobleNumeral;}
+"," {lexeme=yytext(); line=yyline; column=yycolumn; return Coma;}
 ({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); line=yyline; column=yycolumn; return Identificador;}
 (1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
 ("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}

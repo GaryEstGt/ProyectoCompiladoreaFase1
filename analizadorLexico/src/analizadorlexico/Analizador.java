@@ -159,7 +159,7 @@ public class Analizador extends javax.swing.JFrame {
                 }
              }
                  analizadorSintactico analizadorS=new analizadorSintactico(instrucciones);
-                 JOptionPane.showMessageDialog(null,analizadorS.errores);
+                JOptionPane.showMessageDialog(null,analizadorS.errores);
                  
                  
             } catch (FileNotFoundException ex) {
