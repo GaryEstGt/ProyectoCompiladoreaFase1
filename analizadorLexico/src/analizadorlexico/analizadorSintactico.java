@@ -530,6 +530,7 @@ public class analizadorSintactico {
             case "Numero":
             case "Float":
             case "Bit":
+            case "ParentesisAbierto":
                 salirMetodo=expression();
                 if(salirMetodo){return salirMetodo;}
                 break;
@@ -884,7 +885,12 @@ public class analizadorSintactico {
     }
     public boolean predicado(){
         boolean salirMetodo=false;
-        if(instrucciones.get(posAnalizador).getToken().equals("Identificador") || instrucciones.get(posAnalizador).getToken().equals("Numero")||instrucciones.get(posAnalizador).getToken().equals("Float")|| instrucciones.get(posAnalizador).getToken().equals("Bit")){
+        switch (instrucciones.get(posAnalizador).getToken()) {
+            case "Identificador":
+            case "Numero":
+            case "Float":
+            case "Bit":
+            case "ParentesisAbierto":
                 salirMetodo=expression();
                 if(salirMetodo){return salirMetodo;}
                 if(instrucciones.get(posAnalizador).getToken().equals("IN")){
@@ -895,50 +901,51 @@ public class analizadorSintactico {
                 }else{
                     salirMetodo=state_logic();
                     if(salirMetodo){return salirMetodo;}
-                 }
-                
-        }
-        else if(instrucciones.get(posAnalizador).getToken().equals("String")){
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
-             if(salirMetodo){return salirMetodo;}
-            if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
-                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NOT");
+                }
+                break;
+            case "String":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
                 if(salirMetodo){return salirMetodo;}
-            }
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"LIKE");
-             if(salirMetodo){return salirMetodo;}
-             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
-             if(salirMetodo){return salirMetodo;}
-            if(instrucciones.get(posAnalizador).getToken().equals("ESCAPE")){
-                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ESCAPE");
+                if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NOT");
+                    if(salirMetodo){return salirMetodo;}
+                }   
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"LIKE");
                 if(salirMetodo){return salirMetodo;}
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
-               if(salirMetodo){return salirMetodo;}
-            }
-        }  else if(instrucciones.get(posAnalizador).getToken().equals("CONTAINS")){
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CONTAINS");
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=cont_exp();
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
-            if(salirMetodo){return salirMetodo;}                 
-        }else if(instrucciones.get(posAnalizador).getToken().equals("FREETEXT")){
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FREETEXT");
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=cont_exp();
-            if(salirMetodo){return salirMetodo;}
-            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
-            if(salirMetodo){return salirMetodo;}                 
-        }else{
+                if(salirMetodo){return salirMetodo;}
+                if(instrucciones.get(posAnalizador).getToken().equals("ESCAPE")){
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ESCAPE");
+                    if(salirMetodo){return salirMetodo;}
+                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                    if(salirMetodo){return salirMetodo;}
+                }   break;
+            case "CONTAINS":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CONTAINS");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=cont_exp();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "FREETEXT":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FREETEXT");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=cont_exp();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            default:
                 errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea();
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
-    }
+        }
         
         return salirMetodo;
     }
@@ -959,6 +966,7 @@ public class analizadorSintactico {
             case "Numero":
             case "Float":
             case "Bit":
+            case "ParentesisAbierto":
                 salirMetodo=expression();
                 if(salirMetodo){return salirMetodo;}
                 break;
@@ -980,6 +988,7 @@ public class analizadorSintactico {
                 case "Numero":
                 case "Float":
                     case "Bit":
+                 case "ParentesisAbierto":
                     salirMetodo=expression();
                     if(salirMetodo){return salirMetodo;}
                     break;

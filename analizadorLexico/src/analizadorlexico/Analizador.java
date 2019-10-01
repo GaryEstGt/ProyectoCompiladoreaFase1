@@ -118,7 +118,6 @@ public class Analizador extends javax.swing.JFrame {
                 Tokens tokens = analizador.yylex();
                 if (tokens == null) {
                     salida += "FIN";
-                    jTextArea1.setText(salida);
                     File archivoSalida=new File("resultado.out");
                     PrintWriter escribir;
                     escribir=new PrintWriter(archivoSalida);
@@ -159,7 +158,12 @@ public class Analizador extends javax.swing.JFrame {
                 }
              }
                  analizadorSintactico analizadorS=new analizadorSintactico(instrucciones);
-                JOptionPane.showMessageDialog(null,analizadorS.errores);
+                 if(analizadorS.errores.isEmpty()){
+                     jTextArea1.setText("no hay errores");
+                 }else{
+                    jTextArea1.setText(analizadorS.errores);  
+                 }
+               
                  
                  
             } catch (FileNotFoundException ex) {
