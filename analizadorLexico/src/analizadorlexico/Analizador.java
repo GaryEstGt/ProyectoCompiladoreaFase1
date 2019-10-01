@@ -139,14 +139,15 @@ public class Analizador extends javax.swing.JFrame {
                         salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+"| columna Inicio= "+analizador.column+"| columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
                         break;
                      case Identificador:
-                         instrucciones.add(new Token(tokens.toString(),analizador.line+1));
+                         
                             if(analizador.lexeme.length()>31){
                                 String token=analizador.lexeme.substring(0, 30);
                                 salida +="ERROR el identificador no debe tener mas de 31 caracteres, el identificador "+token+" en la linea "+(analizador.line+1)+" fue truncado\n";
-                                
+                                instrucciones.add(new Token(token,analizador.line+1));
                             }              
                             else{
                                salida +=analizador.lexeme + " | Token: " + tokens + " | linea= "+(analizador.line+1)+" | columna Inicio= "+analizador.column+" | columna Final= "+(analizador.column+analizador.lexeme.length())+"\n";
+                               instrucciones.add(new Token(tokens.toString(),analizador.line+1));
                             }
                          break;
                          

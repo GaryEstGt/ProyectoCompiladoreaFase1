@@ -77,7 +77,7 @@ public class analizadorSintactico {
                 posAnalizador++;
             }       
         }else{
-            errores+="Error de sintaxis se esperaba: " +tokenEsperado+" en la linea: "+tokenIns.getLinea();
+            errores+="Error de sintaxis se esperaba: " +tokenEsperado+" en la linea: "+tokenIns.getLinea()+"\n";
             recorrerFinal();
             error=true;
         }
@@ -100,7 +100,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -114,7 +114,7 @@ public class analizadorSintactico {
           salirMetodo= MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");// cerrar parentesis
           if(salirMetodo){ return salirMetodo;}
        }else{
-           errores+="Error de sintaxis se esperaba SELECT o ( en la linea: "+instrucciones.get(posAnalizador).getLinea();
+           errores+="Error de sintaxis se esperaba SELECT o ( en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
            recorrerFinal();
            salirMetodo=true;
            return salirMetodo;
@@ -243,7 +243,7 @@ public class analizadorSintactico {
                         if(salirMetodo){ return salirMetodo;}
                     }
                     else{
-                      errores+="Error de sintaxis se esperaba groupby expression en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                      errores+="Error de sintaxis se esperaba groupby expression en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -271,7 +271,7 @@ public class analizadorSintactico {
                         if(salirMetodo){ return salirMetodo;}
                     }
                      else{
-                      errores+="Error de sintaxis se esperaba orderby expression en la linea: "+instrucciones.get(posAnalizador).getLinea();
+                      errores+="Error de sintaxis se esperaba orderby expression en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -459,7 +459,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
         }
         else{
-                errores="Error se esperaba ON o ( en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba ON o ( en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo; 
@@ -535,7 +535,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -629,7 +629,7 @@ public class analizadorSintactico {
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"STRING");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -691,7 +691,7 @@ public class analizadorSintactico {
                  salirMetodo=MatchToken(instrucciones.get(posAnalizador),"MenorIgual");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba operador logico en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba operador logico en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -721,7 +721,7 @@ public class analizadorSintactico {
             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
             if(salirMetodo){return salirMetodo;}
         }else{
-              errores="Error se esperaba columna o * en la linea"+instrucciones.get(posAnalizador).getLinea();
+              errores="Error se esperaba columna o * en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -756,7 +756,7 @@ public class analizadorSintactico {
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"STRING");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -845,7 +845,7 @@ public class analizadorSintactico {
            if(salirMetodo){return salirMetodo;}
         }
         else{
-              errores="Error se esperaba constante o identificador en la linea"+instrucciones.get(posAnalizador).getLinea();
+              errores="Error se esperaba constante o identificador en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -941,7 +941,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -971,7 +971,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -993,7 +993,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                     break;
                 default:
-                    errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1157,7 +1157,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break; 
             default:
-                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -1195,7 +1195,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba CREATE en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba CREATE en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1209,7 +1209,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -1311,7 +1311,7 @@ public class analizadorSintactico {
                 }
                 break;
             default:
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -1324,23 +1324,73 @@ public class analizadorSintactico {
         if(salirMetodo){return salirMetodo;}
         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
         if(salirMetodo){return salirMetodo;}
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PRIMARY");
-        if(salirMetodo){return salirMetodo;}
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"KEY");
-        if(salirMetodo){return salirMetodo;}
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
-        if(salirMetodo){return salirMetodo;}
-            salirMetodo=constraint2();
-            if(salirMetodo){return salirMetodo;}
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
-        if(salirMetodo){return salirMetodo;}
+        switch (instrucciones.get(posAnalizador).getToken()) {
+            case "PRIMARY":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"PRIMARY");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"KEY");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=constraint2();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "FOREIGN":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"FOREIGN");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"KEY");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=constraint2();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"REFERENCES");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=constraint2();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                break;
+            case "CHECK":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"CHECK");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=predicado();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            case "UNIQUE":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"UNIQUE");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=constraint2();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+            default:
+                errores="Error se esperaba constraint en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                recorrerFinal();
+                salirMetodo=true;
+                return salirMetodo;
+        }
+       
         if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
             salirMetodo= MatchToken(instrucciones.get(posAnalizador),"Coma");
              if(salirMetodo){return salirMetodo;}
              salirMetodo=constraint();
              if(salirMetodo){return salirMetodo;}
          }
-        
         return salirMetodo;
     }
      public boolean constraint_sincoma(){
@@ -1363,7 +1413,7 @@ public class analizadorSintactico {
     }
      public boolean constraint2(){
         boolean salirMetodo=false;
-        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
+        salirMetodo=identExp();
         if(salirMetodo){return salirMetodo;}
         if(instrucciones.get(posAnalizador).getToken().equals("ASC")){
             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ASC");    
@@ -1526,9 +1576,7 @@ public class analizadorSintactico {
                     if(salirMetodo){ return salirMetodo;} 
                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");    
                     if(salirMetodo){ return salirMetodo;}                    
-        }
-        salirMetodo=col();
-        if(salirMetodo){ return salirMetodo;}  
+        }  
         if(instrucciones.get(posAnalizador).getToken().equals("WITH")){
                     salirMetodo=MatchToken(instrucciones.get(posAnalizador),"WITH");    
                     if(salirMetodo){ return salirMetodo;} 
@@ -1589,7 +1637,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1603,7 +1651,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -1673,7 +1721,7 @@ public class analizadorSintactico {
                      if(salirMetodo){return salirMetodo;}
         }
         else{
-            errores="Error se esperaba constraint o definicion de columna en la linea"+instrucciones.get(posAnalizador).getLinea();
+            errores="Error se esperaba constraint o definicion de columna en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1724,7 +1772,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1746,7 +1794,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1766,7 +1814,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o ALL en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba Identificador o ALL en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1840,7 +1888,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea();
+                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1854,7 +1902,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -1976,7 +2024,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -2021,7 +2069,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -2105,7 +2153,7 @@ public class analizadorSintactico {
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
                 if(salirMetodo){return salirMetodo;}
          }else{
-              errores="Error se esperaba ( o . o = en la linea"+instrucciones.get(posAnalizador).getLinea();
+              errores="Error se esperaba ( o . o = en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -2168,7 +2216,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
@@ -2221,7 +2269,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea();
+                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -2256,7 +2304,7 @@ public class analizadorSintactico {
              salirMetodo=MatchToken(instrucciones.get(posAnalizador),"GO");    
                 if(salirMetodo){ return salirMetodo;}    
          }else{
-              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea();
+              errores+="Error de sintaxis se esperaba ; o GO en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
                         recorrerFinal();
                         salirMetodo=true;
                         return salirMetodo;  
