@@ -924,7 +924,7 @@ public class analizadorSintactico {
             case "Float":
             case "Bit":
             case "ParentesisAbierto":
-                 if(instrucciones.get(posAnalizador).getToken().equals("Identificador") && (instrucciones.get(posAnalizador+1).getToken().equals("NOT")||instrucciones.get(posAnalizador+1).getToken().equals("LIKE")||instrucciones.get(posAnalizador+1).getToken().equals("Igual"))){
+                 if(instrucciones.get(posAnalizador).getToken().equals("Identificador") && (instrucciones.get(posAnalizador+1).getToken().equals("NOT")||instrucciones.get(posAnalizador+1).getToken().equals("LIKE")||(instrucciones.get(posAnalizador+1).getToken().equals("Igual")&&instrucciones.get(posAnalizador+2).getToken().equals("String")))){
                       salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
                     if(salirMetodo){return salirMetodo;}
                     if(instrucciones.get(posAnalizador).getToken().equals("NOT")||instrucciones.get(posAnalizador).getToken().equals("LIKE")){
@@ -946,7 +946,8 @@ public class analizadorSintactico {
                          salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Igual");
                         if(salirMetodo){return salirMetodo;}
                          salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
-                        if(salirMetodo){return salirMetodo;}
+                        if(salirMetodo){return salirMetodo;}  
+                         
                     }
                  }else{
                         salirMetodo=expression();
