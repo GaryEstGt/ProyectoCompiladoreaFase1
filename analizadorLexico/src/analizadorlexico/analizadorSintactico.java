@@ -258,24 +258,57 @@ public class analizadorSintactico {
     }
     public boolean order_exp(){
         boolean salirMetodo=false;
-            if(instrucciones.get(posAnalizador).getToken().equals("Identificador")){
-                        salirMetodo=identExp();
-                        if(salirMetodo){ return salirMetodo;}
-                    }
-                    else if(instrucciones.get(posAnalizador).getToken().equals("ParentesisAbierto")){
-                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");    
-                        if(salirMetodo){ return salirMetodo;}
-                        salirMetodo=order_exp();
-                        if(salirMetodo){ return salirMetodo;}
-                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");    
-                        if(salirMetodo){ return salirMetodo;}
-                    }
-                     else{
-                      errores+="Error de sintaxis se esperaba orderby expression en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
-                        recorrerFinal();
-                        salirMetodo=true;
-                        return salirMetodo;  
-                    }
+            
+        switch (instrucciones.get(posAnalizador).getToken()) {
+            case "ParentesisAbierto":
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){ return salirMetodo;}
+                salirMetodo=order_exp();
+                if(salirMetodo){ return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){ return salirMetodo;}
+                break;
+            case "Identificador":
+                salirMetodo=identExp();
+                if(salirMetodo){ return salirMetodo;}
+                break;
+            case "COUNT":
+            case "SUM":
+            case "AVG":
+            case "MAX":
+            case "MIN":
+                 if(instrucciones.get(posAnalizador).getToken().equals("COUNT")){
+                    MatchToken(instrucciones.get(posAnalizador),"COUNT");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("MAX")){
+                    MatchToken(instrucciones.get(posAnalizador),"MAX");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("MIN")){
+                    MatchToken(instrucciones.get(posAnalizador),"MIN");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("AVG")){
+                    MatchToken(instrucciones.get(posAnalizador),"AVG");
+                }
+                if(instrucciones.get(posAnalizador).getToken().equals("SUM")){
+                    MatchToken(instrucciones.get(posAnalizador),"SUM");
+                }
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisAbierto");
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=count_exp();
+                if(salirMetodo){return salirMetodo;}
+                salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ParentesisCerrado");
+                if(salirMetodo){return salirMetodo;}
+                break;
+             case "CASE":
+                salirMetodo=caseState();
+                if(salirMetodo){ return salirMetodo;}
+                break;
+            default:
+                errores+="Error de sintaxis se esperaba orderby expression en la linea: "+instrucciones.get(posAnalizador).getLinea()+"\n";
+                recorrerFinal();
+                salirMetodo=true;
+                return salirMetodo;
+        }
             if(instrucciones.get(posAnalizador).getToken().equals("Coma")){
                             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Coma");        
                             if(salirMetodo){ return salirMetodo;}
@@ -459,7 +492,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
         }
         else{
-                errores="Error se esperaba ON o ( en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba ON o ( en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo; 
@@ -535,7 +568,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -629,7 +662,7 @@ public class analizadorSintactico {
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"STRING");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -691,7 +724,7 @@ public class analizadorSintactico {
                  salirMetodo=MatchToken(instrucciones.get(posAnalizador),"MenorIgual");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba operador logico en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba operador logico en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -721,7 +754,7 @@ public class analizadorSintactico {
             salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
             if(salirMetodo){return salirMetodo;}
         }else{
-              errores="Error se esperaba columna o * en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+              errores+="Error se esperaba columna o * en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -756,7 +789,7 @@ public class analizadorSintactico {
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"STRING");
                 if(salirMetodo){return salirMetodo;}
             }else{
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -845,7 +878,7 @@ public class analizadorSintactico {
            if(salirMetodo){return salirMetodo;}
         }
         else{
-              errores="Error se esperaba constante o identificador en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+              errores+="Error se esperaba constante o identificador en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -891,17 +924,44 @@ public class analizadorSintactico {
             case "Float":
             case "Bit":
             case "ParentesisAbierto":
-                salirMetodo=expression();
-                if(salirMetodo){return salirMetodo;}
-                if(instrucciones.get(posAnalizador).getToken().equals("IN")){
-                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IN");
+                 if(instrucciones.get(posAnalizador).getToken().equals("Identificador") && (instrucciones.get(posAnalizador+1).getToken().equals("NOT")||instrucciones.get(posAnalizador+1).getToken().equals("LIKE")||instrucciones.get(posAnalizador+1).getToken().equals("Igual"))){
+                      salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
                     if(salirMetodo){return salirMetodo;}
-                    salirMetodo=expression();
-                    if(salirMetodo){return salirMetodo;}
-                }else{
-                    salirMetodo=state_logic();
-                    if(salirMetodo){return salirMetodo;}
-                }
+                    if(instrucciones.get(posAnalizador).getToken().equals("NOT")||instrucciones.get(posAnalizador).getToken().equals("LIKE")){
+                        if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NOT");
+                        if(salirMetodo){return salirMetodo;}
+                        }   
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"LIKE");
+                        if(salirMetodo){return salirMetodo;}
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                        if(instrucciones.get(posAnalizador).getToken().equals("ESCAPE")){
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ESCAPE");
+                        if(salirMetodo){return salirMetodo;}
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                    }                   
+                 }else if(instrucciones.get(posAnalizador).getToken().equals("Igual")){
+                         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Igual");
+                        if(salirMetodo){return salirMetodo;}
+                         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                    }
+                 }else{
+                        salirMetodo=expression();
+                        if(salirMetodo){return salirMetodo;}
+                        if(instrucciones.get(posAnalizador).getToken().equals("IN")){
+                            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IN");
+                            if(salirMetodo){return salirMetodo;}
+                            salirMetodo=expression();
+                            if(salirMetodo){return salirMetodo;}
+                        }else{
+                            salirMetodo=state_logic();
+                            if(salirMetodo){return salirMetodo;}
+                        } 
+                    }
+               
                 break;
             case "String":
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
@@ -941,7 +1001,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -971,7 +1031,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -993,7 +1053,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                     break;
                 default:
-                    errores="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba String o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1079,17 +1139,43 @@ public class analizadorSintactico {
             case "Numero":
             case "Float":
             case "Bit":
-                salirMetodo=expression();
-                if(salirMetodo){return salirMetodo;}
-                if(instrucciones.get(posAnalizador).getToken().equals("IN")){
-                    salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IN");
+               if(instrucciones.get(posAnalizador).getToken().equals("Identificador") && (instrucciones.get(posAnalizador+1).getToken().equals("NOT")||instrucciones.get(posAnalizador+1).getToken().equals("LIKE")||instrucciones.get(posAnalizador+1).getToken().equals("Igual"))){
+                      salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Identificador");
                     if(salirMetodo){return salirMetodo;}
-                    salirMetodo=expression();
-                    if(salirMetodo){return salirMetodo;}
-                }else{
-                    salirMetodo=state_logic();
-                    if(salirMetodo){return salirMetodo;}
-                }
+                    if(instrucciones.get(posAnalizador).getToken().equals("NOT")||instrucciones.get(posAnalizador).getToken().equals("LIKE")){
+                        if(instrucciones.get(posAnalizador).getToken().equals("NOT")){
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"NOT");
+                        if(salirMetodo){return salirMetodo;}
+                        }   
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"LIKE");
+                        if(salirMetodo){return salirMetodo;}
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                        if(instrucciones.get(posAnalizador).getToken().equals("ESCAPE")){
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"ESCAPE");
+                        if(salirMetodo){return salirMetodo;}
+                        salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                    }                   
+                 }else if(instrucciones.get(posAnalizador).getToken().equals("Igual")){
+                         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"Igual");
+                        if(salirMetodo){return salirMetodo;}
+                         salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
+                        if(salirMetodo){return salirMetodo;}
+                    }
+                 }else{
+                        salirMetodo=expression();
+                        if(salirMetodo){return salirMetodo;}
+                        if(instrucciones.get(posAnalizador).getToken().equals("IN")){
+                            salirMetodo=MatchToken(instrucciones.get(posAnalizador),"IN");
+                            if(salirMetodo){return salirMetodo;}
+                            salirMetodo=expression();
+                            if(salirMetodo){return salirMetodo;}
+                        }else{
+                            salirMetodo=state_logic();
+                            if(salirMetodo){return salirMetodo;}
+                        } 
+                    }
                 break;
             case "String":
                 salirMetodo=MatchToken(instrucciones.get(posAnalizador),"String");
@@ -1157,7 +1243,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break; 
             default:
-                errores="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba expresion logica en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -1195,7 +1281,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba CREATE en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba CREATE en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1311,7 +1397,7 @@ public class analizadorSintactico {
                 }
                 break;
             default:
-                errores="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba tipo de dato en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -1379,7 +1465,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba constraint en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba constraint en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
@@ -1637,7 +1723,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1721,7 +1807,7 @@ public class analizadorSintactico {
                      if(salirMetodo){return salirMetodo;}
         }
         else{
-            errores="Error se esperaba constraint o definicion de columna en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+            errores+="Error se esperaba constraint o definicion de columna en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -1772,7 +1858,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1794,7 +1880,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba Identificador o CURRENT en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1814,7 +1900,7 @@ public class analizadorSintactico {
             if(salirMetodo){return salirMetodo;}
                     }
         else{
-                    errores="Error se esperaba Identificador o ALL en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba Identificador o ALL en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;        
@@ -1888,7 +1974,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                 break;
                 default:
-                    errores="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                    errores+="Error se esperaba ALTER en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -2124,7 +2210,7 @@ public class analizadorSintactico {
                     if(salirMetodo){return salirMetodo;}
                     break;
                 default:
-                     errores="Error se esperaba ( o = en la linea"+instrucciones.get(posAnalizador).getLinea();
+                     errores+="Error se esperaba ( o = en la linea"+instrucciones.get(posAnalizador).getLinea();
                     recorrerFinal();
                     salirMetodo=true;
                     return salirMetodo;
@@ -2269,7 +2355,7 @@ public class analizadorSintactico {
                 if(salirMetodo){return salirMetodo;}
                 break;
             default:
-                errores="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
+                errores+="Error se esperaba columna, funcion o expresion en la linea"+instrucciones.get(posAnalizador).getLinea()+"\n";
                 recorrerFinal();
                 salirMetodo=true;
                 return salirMetodo;
