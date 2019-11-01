@@ -4,10 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/Analizador.java</file>
-            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/Lexer.java</file>
+            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/analisis_sintactico.java</file>
             <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/Tokens.java</file>
+            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/analizadorSintactico.java</file>
+            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/sintaxis.cup</file>
+            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/lexer2.flex</file>
             <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/AnalizadorLexico.java</file>
             <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/Lexer.flex</file>
+            <file>file:/C:/Users/garya/ProyectoCompiladoreaFase1/analizadorLexico/src/analizadorlexico/sym.java</file>
         </group>
     </open-files>
 </project-private>

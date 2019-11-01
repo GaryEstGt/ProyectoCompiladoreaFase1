@@ -1,8 +1,11 @@
 package analizadorlexico;
-import static analizadorlexico.Tokens.*;
+import java_cup.runtime.Symbol;
 %%
 %class Lexer
-%type Tokens
+%type java_cup.runtime.Symbol
+%cup
+%full
+%char
 %line
 %column
 L=[a-z]+
@@ -15,358 +18,363 @@ LineTerminator = \r|\n|\r\n
 InputPoint=.|\r|\n
 espacio=[ \t\r\n]+
 %{
-    public String lexeme;
+    private Symbol symbol(int type, Object value){
+        return new Symbol(type, yyline, yycolumn, value);
+    }
+    private Symbol symbol(int type){
+        return new Symbol(type, yyline, yycolumn);
+    }
     int line;
     int column;
 %}
 %%
-ADD {lexeme=yytext(); line=yyline; column=yycolumn; return ADD;}
-ALL {lexeme=yytext(); line=yyline; column=yycolumn; return ALL;}
-ALTER {lexeme=yytext(); line=yyline; column=yycolumn; return ALTER;}
-AND {lexeme=yytext(); line=yyline; column=yycolumn; return AND;}
-ANY {lexeme=yytext(); line=yyline; column=yycolumn; return ANY;}
-AS {lexeme=yytext(); line=yyline; column=yycolumn; return AS;}
-ASC {lexeme=yytext(); line=yyline; column=yycolumn; return ASC;}
-AUTHORIZATION {lexeme=yytext(); line=yyline; column=yycolumn; return AUTHORIZATION;}
-BACKUP {lexeme=yytext(); line=yyline; column=yycolumn; return BACKUP;}
-BEGIN {lexeme=yytext(); line=yyline; column=yycolumn; return BEGIN;}
-BETWEEN {lexeme=yytext(); line=yyline; column=yycolumn; return BETWEEN;}
-BREAK {lexeme=yytext(); line=yyline; column=yycolumn; return BREAK;}
-BROWSE {lexeme=yytext(); line=yyline; column=yycolumn; return BROWSE;}
-BULK {lexeme=yytext(); line=yyline; column=yycolumn; return BULK;}
-BY {lexeme=yytext(); line=yyline; column=yycolumn; return BY;}
-CASCADE {lexeme=yytext(); line=yyline; column=yycolumn; return CASCADE;}
-CASE {lexeme=yytext(); line=yyline; column=yycolumn; return CASE;}
-CHECK {lexeme=yytext(); line=yyline; column=yycolumn; return CHECK;}
-CHECKPOINT {lexeme=yytext(); line=yyline; column=yycolumn; return CHECKPOINT;}
-CLOSE {lexeme=yytext(); line=yyline; column=yycolumn; return CLOSE;}
-CLUSTERED {lexeme=yytext(); line=yyline; column=yycolumn; return CLUSTERED;}
-COALESCE {lexeme=yytext(); line=yyline; column=yycolumn; return COALESCE;}
-COLLATE {lexeme=yytext(); line=yyline; column=yycolumn; return COLLATE;}
-COLUMN {lexeme=yytext(); line=yyline; column=yycolumn; return COLUMN;}
-COMMIT {lexeme=yytext(); line=yyline; column=yycolumn; return COMMIT;}
-COMPUTE {lexeme=yytext(); line=yyline; column=yycolumn; return COMPUTE;}
-CONSTRAINT {lexeme=yytext(); line=yyline; column=yycolumn; return CONSTRAINT;}
-CONTAINS {lexeme=yytext(); line=yyline; column=yycolumn; return CONTAINS;}
-CONTAINSTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return CONTAINSTABLE;}
-CONTINUE {lexeme=yytext(); line=yyline; column=yycolumn; return CONTINUE;}
-CONVERT {lexeme=yytext(); line=yyline; column=yycolumn; return CONVERT;}
-CREATE {lexeme=yytext(); line=yyline; column=yycolumn; return CREATE;}
-CROSS {lexeme=yytext(); line=yyline; column=yycolumn; return CROSS;}
-CURRENT {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT;}
-CURRENT_DATE {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_DATE;}
-CURRENT_TIME {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_TIME;}
-CURRENT_TIMESTAMP {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_TIMESTAMP;}
-CURRENT_USER {lexeme=yytext(); line=yyline; column=yycolumn; return CURRENT_USER;}
-CURSOR {lexeme=yytext(); line=yyline; column=yycolumn; return CURSOR;}
-DATABASE {lexeme=yytext(); line=yyline; column=yycolumn; return DATABASE;}
-DBCC {lexeme=yytext(); line=yyline; column=yycolumn; return DBCC;}
-DEALLOCATE {lexeme=yytext(); line=yyline; column=yycolumn; return DEALLOCATE;}
-DECLARE {lexeme=yytext(); line=yyline; column=yycolumn; return DECLARE;}
-DEFAULT {lexeme=yytext(); line=yyline; column=yycolumn; return DEFAULT;}
-DELETE {lexeme=yytext(); line=yyline; column=yycolumn; return DELETE;}
-DENY {lexeme=yytext(); line=yyline; column=yycolumn; return DENY;}
-DESC {lexeme=yytext(); line=yyline; column=yycolumn; return DESC;}
-DISK {lexeme=yytext(); line=yyline; column=yycolumn; return DISK;}
-DISTINCT {lexeme=yytext(); line=yyline; column=yycolumn; return DISTINCT;}
-DISTRIBUTED {lexeme=yytext(); line=yyline; column=yycolumn; return DISTRIBUTED;}
-DOUBLE {lexeme=yytext(); line=yyline; column=yycolumn; return DOUBLE;}
-DROP {lexeme=yytext(); line=yyline; column=yycolumn; return DROP;}
-DUMP {lexeme=yytext(); line=yyline; column=yycolumn; return DUMP;}
-ELSE {lexeme=yytext(); line=yyline; column=yycolumn; return ELSE;}
-END {lexeme=yytext(); line=yyline; column=yycolumn; return END;}
-ERRLVL {lexeme=yytext(); line=yyline; column=yycolumn; return ERRLVL;}
-ESCAPE {lexeme=yytext(); line=yyline; column=yycolumn; return ESCAPE;}
-EXCEPT {lexeme=yytext(); line=yyline; column=yycolumn; return EXCEPT;}
-EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return EXEC;}
-EXECUTE {lexeme=yytext(); line=yyline; column=yycolumn; return EXECUTE;}
-EXISTS {lexeme=yytext(); line=yyline; column=yycolumn; return EXISTS;}
-EXIT {lexeme=yytext(); line=yyline; column=yycolumn; return EXIT;}
-EXTERNAL {lexeme=yytext(); line=yyline; column=yycolumn; return EXTERNAL;}
-FETCH {lexeme=yytext(); line=yyline; column=yycolumn; return FETCH;}
-FILE {lexeme=yytext(); line=yyline; column=yycolumn; return FILE;}
-FILLFACTOR {lexeme=yytext(); line=yyline; column=yycolumn; return FILLFACTOR;}
-FOR {lexeme=yytext(); line=yyline; column=yycolumn; return FOR;}
-FOREIGN {lexeme=yytext(); line=yyline; column=yycolumn; return FOREIGN;}
-FREETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return FREETEXT;}
-FREETEXTTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return FREETEXTTABLE;}
-FROM {lexeme=yytext(); line=yyline; column=yycolumn; return FROM;}
-FULL {lexeme=yytext(); line=yyline; column=yycolumn; return FULL;}
-FUNCTION {lexeme=yytext(); line=yyline; column=yycolumn; return FUNCTION;}
-GOTO {lexeme=yytext(); line=yyline; column=yycolumn; return GOTO;}
-GRANT {lexeme=yytext(); line=yyline; column=yycolumn; return GRANT;}
-GROUP {lexeme=yytext(); line=yyline; column=yycolumn; return GROUP;}
-HAVING {lexeme=yytext(); line=yyline; column=yycolumn; return HAVING;}
-HOLDLOCK {lexeme=yytext(); line=yyline; column=yycolumn; return HOLDLOCK;}
-IDENTITY {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITY;}
-IDENTITY_INSERT {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITY_INSERT;}
-IDENTITYCOL {lexeme=yytext(); line=yyline; column=yycolumn; return IDENTITYCOL;}
-IF {lexeme=yytext(); line=yyline; column=yycolumn; return IF;}
-IN {lexeme=yytext(); line=yyline; column=yycolumn; return IN;}
-INDEX {lexeme=yytext(); line=yyline; column=yycolumn; return INDEX;}
-INNER {lexeme=yytext(); line=yyline; column=yycolumn; return INNER;}
-INSERT {lexeme=yytext(); line=yyline; column=yycolumn; return INSERT;}
-INTERSECT {lexeme=yytext(); line=yyline; column=yycolumn; return INTERSECT;}
-INTO {lexeme=yytext(); line=yyline; column=yycolumn; return INTO;}
-IS {lexeme=yytext(); line=yyline; column=yycolumn; return IS;}
-JOIN {lexeme=yytext(); line=yyline; column=yycolumn; return JOIN;}
-KEY {lexeme=yytext(); line=yyline; column=yycolumn; return KEY;}
-KILL {lexeme=yytext(); line=yyline; column=yycolumn; return KILL;}
-LEFT {lexeme=yytext(); line=yyline; column=yycolumn; return LEFT;}
-LIKE {lexeme=yytext(); line=yyline; column=yycolumn; return LIKE;}
-LINENO {lexeme=yytext(); line=yyline; column=yycolumn; return LINENO;}
-LOAD {lexeme=yytext(); line=yyline; column=yycolumn; return LOAD;}
-MERGE {lexeme=yytext(); line=yyline; column=yycolumn; return MERGE;}
-NATIONAL {lexeme=yytext(); line=yyline; column=yycolumn; return NATIONAL;}
-NOCHECK {lexeme=yytext(); line=yyline; column=yycolumn; return NOCHECK;}
-NONCLUSTERED {lexeme=yytext(); line=yyline; column=yycolumn; return NONCLUSTERED;}
-NOT {lexeme=yytext(); line=yyline; column=yycolumn; return NOT;}
-NULL {lexeme=yytext(); line=yyline; column=yycolumn; return NULL;}
-NULLIF {lexeme=yytext(); line=yyline; column=yycolumn; return NULLIF;}
-OF {lexeme=yytext(); line=yyline; column=yycolumn; return OF;}
-OFF {lexeme=yytext(); line=yyline; column=yycolumn; return OFF;}
-OFFSETS {lexeme=yytext(); line=yyline; column=yycolumn; return OFFSETS;}
-ON {lexeme=yytext(); line=yyline; column=yycolumn; return ON;}
-OPEN {lexeme=yytext(); line=yyline; column=yycolumn; return OPEN;}
-OPENDATASOURCE {lexeme=yytext(); line=yyline; column=yycolumn; return OPENDATASOURCE;}
-OPENQUERY  {lexeme=yytext(); line=yyline; column=yycolumn; return OPENQUERY;}
-OPENROWSET {lexeme=yytext(); line=yyline; column=yycolumn; return OPENROWSET;}
-OPENXML {lexeme=yytext(); line=yyline; column=yycolumn; return OPENXML;}
-OPTION {lexeme=yytext(); line=yyline; column=yycolumn; return OPTION;}
-OR {lexeme=yytext(); line=yyline; column=yycolumn; return OR;}
-ORDER {lexeme=yytext(); line=yyline; column=yycolumn; return ORDER;}
-OUTER {lexeme=yytext(); line=yyline; column=yycolumn; return OUTER;}
-OVER {lexeme=yytext(); line=yyline; column=yycolumn; return OVER;}
-PERCENT {lexeme=yytext(); line=yyline; column=yycolumn; return PERCENT;}
-PIVOT {lexeme=yytext(); line=yyline; column=yycolumn; return PIVOT;}
-PLAN {lexeme=yytext(); line=yyline; column=yycolumn; return PLAN;}
-PRECISION {lexeme=yytext(); line=yyline; column=yycolumn; return PRECISION;}
-PRIMARY {lexeme=yytext(); line=yyline; column=yycolumn; return PRIMARY;}
-PRINT {lexeme=yytext(); line=yyline; column=yycolumn; return PRINT;}
-PROC {lexeme=yytext(); line=yyline; column=yycolumn; return PROC;}
-PROCEDURE {lexeme=yytext(); line=yyline; column=yycolumn; return PROCEDURE;}
-PUBLIC {lexeme=yytext(); line=yyline; column=yycolumn; return PUBLIC;}
-RAISERROR {lexeme=yytext(); line=yyline; column=yycolumn; return RAISERROR;}
-READ {lexeme=yytext(); line=yyline; column=yycolumn; return READ;}
-READTEXT {lexeme=yytext(); line=yyline; column=yycolumn; return READTEXT;}
-RECONFIGURE {lexeme=yytext(); line=yyline; column=yycolumn; return RECONFIGURE;}
-REFERENCES {lexeme=yytext(); line=yyline; column=yycolumn; return REFERENCES;}
-REPLICATION {lexeme=yytext(); line=yyline; column=yycolumn; return REPLICATION;}
-RESTORE {lexeme=yytext(); line=yyline; column=yycolumn; return RESTORE;}
-RESTRICT {lexeme=yytext(); line=yyline; column=yycolumn; return RESTRICT;}
-RETURN {lexeme=yytext(); line=yyline; column=yycolumn; return RETURN;}
-REVERT {lexeme=yytext(); line=yyline; column=yycolumn; return REVERT;}
-REVOKE {lexeme=yytext(); line=yyline; column=yycolumn; return REVOKE;}
-RIGHT {lexeme=yytext(); line=yyline; column=yycolumn; return RIGHT;}
-ROLLBACK {lexeme=yytext(); line=yyline; column=yycolumn; return ROLLBACK;}
-ROWCOUNT {lexeme=yytext(); line=yyline; column=yycolumn; return ROWCOUNT;}
-ROWGUIDCOL {lexeme=yytext(); line=yyline; column=yycolumn; return ROWGUIDCOL;}
-RULE {lexeme=yytext(); line=yyline; column=yycolumn; return RULE;}
-SAVE {lexeme=yytext(); line=yyline; column=yycolumn; return SAVE;}
-SCHEMA {lexeme=yytext(); line=yyline; column=yycolumn; return SCHEMA;}
-SECURITYAUDIT {lexeme=yytext(); line=yyline; column=yycolumn; return SECURITYAUDIT;}
-SELECT {lexeme=yytext(); line=yyline; column=yycolumn; return SELECT;}
-SEMANTICKEYPHRASETABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICKEYPHRASETABLE;}
-SEMANTICSIMILARITYDETAILSTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICSIMILARITYDETAILSTABLE;}
-SEMANTICSIMILARITYTABLE {lexeme=yytext(); line=yyline; column=yycolumn; return SEMANTICSIMILARITYTABLE;}
-SESSION_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SESSION_USER;}
-SET {lexeme=yytext(); line=yyline; column=yycolumn; return SET;}
-SETUSER {lexeme=yytext(); line=yyline; column=yycolumn; return SETUSER;}
-SHUTDOWN {lexeme=yytext(); line=yyline; column=yycolumn; return SHUTDOWN;}
-SOME {lexeme=yytext(); line=yyline; column=yycolumn; return SOME;}
-STATISTICS {lexeme=yytext(); line=yyline; column=yycolumn; return STATISTICS;}
-SYSTEM_USER {lexeme=yytext(); line=yyline; column=yycolumn; return SYSTEM_USER;}
-TABLE {lexeme=yytext(); line=yyline; column=yycolumn; return TABLE;}
-TABLESAMPLE {lexeme=yytext(); line=yyline; column=yycolumn; return TABLESAMPLE;}
-TEXTSIZE {lexeme=yytext(); line=yyline; column=yycolumn; return TEXTSIZE;}
-THEN {lexeme=yytext(); line=yyline; column=yycolumn; return THEN;}
-TO {lexeme=yytext(); line=yyline; column=yycolumn; return TO;}
-TOP {lexeme=yytext(); line=yyline; column=yycolumn; return TOP;}
-TRAN {lexeme=yytext(); line=yyline; column=yycolumn; return TRAN;}
-TRANSACTION {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSACTION;}
-TRIGGER {lexeme=yytext(); line=yyline; column=yycolumn; return TRIGGER;}
-TRUNCATE {lexeme=yytext(); line=yyline; column=yycolumn; return TRUNCATE;}
-TRY_CONVERT {lexeme=yytext(); line=yyline; column=yycolumn; return TRY_CONVERT;}
-TSEQUAL {lexeme=yytext(); line=yyline; column=yycolumn; return TSEQUAL;}
-UNION {lexeme=yytext(); line=yyline; column=yycolumn; return UNION;}
-UNIQUE {lexeme=yytext(); line=yyline; column=yycolumn; return UNIQUE;}
-UNPIVOT {lexeme=yytext(); line=yyline; column=yycolumn; return UNPIVOT;}
-UPDATE {lexeme=yytext(); line=yyline; column=yycolumn; return UPDATE;}
-UPDATETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return UPDATETEXT;}
-USE {lexeme=yytext(); line=yyline; column=yycolumn; return USE;}
-USER {lexeme=yytext(); line=yyline; column=yycolumn; return USER;}
-VALUES {lexeme=yytext(); line=yyline; column=yycolumn; return VALUES;}
-VARYING {lexeme=yytext(); line=yyline; column=yycolumn; return VARYING;}
-VIEW {lexeme=yytext(); line=yyline; column=yycolumn; return VIEW;}
-WAITFOR {lexeme=yytext(); line=yyline; column=yycolumn; return WAITFOR;}
-WHEN {lexeme=yytext(); line=yyline; column=yycolumn; return WHEN;}
-WHERE {lexeme=yytext(); line=yyline; column=yycolumn; return WHERE;}
-WHILE {lexeme=yytext(); line=yyline; column=yycolumn; return WHILE;}
-WITH {lexeme=yytext(); line=yyline; column=yycolumn; return WITH;}
-ABSOLUTE {lexeme=yytext(); line=yyline; column=yycolumn; return ABSOLUTE;}
-ACTION {lexeme=yytext(); line=yyline; column=yycolumn; return ACTION;}
-ADA {lexeme=yytext(); line=yyline; column=yycolumn; return ADA;}
-ALLOCATE {lexeme=yytext(); line=yyline; column=yycolumn; return ALLOCATE;}
-ARE {lexeme=yytext(); line=yyline; column=yycolumn; return ARE;}
-ASSERTION {lexeme=yytext(); line=yyline; column=yycolumn; return ASSERTION;}
-AT {lexeme=yytext(); line=yyline; column=yycolumn; return AT;}
-AVG {lexeme=yytext(); line=yyline; column=yycolumn; return AVG;}
-BIT {lexeme=yytext(); line=yyline; column=yycolumn; return BIT;}
-BIT_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return BIT_LENGTH;}
-BOTH {lexeme=yytext(); line=yyline; column=yycolumn; return BOTH;}
-CASCADED {lexeme=yytext(); line=yyline; column=yycolumn; return CASCADED;}
-CAST {lexeme=yytext(); line=yyline; column=yycolumn; return CAST;}
-CATALOG {lexeme=yytext(); line=yyline; column=yycolumn; return CATALOG;}
-CHAR {lexeme=yytext(); line=yyline; column=yycolumn; return CHAR;}
-CHAR_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return CHAR_LENGTH;}
-CHARACTER {lexeme=yytext(); line=yyline; column=yycolumn; return CHARACTER;}
-CHARACTER_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return CHARACTER_LENGTH;}
-COLLATION {lexeme=yytext(); line=yyline; column=yycolumn; return COLLATION;}
-CONNECT {lexeme=yytext(); line=yyline; column=yycolumn; return CONNECT;}
-CONNECTION {lexeme=yytext(); line=yyline; column=yycolumn; return CONNECTION;}
-CONSTRAINTS {lexeme=yytext(); line=yyline; column=yycolumn; return CONSTRAINTS;}
-CORRESPONDING {lexeme=yytext(); line=yyline; column=yycolumn; return CORRESPONDING;}
-COUNT {lexeme=yytext(); line=yyline; column=yycolumn; return COUNT;}
-DATE {lexeme=yytext(); line=yyline; column=yycolumn; return DATE;}
-DAY {lexeme=yytext(); line=yyline; column=yycolumn; return DAY;}
-DEC {lexeme=yytext(); line=yyline; column=yycolumn; return DEC;}
-DECIMAL {lexeme=yytext(); line=yyline; column=yycolumn; return DECIMAL;}
-DESCRIBE {lexeme=yytext(); line=yyline; column=yycolumn; return DESCRIBE;}
-DESCRIPTOR {lexeme=yytext(); line=yyline; column=yycolumn; return DESCRIPTOR;}
-DIAGNOSTICS {lexeme=yytext(); line=yyline; column=yycolumn; return DIAGNOSTICS;}
-DISCONNECT {lexeme=yytext(); line=yyline; column=yycolumn; return DISCONNECT;}
-DOMAIN {lexeme=yytext(); line=yyline; column=yycolumn; return DOMAIN;}
-END-EXEC {lexeme=yytext(); line=yyline; column=yycolumn; return ENDEXEC;}
-EXCEPTION {lexeme=yytext(); line=yyline; column=yycolumn; return EXCEPTION;}
-EXTRACT {lexeme=yytext(); line=yyline; column=yycolumn; return EXTRACT;}
-FALSE {lexeme=yytext(); line=yyline; column=yycolumn; return FALSE;}
-FIRST {lexeme=yytext(); line=yyline; column=yycolumn; return FIRST;}
-FLOAT {lexeme=yytext(); line=yyline; column=yycolumn; return FLOAT;}
-FORTRAN {lexeme=yytext(); line=yyline; column=yycolumn; return FORTRAN;}
-FOUND {lexeme=yytext(); line=yyline; column=yycolumn; return FOUND;}
-GET {lexeme=yytext(); line=yyline; column=yycolumn; return GET;}
-GLOBAL {lexeme=yytext(); line=yyline; column=yycolumn; return GLOBAL;}
-GO {lexeme=yytext(); line=yyline; column=yycolumn; return GO;}
-HOUR {lexeme=yytext(); line=yyline; column=yycolumn; return HOUR;}
-IMMEDIATE {lexeme=yytext(); line=yyline; column=yycolumn; return IMMEDIATE;}
-INCLUDE {lexeme=yytext(); line=yyline; column=yycolumn; return INCLUDE;}
-INDICATOR {lexeme=yytext(); line=yyline; column=yycolumn; return INDICATOR;}
-INITIALLY {lexeme=yytext(); line=yyline; column=yycolumn; return INITIALLY;}
-INPUT {lexeme=yytext(); line=yyline; column=yycolumn; return INPUT;}
-INSENSITIVE {lexeme=yytext(); line=yyline; column=yycolumn; return INSENSITIVE;}
-INT {lexeme=yytext(); line=yyline; column=yycolumn; return INT;}
-INTEGER {lexeme=yytext(); line=yyline; column=yycolumn; return INTEGER;}
-INTERVAL {lexeme=yytext(); line=yyline; column=yycolumn; return INTERVAL;}
-ISOLARION {lexeme=yytext(); line=yyline; column=yycolumn; return ISOLARION;}
-LENGUAGE {lexeme=yytext(); line=yyline; column=yycolumn; return LENGUAGE;}
-LAST {lexeme=yytext(); line=yyline; column=yycolumn; return LAST;}
-LEADING {lexeme=yytext(); line=yyline; column=yycolumn; return LEADING;}
-LEVEL {lexeme=yytext(); line=yyline; column=yycolumn; return LEVEL;}
-LOCAL {lexeme=yytext(); line=yyline; column=yycolumn; return LOCAL;}
-LOWER {lexeme=yytext(); line=yyline; column=yycolumn; return LOWER;}
-MATCH {lexeme=yytext(); line=yyline; column=yycolumn; return MATCH;}
-MAX {lexeme=yytext(); line=yyline; column=yycolumn; return MAX;}
-MIN {lexeme=yytext(); line=yyline; column=yycolumn; return MIN;}
-MINUTE {lexeme=yytext(); line=yyline; column=yycolumn; return MINUTE;}
-MODULE {lexeme=yytext(); line=yyline; column=yycolumn; return MODULE;}
-MONTH {lexeme=yytext(); line=yyline; column=yycolumn; return MONTH;}
-NAMES {lexeme=yytext(); line=yyline; column=yycolumn; return NAMES;}
-NATURAL {lexeme=yytext(); line=yyline; column=yycolumn; return NATURAL;}
-NCHAR {lexeme=yytext(); line=yyline; column=yycolumn; return NCHAR;}
-NEXT {lexeme=yytext(); line=yyline; column=yycolumn; return NEXT;}
-NO {lexeme=yytext(); line=yyline; column=yycolumn; return NO;}
-NONE {lexeme=yytext(); line=yyline; column=yycolumn; return NONE;}
-NUMERIC {lexeme=yytext(); line=yyline; column=yycolumn; return NUMERIC;}
-OCTET_LENGTH {lexeme=yytext(); line=yyline; column=yycolumn; return OCTET_LENGTH;}
-ONLY {lexeme=yytext(); line=yyline; column=yycolumn; return ONLY;}
-OUTPUT {lexeme=yytext(); line=yyline; column=yycolumn; return OUTPUT;}
-OVERLAPS {lexeme=yytext(); line=yyline; column=yycolumn; return OVERLAPS;}
-PAD {lexeme=yytext(); line=yyline; column=yycolumn; return PAD;}
-PARTIAL {lexeme=yytext(); line=yyline; column=yycolumn; return PARTIAL;}
-PASCAL {lexeme=yytext(); line=yyline; column=yycolumn; return PASCAL;}
-POSITION {lexeme=yytext(); line=yyline; column=yycolumn; return POSITION;}
-PREPARE {lexeme=yytext(); line=yyline; column=yycolumn; return PREPARE;}
-PRESERVE {lexeme=yytext(); line=yyline; column=yycolumn; return PRESERVE;}
-PRIOR {lexeme=yytext(); line=yyline; column=yycolumn; return PRIOR;}
-PRIVILEGES {lexeme=yytext(); line=yyline; column=yycolumn; return PRIVILEGES;}
-REAL {lexeme=yytext(); line=yyline; column=yycolumn; return REAL;}
-RELATIVE {lexeme=yytext(); line=yyline; column=yycolumn; return RELATIVE;}
-ROWS {lexeme=yytext(); line=yyline; column=yycolumn; return ROWS;}
-SCROLL {lexeme=yytext(); line=yyline; column=yycolumn; return SCROLL;}
-SECOND {lexeme=yytext(); line=yyline; column=yycolumn; return SECOND;}
-SECTION {lexeme=yytext(); line=yyline; column=yycolumn; return SECTION;}
-SESSION {lexeme=yytext(); line=yyline; column=yycolumn; return SESSION;}
-SIZE {lexeme=yytext(); line=yyline; column=yycolumn; return SIZE;}
-SMALLINT {lexeme=yytext(); line=yyline; column=yycolumn; return SMALLINT;}
-SPACE {lexeme=yytext(); line=yyline; column=yycolumn; return SPACE;}
-SQL {lexeme=yytext(); line=yyline; column=yycolumn; return SQL;}
-SQLCA {lexeme=yytext(); line=yyline; column=yycolumn; return SQLCA;}
-SQLCODE {lexeme=yytext(); line=yyline; column=yycolumn; return SQLCODE;}
-SQLERROR {lexeme=yytext(); line=yyline; column=yycolumn; return SQLERROR;}
-SQLSTATE {lexeme=yytext(); line=yyline; column=yycolumn; return SQLSTATE;}
-SQLWARNING {lexeme=yytext(); line=yyline; column=yycolumn; return SQLWARNING;}
-SUBSTRING {lexeme=yytext(); line=yyline; column=yycolumn; return SUBSTRING;}
-SUM {lexeme=yytext(); line=yyline; column=yycolumn; return SUM;}
-TEMPORARY {lexeme=yytext(); line=yyline; column=yycolumn; return TEMPORARY;}
-TIME {lexeme=yytext(); line=yyline; column=yycolumn; return TIME;}
-TIMESTAMP {lexeme=yytext(); line=yyline; column=yycolumn; return TIMESTAMP;}
-TIMEZONE_HOUR {lexeme=yytext(); line=yyline; column=yycolumn; return TIMEZONE_HOUR;}
-TIMEZONE_MINUTE {lexeme=yytext(); line=yyline; column=yycolumn; return TIMEZONE_MINUTE;}
-TRAILING {lexeme=yytext(); line=yyline; column=yycolumn; return TRAILING;}
-TRANSLATE {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSLATE;}
-TRANSLATION {lexeme=yytext(); line=yyline; column=yycolumn; return TRANSLATION;}
-TRIM {lexeme=yytext(); line=yyline; column=yycolumn; return TRIM;}
-TRUE {lexeme=yytext(); line=yyline; column=yycolumn; return TRUE;}
-UNKNOWN {lexeme=yytext(); line=yyline; column=yycolumn; return UNKNOWN;}
-UPPER {lexeme=yytext(); line=yyline; column=yycolumn; return UPPER;}
-USAGE {lexeme=yytext(); line=yyline; column=yycolumn; return USAGE;}
-USING {lexeme=yytext(); line=yyline; column=yycolumn; return USING;}
-VALUE {lexeme=yytext(); line=yyline; column=yycolumn; return VALUE;}
-VARCHAR {lexeme=yytext(); line=yyline; column=yycolumn; return VARCHAR;}
-WHENEVER {lexeme=yytext(); line=yyline; column=yycolumn; return WHENEVER;}
-WORK {lexeme=yytext(); line=yyline; column=yycolumn; return WORK;}
-WRITE {lexeme=yytext(); line=yyline; column=yycolumn; return WRITE;}
-YEAR {lexeme=yytext(); line=yyline; column=yycolumn; return YEAR;}
-ZONE {lexeme=yytext(); line=yyline; column=yycolumn; return ZONE;}
-WRITETEXT {lexeme=yytext(); line=yyline; column=yycolumn; return WRITETEXT;}
+ADD {return new Symbol(sym.ADD, yychar, yyline, yytext());}
+FILENAME {return new Symbol(sym.FILENAME, yychar, yyline, yytext());}
+ALL {return new Symbol(sym.ALL, yychar, yyline, yytext());}
+ALTER {return new Symbol(sym.ALTER, yychar, yyline, yytext());}
+AND {return new Symbol(sym.AND, yychar, yyline, yytext());}
+ANY {return new Symbol(sym.ANY, yychar, yyline, yytext());}
+AS {return new Symbol(sym.AS, yychar, yyline, yytext());}
+ASC {return new Symbol(sym.ASC, yychar, yyline, yytext());}
+AUTHORIZATION {return new Symbol(sym.AUTHORIZATION, yychar, yyline, yytext());}
+BACKUP {return new Symbol(sym.BACKUP, yychar, yyline, yytext());}
+BEGIN {return new Symbol(sym.BEGIN, yychar, yyline, yytext());}
+BETWEEN {return new Symbol(sym.BETWEEN, yychar, yyline, yytext());}
+BREAK {return new Symbol(sym.BREAK, yychar, yyline, yytext());}
+BROWSE {return new Symbol(sym.BROWSE, yychar, yyline, yytext());}
+BULK {return new Symbol(sym.BULK, yychar, yyline, yytext());}
+BY {return new Symbol(sym.BY, yychar, yyline, yytext());}
+CASCADE {return new Symbol(sym.CASCADE, yychar, yyline, yytext());}
+CASE {return new Symbol(sym.CASE, yychar, yyline, yytext());}
+CHECK {return new Symbol(sym.CHECK, yychar, yyline, yytext());}
+CHECKPOINT {return new Symbol(sym.CHECKPOINT, yychar, yyline, yytext());}
+CLOSE {return new Symbol(sym.CLOSE, yychar, yyline, yytext());}
+CLUSTERED {return new Symbol(sym.CLUSTERED, yychar, yyline, yytext());}
+COALESCE {return new Symbol(sym.COALESCE, yychar, yyline, yytext());}
+COLLATE {return new Symbol(sym.COLLATE, yychar, yyline, yytext());}
+COLUMN {return new Symbol(sym.COLUMN, yychar, yyline, yytext());}
+COMMIT {return new Symbol(sym.COMMIT, yychar, yyline, yytext());}
+COMPUTE {return new Symbol(sym.COMPUTE, yychar, yyline, yytext());}
+CONSTRAINT {return new Symbol(sym.CONSTRAINT, yychar, yyline, yytext());}
+CONTAINS {return new Symbol(sym.CONTAINS, yychar, yyline, yytext());}
+CONTAINSTABLE {return new Symbol(sym.CONTAINSTABLE, yychar, yyline, yytext());}
+CONTINUE {return new Symbol(sym.CONTINUE, yychar, yyline, yytext());}
+CONVERT {return new Symbol(sym.CONVERT, yychar, yyline, yytext());}
+CREATE {return new Symbol(sym.CREATE, yychar, yyline, yytext());}
+CROSS {return new Symbol(sym.CROSS, yychar, yyline, yytext());}
+CURRENT {return new Symbol(sym.CURRENT, yychar, yyline, yytext());}
+CURRENT_DATE {return new Symbol(sym.CURRENT_DATE, yychar, yyline, yytext());}
+CURRENT_TIME {return new Symbol(sym.CURRENT_TIME, yychar, yyline, yytext());}
+CURRENT_TIMESTAMP {return new Symbol(sym.CURRENT_TIMESTAMP, yychar, yyline, yytext());}
+CURRENT_USER {return new Symbol(sym.CURRENT_USER, yychar, yyline, yytext());}
+CURSOR {return new Symbol(sym.CURSOR, yychar, yyline, yytext());}
+DATABASE {return new Symbol(sym.DATABASE, yychar, yyline, yytext());}
+DBCC {return new Symbol(sym.DBCC, yychar, yyline, yytext());}
+DEALLOCATE {return new Symbol(sym.DEALLOCATE, yychar, yyline, yytext());}
+DECLARE {return new Symbol(sym.DECLARE, yychar, yyline, yytext());}
+DEFAULT {return new Symbol(sym.DEFAULT, yychar, yyline, yytext());}
+DELETE {return new Symbol(sym.DELETE, yychar, yyline, yytext());}
+DENY {return new Symbol(sym.DENY, yychar, yyline, yytext());}
+DESC {return new Symbol(sym.DESC, yychar, yyline, yytext());}
+DISK {return new Symbol(sym.DISK, yychar, yyline, yytext());}
+DISTINCT {return new Symbol(sym.DISTINCT, yychar, yyline, yytext());}
+DISTRIBUTED {return new Symbol(sym.DISTRIBUTED, yychar, yyline, yytext());}
+DOUBLE {return new Symbol(sym.DOUBLE, yychar, yyline, yytext());}
+DROP {return new Symbol(sym.DROP, yychar, yyline, yytext());}
+DUMP {return new Symbol(sym.DUMP, yychar, yyline, yytext());}
+ELSE {return new Symbol(sym.ELSE, yychar, yyline, yytext());}
+END {return new Symbol(sym.END, yychar, yyline, yytext());}
+ERRLVL {return new Symbol(sym.ERRLVL, yychar, yyline, yytext());}
+ESCAPE {return new Symbol(sym.ESCAPE, yychar, yyline, yytext());}
+EXCEPT {return new Symbol(sym.EXCEPT, yychar, yyline, yytext());}
+EXEC {return new Symbol(sym.EXEC, yychar, yyline, yytext());}
+EXECUTE {return new Symbol(sym.EXECUTE, yychar, yyline, yytext());}
+EXISTS {return new Symbol(sym.EXISTS, yychar, yyline, yytext());}
+EXIT {return new Symbol(sym.EXIT, yychar, yyline, yytext());}
+EXTERNAL {return new Symbol(sym.EXTERNAL, yychar, yyline, yytext());}
+FETCH {return new Symbol(sym.FETCH, yychar, yyline, yytext());}
+FILE {return new Symbol(sym.FILE, yychar, yyline, yytext());}
+FILLFACTOR {return new Symbol(sym.FILLFACTOR, yychar, yyline, yytext());}
+FOR {return new Symbol(sym.FOR, yychar, yyline, yytext());}
+FOREIGN {return new Symbol(sym.FOREIGN, yychar, yyline, yytext());}
+FREETEXT {return new Symbol(sym.FREETEXT, yychar, yyline, yytext());}
+FREETEXTTABLE {return new Symbol(sym.FREETEXTTABLE, yychar, yyline, yytext());}
+FROM {return new Symbol(sym.FROM, yychar, yyline, yytext());}
+FULL {return new Symbol(sym.FULL, yychar, yyline, yytext());}
+FUNCTION {return new Symbol(sym.FUNCTION, yychar, yyline, yytext());}
+GOTO {return new Symbol(sym.GOTO, yychar, yyline, yytext());}
+GRANT {return new Symbol(sym.GRANT, yychar, yyline, yytext());}
+GROUP {return new Symbol(sym.GROUP, yychar, yyline, yytext());}
+HAVING {return new Symbol(sym.HAVING, yychar, yyline, yytext());}
+HOLDLOCK {return new Symbol(sym.HOLDLOCK, yychar, yyline, yytext());}
+IDENTITY {return new Symbol(sym.IDENTITY, yychar, yyline, yytext());}
+IDENTITY_INSERT {return new Symbol(sym.IDENTITY_INSERT, yychar, yyline, yytext());}
+IDENTITYCOL {return new Symbol(sym.IDENTITYCOL, yychar, yyline, yytext());}
+IF {return new Symbol(sym.IF, yychar, yyline, yytext());}
+IN {return new Symbol(sym.IN, yychar, yyline, yytext());}
+INDEX {return new Symbol(sym.INDEX, yychar, yyline, yytext());}
+INNER {return new Symbol(sym.INNER, yychar, yyline, yytext());}
+INSERT {return new Symbol(sym.INSERT, yychar, yyline, yytext());}
+INTERSECT {return new Symbol(sym.INTERSECT, yychar, yyline, yytext());}
+INTO {return new Symbol(sym.INTO, yychar, yyline, yytext());}
+IS {return new Symbol(sym.IS, yychar, yyline, yytext());}
+JOIN {return new Symbol(sym.JOIN, yychar, yyline, yytext());}
+KEY {return new Symbol(sym.KEY, yychar, yyline, yytext());}
+KILL {return new Symbol(sym.KILL, yychar, yyline, yytext());}
+LEFT {return new Symbol(sym.LEFT, yychar, yyline, yytext());}
+LIKE {return new Symbol(sym.LIKE, yychar, yyline, yytext());}
+LINENO {return new Symbol(sym.LINENO, yychar, yyline, yytext());}
+LOAD {return new Symbol(sym.LOAD, yychar, yyline, yytext());}
+MERGE {return new Symbol(sym.MERGE, yychar, yyline, yytext());}
+NATIONAL {return new Symbol(sym.NATIONAL, yychar, yyline, yytext());}
+NOCHECK {return new Symbol(sym.NOCHECK, yychar, yyline, yytext());}
+NONCLUSTERED {return new Symbol(sym.NONCLUSTERED, yychar, yyline, yytext());}
+NOT {return new Symbol(sym.NOT, yychar, yyline, yytext());}
+NULL {return new Symbol(sym.NULL, yychar, yyline, yytext());}
+NULLIF {return new Symbol(sym.NULLIF, yychar, yyline, yytext());}
+OF {return new Symbol(sym.OF, yychar, yyline, yytext());}
+OFF {return new Symbol(sym.OFF, yychar, yyline, yytext());}
+OFFSETS {return new Symbol(sym.OFFSETS, yychar, yyline, yytext());}
+ON {return new Symbol(sym.ON, yychar, yyline, yytext());}
+OPEN {return new Symbol(sym.OPEN, yychar, yyline, yytext());}
+OPENDATASOURCE {return new Symbol(sym.OPENDATASOURCE, yychar, yyline, yytext());}
+OPENQUERY  {return new Symbol(sym.OPENQUERY, yychar, yyline, yytext());}
+OPENROWSET {return new Symbol(sym.OPENROWSET, yychar, yyline, yytext());}
+OPENXML {return new Symbol(sym.OPENXML, yychar, yyline, yytext());}
+OPTION {return new Symbol(sym.OPTION, yychar, yyline, yytext());}
+OR {return new Symbol(sym.OR, yychar, yyline, yytext());}
+ORDER {return new Symbol(sym.ORDER, yychar, yyline, yytext());}
+OUTER {return new Symbol(sym.OUTER, yychar, yyline, yytext());}
+OVER {return new Symbol(sym.OVER, yychar, yyline, yytext());}
+PERCENT {return new Symbol(sym.PERCENT, yychar, yyline, yytext());}
+PIVOT {return new Symbol(sym.PIVOT, yychar, yyline, yytext());}
+PLAN {return new Symbol(sym.PLAN, yychar, yyline, yytext());}
+PRECISION {return new Symbol(sym.PRECISION, yychar, yyline, yytext());}
+PRIMARY {return new Symbol(sym.PRIMARY, yychar, yyline, yytext());}
+PRINT {return new Symbol(sym.PRINT, yychar, yyline, yytext());}
+PROC {return new Symbol(sym.PROC, yychar, yyline, yytext());}
+PROCEDURE {return new Symbol(sym.PROCEDURE, yychar, yyline, yytext());}
+PUBLIC {return new Symbol(sym.PUBLIC, yychar, yyline, yytext());}
+RAISERROR {return new Symbol(sym.RAISERROR, yychar, yyline, yytext());}
+READ {return new Symbol(sym.READ, yychar, yyline, yytext());}
+READTEXT {return new Symbol(sym.READTEXT, yychar, yyline, yytext());}
+RECONFIGURE {return new Symbol(sym.RECONFIGURE, yychar, yyline, yytext());}
+REFERENCES {return new Symbol(sym.REFERENCES, yychar, yyline, yytext());}
+REPLICATION {return new Symbol(sym.REPLICATION, yychar, yyline, yytext());}
+RESTORE {return new Symbol(sym.RESTORE, yychar, yyline, yytext());}
+RESTRICT {return new Symbol(sym.RESTRICT, yychar, yyline, yytext());}
+RETURN {return new Symbol(sym.RETURN, yychar, yyline, yytext());}
+REVERT {return new Symbol(sym.REVERT, yychar, yyline, yytext());}
+REVOKE {return new Symbol(sym.REVOKE, yychar, yyline, yytext());}
+RIGHT {return new Symbol(sym.RIGHT, yychar, yyline, yytext());}
+ROLLBACK {return new Symbol(sym.ROLLBACK, yychar, yyline, yytext());}
+ROWCOUNT {return new Symbol(sym.ROWCOUNT, yychar, yyline, yytext());}
+ROWGUIDCOL {return new Symbol(sym.ROWGUIDCOL, yychar, yyline, yytext());}
+RULE {return new Symbol(sym.RULE, yychar, yyline, yytext());}
+SAVE {return new Symbol(sym.SAVE, yychar, yyline, yytext());}
+SCHEMA {return new Symbol(sym.SCHEMA, yychar, yyline, yytext());}
+SECURITYAUDIT {return new Symbol(sym.SECURITYAUDIT, yychar, yyline, yytext());}
+SELECT {return new Symbol(sym.SELECT, yychar, yyline, yytext());}
+SEMANTICKEYPHRASETABLE {return new Symbol(sym.SEMANTICKEYPHRASETABLE, yychar, yyline, yytext());}
+SEMANTICSIMILARITYDETAILSTABLE {return new Symbol(sym.SEMANTICSIMILARITYDETAILSTABLE, yychar, yyline, yytext());}
+SEMANTICSIMILARITYTABLE {return new Symbol(sym.SEMANTICSIMILARITYTABLE, yychar, yyline, yytext());}
+SESSION_USER {return new Symbol(sym.SESSION_USER, yychar, yyline, yytext());}
+SET {return new Symbol(sym.SET, yychar, yyline, yytext());}
+SETUSER {return new Symbol(sym.SETUSER, yychar, yyline, yytext());}
+SHUTDOWN {return new Symbol(sym.SHUTDOWN, yychar, yyline, yytext());}
+SOME {return new Symbol(sym.SOME, yychar, yyline, yytext());}
+STATISTICS {return new Symbol(sym.STATISTICS, yychar, yyline, yytext());}
+SYSTEM_USER {return new Symbol(sym.SYSTEM_USER, yychar, yyline, yytext());}
+TABLE {return new Symbol(sym.TABLE, yychar, yyline, yytext());}
+TABLESAMPLE {return new Symbol(sym.TABLESAMPLE, yychar, yyline, yytext());}
+TEXTSIZE {return new Symbol(sym.TEXTSIZE, yychar, yyline, yytext());}
+THEN {return new Symbol(sym.THEN, yychar, yyline, yytext());}
+TO {return new Symbol(sym.TO, yychar, yyline, yytext());}
+TOP {return new Symbol(sym.TOP, yychar, yyline, yytext());}
+TRAN {return new Symbol(sym.TRAN, yychar, yyline, yytext());}
+READ_COMMITED {return new Symbol(sym.READ_COMMITED, yychar, yyline, yytext());}
+READ_UNCOMMITED {return new Symbol(sym.READ_UNCOMMITED, yychar, yyline, yytext());}
+TRANSACTION {return new Symbol(sym.TRANSACTION, yychar, yyline, yytext());}
+TRIGGER {return new Symbol(sym.TRIGGER, yychar, yyline, yytext());}
+TRUNCATE {return new Symbol(sym.TRUNCATE, yychar, yyline, yytext());}
+TRY_CONVERT {return new Symbol(sym.TRY_CONVERT, yychar, yyline, yytext());}
+TSEQUAL {return new Symbol(sym.TSEQUAL, yychar, yyline, yytext());}
+UNION {return new Symbol(sym.UNION, yychar, yyline, yytext());}
+UNIQUE {return new Symbol(sym.UNIQUE, yychar, yyline, yytext());}
+UNPIVOT {return new Symbol(sym.UNPIVOT, yychar, yyline, yytext());}
+UPDATE {return new Symbol(sym.UPDATE, yychar, yyline, yytext());}
+UPDATETEXT {return new Symbol(sym.UPDATETEXT, yychar, yyline, yytext());}
+USE {return new Symbol(sym.USE, yychar, yyline, yytext());}
+USER {return new Symbol(sym.USER, yychar, yyline, yytext());}
+VALUES {return new Symbol(sym.VALUES, yychar, yyline, yytext());}
+VARYING {return new Symbol(sym.VARYING, yychar, yyline, yytext());}
+VIEW {return new Symbol(sym.VIEW, yychar, yyline, yytext());}
+WAITFOR {return new Symbol(sym.WAITFOR, yychar, yyline, yytext());}
+WHEN {return new Symbol(sym.WHEN, yychar, yyline, yytext());}
+WHERE {return new Symbol(sym.WHERE, yychar, yyline, yytext());}
+WHILE {return new Symbol(sym.WHILE, yychar, yyline, yytext());}
+WITH {return new Symbol(sym.WITH, yychar, yyline, yytext());}
+ABSOLUTE {return new Symbol(sym.ABSOLUTE, yychar, yyline, yytext());}
+ACTION {return new Symbol(sym.ACTION, yychar, yyline, yytext());}
+ADA {return new Symbol(sym.ADA, yychar, yyline, yytext());}
+ALLOCATE {return new Symbol(sym.ALLOCATE, yychar, yyline, yytext());}
+ARE {return new Symbol(sym.ARE, yychar, yyline, yytext());}
+ASSERTION {return new Symbol(sym.ASSERTION, yychar, yyline, yytext());}
+AT {return new Symbol(sym.AS, yychar, yyline, yytext());}
+AVG {return new Symbol(sym.AVG, yychar, yyline, yytext());}
+BIT {return new Symbol(sym.BIT, yychar, yyline, yytext());}
+BIT_LENGTH {return new Symbol(sym.BIT_LENGTH, yychar, yyline, yytext());}
+BOTH {return new Symbol(sym.BOTH, yychar, yyline, yytext());}
+CASCADED {return new Symbol(sym.CASCADED, yychar, yyline, yytext());}
+CAST {return new Symbol(sym.CAST, yychar, yyline, yytext());}
+CATALOG {return new Symbol(sym.CATALOG, yychar, yyline, yytext());}
+CHAR {return new Symbol(sym.CHAR, yychar, yyline, yytext());}
+CHAR_LENGTH {return new Symbol(sym.CHARACTER_LENGTH, yychar, yyline, yytext());}
+CHARACTER {return new Symbol(sym.CHARACTER, yychar, yyline, yytext());}
+COLLATION {return new Symbol(sym.COLLATION, yychar, yyline, yytext());}
+CONNECT {return new Symbol(sym.CONNECT, yychar, yyline, yytext());}
+CONSTRAINTS {return new Symbol(sym.CONSTRAINTS, yychar, yyline, yytext());}
+CORRESPONDING {return new Symbol(sym.CORRESPONDING, yychar, yyline, yytext());}
+COUNT {return new Symbol(sym.COUNT, yychar, yyline, yytext());}
+DATE {return new Symbol(sym.DATE, yychar, yyline, yytext());}
+DAY {return new Symbol(sym.DAY, yychar, yyline, yytext());}
+DEC {return new Symbol(sym.DEC, yychar, yyline, yytext());}
+DECIMAL {return new Symbol(sym.DECIMAL, yychar, yyline, yytext());}
+DESCRIBE {return new Symbol(sym.DESCRIBE, yychar, yyline, yytext());}
+DESCRIPTOR {return new Symbol(sym.DESCRIPTOR, yychar, yyline, yytext());}
+DIAGNOSTICS {return new Symbol(sym.DIAGNOSTICS, yychar, yyline, yytext());}
+DISCONNECT {return new Symbol(sym.DISCONNECT, yychar, yyline, yytext());}
+DOMAIN {return new Symbol(sym.DOMAIN, yychar, yyline, yytext());}
+EXCEPTION {return new Symbol(sym.EXCEPTION, yychar, yyline, yytext());}
+EXTRACT {return new Symbol(sym.EXTRACT, yychar, yyline, yytext());}
+FALSE {return new Symbol(sym.FALSE, yychar, yyline, yytext());}
+FIRST {return new Symbol(sym.FIRST, yychar, yyline, yytext());}
+FLOAT {return new Symbol(sym.FLOAT, yychar, yyline, yytext());}
+FORTRAN {return new Symbol(sym.FORTRAN, yychar, yyline, yytext());}
+FOUND {return new Symbol(sym.FOUND, yychar, yyline, yytext());}
+GET {return new Symbol(sym.GET, yychar, yyline, yytext());}
+GLOBAL {return new Symbol(sym.GLOBAL, yychar, yyline, yytext());}
+GO {return new Symbol(sym.GO, yychar, yyline, yytext());}
+HOUR {return new Symbol(sym.HOUR, yychar, yyline, yytext());}
+IMMEDIATE {return new Symbol(sym.IMMEDIATE, yychar, yyline, yytext());}
+INCLUDE {return new Symbol(sym.INCLUDE, yychar, yyline, yytext());}
+INDICATOR {return new Symbol(sym.INDICATOR, yychar, yyline, yytext());}
+INITIALLY {return new Symbol(sym.INITIALLY, yychar, yyline, yytext());}
+INPUT {return new Symbol(sym.INPUT, yychar, yyline, yytext());}
+INSENSITIVE {return new Symbol(sym.INSENSITIVE, yychar, yyline, yytext());}
+INT {return new Symbol(sym.INT, yychar, yyline, yytext());}
+INTEGER {return new Symbol(sym.INTEGER, yychar, yyline, yytext());}
+INTERVAL {return new Symbol(sym.INTERVAL, yychar, yyline, yytext());}
+ISOLARION {return new Symbol(sym.ISOLARION, yychar, yyline, yytext());}
+LENGUAGE {return new Symbol(sym.LENGUAGE, yychar, yyline, yytext());}
+LAST {return new Symbol(sym.LAST, yychar, yyline, yytext());}
+LEADING {return new Symbol(sym.LEADING, yychar, yyline, yytext());}
+LEVEL {return new Symbol(sym.LEVEL, yychar, yyline, yytext());}
+LOCAL {return new Symbol(sym.LOCAL, yychar, yyline, yytext());}
+LOWER {return new Symbol(sym.LOCAL, yychar, yyline, yytext());}
+MATCH {return new Symbol(sym.MATCH, yychar, yyline, yytext());}
+MAX {return new Symbol(sym.MAX, yychar, yyline, yytext());}
+MIN {return new Symbol(sym.MIN, yychar, yyline, yytext());}
+MINUTE {return new Symbol(sym.MINUTE, yychar, yyline, yytext());}
+MODULE {return new Symbol(sym.MODULE, yychar, yyline, yytext());}
+MONTH {return new Symbol(sym.MONTH, yychar, yyline, yytext());}
+NAMES {return new Symbol(sym.NAMES, yychar, yyline, yytext());}
+NATURAL {return new Symbol(sym.NATURAL, yychar, yyline, yytext());}
+NCHAR {return new Symbol(sym.NCHAR, yychar, yyline, yytext());}
+NEXT {return new Symbol(sym.NEXT, yychar, yyline, yytext());}
+NO {return new Symbol(sym.NO, yychar, yyline, yytext());}
+NONE {return new Symbol(sym.NONE, yychar, yyline, yytext());}
+NUMERIC {return new Symbol(sym.NUMERIC, yychar, yyline, yytext());}
+OCTET_LENGTH {return new Symbol(sym.OCTET_LENGTH, yychar, yyline, yytext());}
+ONLY {return new Symbol(sym.ONLY, yychar, yyline, yytext());}
+OUTPUT {return new Symbol(sym.OUTPUT, yychar, yyline, yytext());}
+OVERLAPS {return new Symbol(sym.OVERLAPS, yychar, yyline, yytext());}
+PAD {return new Symbol(sym.PAD, yychar, yyline, yytext());}
+PARTIAL {return new Symbol(sym.PARTIAL, yychar, yyline, yytext());}
+PASCAL {return new Symbol(sym.PASCAL, yychar, yyline, yytext());}
+POSITION {return new Symbol(sym.POSITION, yychar, yyline, yytext());}
+PRESERVE {return new Symbol(sym.PRESERVE, yychar, yyline, yytext());}
+PRIOR {return new Symbol(sym.PRIOR, yychar, yyline, yytext());}
+PRIVILEGES {return new Symbol(sym.PRIVILEGES, yychar, yyline, yytext());}
+REAL {return new Symbol(sym.REAL, yychar, yyline, yytext());}
+RELATIVE {return new Symbol(sym.RELATIVE, yychar, yyline, yytext());}
+ROWS {return new Symbol(sym.ROWS, yychar, yyline, yytext());}
+SCROLL {return new Symbol(sym.SCROLL, yychar, yyline, yytext());}
+SECOND {return new Symbol(sym.SECOND, yychar, yyline, yytext());}
+SECTION {return new Symbol(sym.SECTION, yychar, yyline, yytext());}
+SESSION {return new Symbol(sym.SESSION, yychar, yyline, yytext());}
+SIZE {return new Symbol(sym.SIZE, yychar, yyline, yytext());}
+SMALLINT {return new Symbol(sym.SMALLINT, yychar, yyline, yytext());}
+SPACE {return new Symbol(sym.SPACE, yychar, yyline, yytext());}
+SQL {return new Symbol(sym.SQL, yychar, yyline, yytext());}
+SQLCA {return new Symbol(sym.SQLCA, yychar, yyline, yytext());}
+SQLCODE {return new Symbol(sym.SQLCODE, yychar, yyline, yytext());}
+SQLERROR {return new Symbol(sym.SQLERROR, yychar, yyline, yytext());}
+SQLSTATE {return new Symbol(sym.SQLSTATE, yychar, yyline, yytext());}
+SQLWARNING {return new Symbol(sym.SQLWARNING, yychar, yyline, yytext());}
+SUBSTRING {return new Symbol(sym.SUBSTRING, yychar, yyline, yytext());}
+SUM {return new Symbol(sym.SUM, yychar, yyline, yytext());}
+TEMPORARY {return new Symbol(sym.TEMPORARY, yychar, yyline, yytext());}
+TIME {return new Symbol(sym.TIME, yychar, yyline, yytext());}
+TIMESTAMP {return new Symbol(sym.TIMESTAMP, yychar, yyline, yytext());}
+TIMEZONE_HOUR {return new Symbol(sym.TIMEZONE_HOUR, yychar, yyline, yytext());}
+TIMEZONE_MINUTE {return new Symbol(sym.TIMEZONE_MINUTE, yychar, yyline, yytext());}
+TRAILING {return new Symbol(sym.TRAILING, yychar, yyline, yytext());}
+TRANSLATE {return new Symbol(sym.TRANSLATE, yychar, yyline, yytext());}
+TRANSLATION {return new Symbol(sym.TRANSLATION, yychar, yyline, yytext());}
+TRIM {return new Symbol(sym.TRIM, yychar, yyline, yytext());}
+TRUE {return new Symbol(sym.TRUE, yychar, yyline, yytext());}
+UNKNOWN {return new Symbol(sym.UNKNOWN, yychar, yyline, yytext());}
+UPPER {return new Symbol(sym.UPPER, yychar, yyline, yytext());}
+USAGE {return new Symbol(sym.USAGE, yychar, yyline, yytext());}
+USING {return new Symbol(sym.USING, yychar, yyline, yytext());}
+VALUE {return new Symbol(sym.VALUE, yychar, yyline, yytext());}
+VARCHAR {return new Symbol(sym.VARCHAR, yychar, yyline, yytext());}
+WHENEVER {return new Symbol(sym.WHENEVER, yychar, yyline, yytext());}
+WORK {return new Symbol(sym.WORK, yychar, yyline, yytext());}
+WRITE {return new Symbol(sym.WRITE, yychar, yyline, yytext());}
+MODIFY {return new Symbol(sym.MODIFY, yychar, yyline, yytext());}
+YEAR {return new Symbol(sym.YEAR, yychar, yyline, yytext());}
+ZONE {return new Symbol(sym.ZONE, yychar, yyline, yytext());}
+WRITETEXT {return new Symbol(sym.WRITETEXT, yychar, yyline, yytext());}
+RETURNS {return new Symbol(sym.RETURNS, yychar, yyline, yytext());}
 {espacio} {/*Ignore*/}
 "--" {InputCharacter}*{LineTerminator}? {/*Ignore*/}
-"=" {lexeme=yytext(); line=yyline; column=yycolumn; return Igual;}
-"+" {lexeme=yytext(); line=yyline; column=yycolumn; return Suma;}
-"-" {lexeme=yytext(); line=yyline; column=yycolumn; return Resta;}
-"*" {lexeme=yytext(); line=yyline; column=yycolumn; return Multiplicacion;}
-"/" {lexeme=yytext(); line=yyline; column=yycolumn; return Division;}
-"_" {lexeme=yytext(); line=yyline; column=yycolumn; return Guionbajo;}
-"%" {lexeme=yytext();line=yyline; column=yycolumn; return Porcentaje;}
-"<" {lexeme=yytext(); line=yyline; column=yycolumn; return Menor;}
-">" {lexeme=yytext(); line=yyline; column=yycolumn; return Mayor;}
-"<=" {lexeme=yytext(); line=yyline; column=yycolumn; return MenorIgual;}
-">=" {lexeme=yytext(); line=yyline; column=yycolumn; return MayorIgual;}
-"==" {lexeme=yytext(); line=yyline; column=yycolumn; return IgualIgual;}
-"!=" {lexeme=yytext(); line=yyline; column=yycolumn; return NoIgual;}
-"&" {lexeme=yytext(); line=yyline; column=yycolumn; return y;}
-"&&" {lexeme=yytext(); line=yyline; column=yycolumn; return andS;}
-"||" {lexeme=yytext(); line=yyline; column=yycolumn; return or;}
-"!" {lexeme=yytext(); line=yyline; column=yycolumn; return SignoExclamacion;}
-";" {lexeme=yytext(); line=yyline; column=yycolumn; return PuntoyComa;}
-"." {lexeme=yytext(); line=yyline; column=yycolumn; return Punto;}
-"[" {lexeme=yytext(); line=yyline; column=yycolumn; return CorcheteAbierto;}
-"]" {lexeme=yytext(); line=yyline; column=yycolumn; return CorcheteCerrado;}
-"[]" {lexeme=yytext(); line=yyline; column=yycolumn; return Corchetes;}
-"(" {lexeme=yytext(); line=yyline; column=yycolumn; return ParentesisAbierto;}
-")" {lexeme=yytext(); line=yyline; column=yycolumn; return ParentesisCerrado;}
-"()" {lexeme=yytext(); line=yyline; column=yycolumn; return Parentesis;}
-"{" {lexeme=yytext(); line=yyline; column=yycolumn; return LlaveAbierta;}
-"}" {lexeme=yytext(); line=yyline; column=yycolumn; return LlaveCerrada;}
-"{}" {lexeme=yytext(); line=yyline; column=yycolumn; return Llaves;}
-"@" {lexeme=yytext(); line=yyline; column=yycolumn; return Arroba;}
-"#" {lexeme=yytext(); line=yyline; column=yycolumn; return Numeral;}
-"##" {lexeme=yytext(); line=yyline; column=yycolumn; return DobleNumeral;}
-"," {lexeme=yytext(); line=yyline; column=yycolumn; return Coma;}
-({L}|{L2})({L}|{L2}|{D})* {lexeme=yytext(); line=yyline; column=yycolumn; return Identificador;}
-(1)|(0)| NULL {lexeme=yytext(); line=yyline; column=yycolumn; return Bit;}
-("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {lexeme=yytext(); line=yyline; column=yycolumn; return Numero;}
-(({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {lexeme=yytext(); column=yycolumn; line=yyline; return Float;}
-"'"{InputCharacterString}*"'" {lexeme=yytext(); line=yyline; column=yycolumn; return String;}
+"=" {return new Symbol(sym.Igual, yychar, yyline, yytext());}
+"+" {return new Symbol(sym.Suma, yychar, yyline, yytext());}
+"-" {return new Symbol(sym.Resta, yychar, yyline, yytext());}
+"*" {return new Symbol(sym.Multiplicacion, yychar, yyline, yytext());}
+"/" {return new Symbol(sym.Division, yychar, yyline, yytext());}
+"_" {return new Symbol(sym.Guionbajo, yychar, yyline, yytext());}
+"%" {return new Symbol(sym.Porcentaje, yychar, yyline, yytext());}
+"<" {return new Symbol(sym.Menor, yychar, yyline, yytext());}
+">" {return new Symbol(sym.Mayor, yychar, yyline, yytext());}
+"<=" {return new Symbol(sym.MenorIgual, yychar, yyline, yytext());}
+">=" {return new Symbol(sym.MayorIgual, yychar, yyline, yytext());}
+"==" {return new Symbol(sym.IgualIgual, yychar, yyline, yytext());}
+"!=" {return new Symbol(sym.NoIgual, yychar, yyline, yytext());}
+"&" {return new Symbol(sym.y, yychar, yyline, yytext());}
+"&&" {return new Symbol(sym.andS, yychar, yyline, yytext());}
+"||" {return new Symbol(sym.or, yychar, yyline, yytext());}
+"!" {return new Symbol(sym.SignoExclamacion, yychar, yyline, yytext());}
+";" {return new Symbol(sym.PuntoyComa, yychar, yyline, yytext());}
+"." {return new Symbol(sym.Punto, yychar, yyline, yytext());}
+"[" {return new Symbol(sym.CorcheteAbierto, yychar, yyline, yytext());}
+"]" {return new Symbol(sym.CorcheteCerrado, yychar, yyline, yytext());}
+"[]" {return new Symbol(sym.Corchetes, yychar, yyline, yytext());}
+"(" {return new Symbol(sym.ParentesisAbierto, yychar, yyline, yytext());}
+")" {return new Symbol(sym.ParentesisCerrado, yychar, yyline, yytext());}
+"()" {return new Symbol(sym.Parentesis, yychar, yyline, yytext());}
+"{" {return new Symbol(sym.LlaveAbierta, yychar, yyline, yytext());}
+"}" {return new Symbol(sym.LlaveCerrada, yychar, yyline, yytext());}
+"{}" {return new Symbol(sym.Llaves, yychar, yyline, yytext());}
+"@" {return new Symbol(sym.Arroba, yychar, yyline, yytext());}
+"#" {return new Symbol(sym.Numeral, yychar, yyline, yytext());}
+"##" {return new Symbol(sym.DobleNumeral, yychar, yyline, yytext());}
+"," {return new Symbol(sym.Coma, yychar, yyline, yytext());}
+({L}|{L2})({L}|{L2}|{D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
+("-"(1|2|3|4|5|6|7|8|9)+)|{D}+ {return new Symbol(sym.Numero, yychar, yyline, yytext());}
+(({D}+)"."({D}*))|(({D}+)"."({D}*)(E|e)(("+")|("-"))(1|2|3|4|5|6|7|8|9)({D}*)) {return new Symbol(sym.Float, yychar, yyline, yytext());}
+"'"{InputCharacterString}*"'" {return new Symbol(sym.String, yychar, yyline, yytext());}
 ("/*"("*")* [^*] ("*")* ~"*/") | ("/*" ("*")+ "/") {/*Ignore*/}
- . {line=yyline; column=yycolumn; return ERROR;}
+ . {return new Symbol(sym.ERRORS, yychar, yyline, yytext());}

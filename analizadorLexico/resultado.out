@@ -1,326 +1,659 @@
-SELECT | Token: SELECT| linea= 1 | columna Inicio= 0 | columna Final= 6
-* | Token: Multiplicacion| linea= 1 | columna Inicio= 7 | columna Final= 8
-FROM | Token: FROM| linea= 2 | columna Inicio= 0 | columna Final= 4
-Production | Token: Identificador | linea= 2 | columna Inicio= 5 | columna Final= 15
-. | Token: Punto| linea= 2 | columna Inicio= 15 | columna Final= 16
-Product | Token: Identificador | linea= 2 | columna Inicio= 16 | columna Final= 23
-ORDER | Token: ORDER| linea= 3 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 3 | columna Inicio= 6 | columna Final= 8
-Name | Token: Identificador | linea= 3 | columna Inicio= 9 | columna Final= 13
-ASC | Token: ASC| linea= 3 | columna Inicio= 14 | columna Final= 17
-; | Token: PuntoyComa| linea= 3 | columna Inicio= 17 | columna Final= 18
-SELECT | Token: SELECT| linea= 5 | columna Inicio= 0 | columna Final= 6
-Name | Token: Identificador | linea= 5 | columna Inicio= 7 | columna Final= 11
-, | Token: Coma| linea= 5 | columna Inicio= 11 | columna Final= 12
-ProductNumber | Token: Identificador | linea= 5 | columna Inicio= 13 | columna Final= 26
-, | Token: Coma| linea= 5 | columna Inicio= 26 | columna Final= 27
-ListPrice | Token: Identificador | linea= 5 | columna Inicio= 28 | columna Final= 37
-AS | Token: AS| linea= 5 | columna Inicio= 38 | columna Final= 40
-Price | Token: Identificador | linea= 5 | columna Inicio= 41 | columna Final= 46
-FROM | Token: FROM| linea= 6 | columna Inicio= 0 | columna Final= 4
-Production | Token: Identificador | linea= 6 | columna Inicio= 5 | columna Final= 15
-. | Token: Punto| linea= 6 | columna Inicio= 15 | columna Final= 16
-Product | Token: Identificador | linea= 6 | columna Inicio= 16 | columna Final= 23
-WHERE | Token: WHERE| linea= 7 | columna Inicio= 0 | columna Final= 5
-ProductLine | Token: Identificador | linea= 7 | columna Inicio= 6 | columna Final= 17
-= | Token: Igual| linea= 7 | columna Inicio= 18 | columna Final= 19
-'R' | Token: String | linea= 7| columna Inicio= 20| columna Final= 23
-AND | Token: AND| linea= 8 | columna Inicio= 0 | columna Final= 3
-DaysToManufacture | Token: Identificador | linea= 8 | columna Inicio= 4 | columna Final= 21
-< | Token: Menor| linea= 8 | columna Inicio= 22 | columna Final= 23
-4 | Token: Numero | linea= 8| columna Inicio= 24| columna Final= 25
-ORDER | Token: ORDER| linea= 9 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 9 | columna Inicio= 6 | columna Final= 8
-Name | Token: Identificador | linea= 9 | columna Inicio= 9 | columna Final= 13
-ASC | Token: ASC| linea= 9 | columna Inicio= 14 | columna Final= 17
-; | Token: PuntoyComa| linea= 9 | columna Inicio= 17 | columna Final= 18
-SELECT | Token: SELECT| linea= 11 | columna Inicio= 0 | columna Final= 6
-p | Token: Identificador | linea= 11 | columna Inicio= 7 | columna Final= 8
-. | Token: Punto| linea= 11 | columna Inicio= 8 | columna Final= 9
-Name | Token: Identificador | linea= 11 | columna Inicio= 9 | columna Final= 13
-AS | Token: AS| linea= 11 | columna Inicio= 14 | columna Final= 16
-ProductName | Token: Identificador | linea= 11 | columna Inicio= 17 | columna Final= 28
-FROM | Token: FROM| linea= 12 | columna Inicio= 0 | columna Final= 4
-Production | Token: Identificador | linea= 12 | columna Inicio= 5 | columna Final= 15
-. | Token: Punto| linea= 12 | columna Inicio= 15 | columna Final= 16
-Product | Token: Identificador | linea= 12 | columna Inicio= 16 | columna Final= 23
-AS | Token: AS| linea= 12 | columna Inicio= 24 | columna Final= 26
-p | Token: Identificador | linea= 12 | columna Inicio= 27 | columna Final= 28
-INNER | Token: INNER| linea= 13 | columna Inicio= 0 | columna Final= 5
-JOIN | Token: JOIN| linea= 13 | columna Inicio= 6 | columna Final= 10
-Sales | Token: Identificador | linea= 13 | columna Inicio= 11 | columna Final= 16
-. | Token: Punto| linea= 13 | columna Inicio= 16 | columna Final= 17
-SalesOrderDetail | Token: Identificador | linea= 13 | columna Inicio= 17 | columna Final= 33
-AS | Token: AS| linea= 13 | columna Inicio= 34 | columna Final= 36
-sod | Token: Identificador | linea= 13 | columna Inicio= 37 | columna Final= 40
-ON | Token: ON| linea= 14 | columna Inicio= 0 | columna Final= 2
-p | Token: Identificador | linea= 14 | columna Inicio= 3 | columna Final= 4
-. | Token: Punto| linea= 14 | columna Inicio= 4 | columna Final= 5
-ProductID | Token: Identificador | linea= 14 | columna Inicio= 5 | columna Final= 14
-= | Token: Igual| linea= 14 | columna Inicio= 15 | columna Final= 16
-sod | Token: Identificador | linea= 14 | columna Inicio= 17 | columna Final= 20
-. | Token: Punto| linea= 14 | columna Inicio= 20 | columna Final= 21
-ProductID | Token: Identificador | linea= 14 | columna Inicio= 21 | columna Final= 30
-ORDER | Token: ORDER| linea= 15 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 15 | columna Inicio= 6 | columna Final= 8
-ProductName | Token: Identificador | linea= 15 | columna Inicio= 9 | columna Final= 20
-DESC | Token: DESC| linea= 15 | columna Inicio= 21 | columna Final= 25
-; | Token: PuntoyComa| linea= 15 | columna Inicio= 25 | columna Final= 26
-SELECT | Token: SELECT| linea= 17 | columna Inicio= 0 | columna Final= 6
-SalesOrderID | Token: Identificador | linea= 17 | columna Inicio= 7 | columna Final= 19
-, | Token: Coma| linea= 17 | columna Inicio= 19 | columna Final= 20
-SUM | Token: SUM| linea= 17 | columna Inicio= 21 | columna Final= 24
-( | Token: ParentesisAbierto| linea= 17 | columna Inicio= 24 | columna Final= 25
-LineTotal | Token: Identificador | linea= 17 | columna Inicio= 25 | columna Final= 34
-) | Token: ParentesisCerrado| linea= 17 | columna Inicio= 34 | columna Final= 35
-AS | Token: AS| linea= 17 | columna Inicio= 36 | columna Final= 38
-SubTotal | Token: Identificador | linea= 17 | columna Inicio= 39 | columna Final= 47
-FROM | Token: FROM| linea= 18 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 18 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 18 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 18 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 19 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 19 | columna Inicio= 6 | columna Final= 8
-SalesOrderID | Token: Identificador | linea= 19 | columna Inicio= 9 | columna Final= 21
-ORDER | Token: ORDER| linea= 20 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 20 | columna Inicio= 6 | columna Final= 8
-SalesOrderID | Token: Identificador | linea= 20 | columna Inicio= 9 | columna Final= 21
-GO | Token: GO| linea= 21 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 23 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 23 | columna Inicio= 7 | columna Final= 16
-, | Token: Coma| linea= 23 | columna Inicio= 16 | columna Final= 17
-SpecialOfferID | Token: Identificador | linea= 23 | columna Inicio= 18 | columna Final= 32
-, | Token: Coma| linea= 23 | columna Inicio= 32 | columna Final= 33
-AVG | Token: AVG| linea= 23 | columna Inicio= 34 | columna Final= 37
-( | Token: ParentesisAbierto| linea= 23 | columna Inicio= 37 | columna Final= 38
-UnitPrice | Token: Identificador | linea= 23 | columna Inicio= 38 | columna Final= 47
-) | Token: ParentesisCerrado| linea= 23 | columna Inicio= 47 | columna Final= 48
-AS | Token: AS| linea= 23 | columna Inicio= 49 | columna Final= 51
-AveragePrice | Token: Identificador | linea= 23 | columna Inicio= 52 | columna Final= 64
-, | Token: Coma| linea= 23 | columna Inicio= 64 | columna Final= 65
-SUM | Token: SUM| linea= 24 | columna Inicio= 0 | columna Final= 3
-( | Token: ParentesisAbierto| linea= 24 | columna Inicio= 3 | columna Final= 4
-LineTotal | Token: Identificador | linea= 24 | columna Inicio= 4 | columna Final= 13
-) | Token: ParentesisCerrado| linea= 24 | columna Inicio= 13 | columna Final= 14
-AS | Token: AS| linea= 24 | columna Inicio= 15 | columna Final= 17
-SubTotal | Token: Identificador | linea= 24 | columna Inicio= 18 | columna Final= 26
-FROM | Token: FROM| linea= 25 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 25 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 25 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 25 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 26 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 26 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 26 | columna Inicio= 9 | columna Final= 18
-, | Token: Coma| linea= 26 | columna Inicio= 18 | columna Final= 19
-SpecialOfferID | Token: Identificador | linea= 26 | columna Inicio= 20 | columna Final= 34
-ORDER | Token: ORDER| linea= 27 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 27 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 27 | columna Inicio= 9 | columna Final= 18
-GO | Token: GO| linea= 28 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 30 | columna Inicio= 0 | columna Final= 6
-ProductModelID | Token: Identificador | linea= 30 | columna Inicio= 7 | columna Final= 21
-, | Token: Coma| linea= 30 | columna Inicio= 21 | columna Final= 22
-AVG | Token: AVG| linea= 30 | columna Inicio= 23 | columna Final= 26
-( | Token: ParentesisAbierto| linea= 30 | columna Inicio= 26 | columna Final= 27
-ListPrice | Token: Identificador | linea= 30 | columna Inicio= 27 | columna Final= 36
-) | Token: ParentesisCerrado| linea= 30 | columna Inicio= 36 | columna Final= 37
-AS | Token: AS| linea= 30 | columna Inicio= 38 | columna Final= 40
-AverageListPrice | Token: Identificador | linea= 30 | columna Inicio= 41 | columna Final= 57
-FROM | Token: FROM| linea= 31 | columna Inicio= 0 | columna Final= 4
-Production | Token: Identificador | linea= 31 | columna Inicio= 5 | columna Final= 15
-. | Token: Punto| linea= 31 | columna Inicio= 15 | columna Final= 16
-Product | Token: Identificador | linea= 31 | columna Inicio= 16 | columna Final= 23
-WHERE | Token: WHERE| linea= 32 | columna Inicio= 0 | columna Final= 5
-ListPrice | Token: Identificador | linea= 32 | columna Inicio= 6 | columna Final= 15
-> | Token: Mayor| linea= 32 | columna Inicio= 16 | columna Final= 17
-1000 | Token: Numero | linea= 32| columna Inicio= 18| columna Final= 22
-GROUP | Token: GROUP| linea= 33 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 33 | columna Inicio= 6 | columna Final= 8
-ProductModelID | Token: Identificador | linea= 33 | columna Inicio= 9 | columna Final= 23
-ORDER | Token: ORDER| linea= 34 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 34 | columna Inicio= 6 | columna Final= 8
-ProductModelID | Token: Identificador | linea= 34 | columna Inicio= 9 | columna Final= 23
-; | Token: PuntoyComa| linea= 34 | columna Inicio= 23 | columna Final= 24
-SELECT | Token: SELECT| linea= 37 | columna Inicio= 0 | columna Final= 6
-AVG | Token: AVG| linea= 37 | columna Inicio= 7 | columna Final= 10
-( | Token: ParentesisAbierto| linea= 37 | columna Inicio= 10 | columna Final= 11
-OrderQty | Token: Identificador | linea= 37 | columna Inicio= 11 | columna Final= 19
-) | Token: ParentesisCerrado| linea= 37 | columna Inicio= 19 | columna Final= 20
-AS | Token: AS| linea= 37 | columna Inicio= 21 | columna Final= 23
-AverageQuantity | Token: Identificador | linea= 37 | columna Inicio= 24 | columna Final= 39
-, | Token: Coma| linea= 37 | columna Inicio= 39 | columna Final= 40
-FROM | Token: FROM| linea= 38 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 38 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 38 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 38 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 39 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 39 | columna Inicio= 6 | columna Final= 8
-( | Token: ParentesisAbierto| linea= 39 | columna Inicio= 9 | columna Final= 10
-OrderQty | Token: Identificador | linea= 39 | columna Inicio= 10 | columna Final= 18
-* | Token: Multiplicacion| linea= 39 | columna Inicio= 19 | columna Final= 20
-UnitPrice | Token: Identificador | linea= 39 | columna Inicio= 21 | columna Final= 30
-) | Token: ParentesisCerrado| linea= 39 | columna Inicio= 30 | columna Final= 31
-ORDER | Token: ORDER| linea= 40 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 40 | columna Inicio= 6 | columna Final= 8
-( | Token: ParentesisAbierto| linea= 40 | columna Inicio= 9 | columna Final= 10
-OrderQty | Token: Identificador | linea= 40 | columna Inicio= 10 | columna Final= 18
-* | Token: Multiplicacion| linea= 40 | columna Inicio= 19 | columna Final= 20
-UnitPrice | Token: Identificador | linea= 40 | columna Inicio= 21 | columna Final= 30
-) | Token: ParentesisCerrado| linea= 40 | columna Inicio= 30 | columna Final= 31
-DESC | Token: DESC| linea= 40 | columna Inicio= 32 | columna Final= 36
-; | Token: PuntoyComa| linea= 40 | columna Inicio= 36 | columna Final= 37
-SELECT | Token: SELECT| linea= 43 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 43 | columna Inicio= 7 | columna Final= 16
-, | Token: Coma| linea= 43 | columna Inicio= 16 | columna Final= 17
-AVG | Token: AVG| linea= 43 | columna Inicio= 18 | columna Final= 21
-( | Token: ParentesisAbierto| linea= 43 | columna Inicio= 21 | columna Final= 22
-UnitPrice | Token: Identificador | linea= 43 | columna Inicio= 22 | columna Final= 31
-) | Token: ParentesisCerrado| linea= 43 | columna Inicio= 31 | columna Final= 32
-AS | Token: AS| linea= 43 | columna Inicio= 33 | columna Final= 35
-AveragePrice | Token: Identificador | linea= 43 | columna Inicio= 36 | columna Final= 48
-FROM | Token: FROM| linea= 44 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 44 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 44 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 44 | columna Inicio= 11 | columna Final= 27
-WHERE | Token: WHERE| linea= 45 | columna Inicio= 0 | columna Final= 5
-OrderQty | Token: Identificador | linea= 45 | columna Inicio= 6 | columna Final= 14
-> | Token: Mayor| linea= 45 | columna Inicio= 15 | columna Final= 16
-10 | Token: Numero | linea= 45| columna Inicio= 17| columna Final= 19
-GROUP | Token: GROUP| linea= 46 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 46 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 46 | columna Inicio= 9 | columna Final= 18
-ORDER | Token: ORDER| linea= 47 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 47 | columna Inicio= 6 | columna Final= 8
-AVG | Token: AVG| linea= 47 | columna Inicio= 9 | columna Final= 12
-( | Token: ParentesisAbierto| linea= 47 | columna Inicio= 12 | columna Final= 13
-UnitPrice | Token: Identificador | linea= 47 | columna Inicio= 13 | columna Final= 22
-) | Token: ParentesisCerrado| linea= 47 | columna Inicio= 22 | columna Final= 23
-GO | Token: GO| linea= 48 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 50 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 50 | columna Inicio= 7 | columna Final= 16
-FROM | Token: FROM| linea= 51 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 51 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 51 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 51 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 52 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 52 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 52 | columna Inicio= 9 | columna Final= 18
-HAVING | Token: HAVING| linea= 53 | columna Inicio= 0 | columna Final= 6
-AVG | Token: AVG| linea= 53 | columna Inicio= 7 | columna Final= 10
-( | Token: ParentesisAbierto| linea= 53 | columna Inicio= 10 | columna Final= 11
-OrderQty | Token: Identificador | linea= 53 | columna Inicio= 11 | columna Final= 19
-) | Token: ParentesisCerrado| linea= 53 | columna Inicio= 19 | columna Final= 20
-> | Token: Mayor| linea= 53 | columna Inicio= 21 | columna Final= 22
-5 | Token: Numero | linea= 53| columna Inicio= 23| columna Final= 24
-ORDER | Token: ORDER| linea= 54 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 54 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 54 | columna Inicio= 9 | columna Final= 18
-GO | Token: GO| linea= 55 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 57 | columna Inicio= 0 | columna Final= 6
-SalesOrderID | Token: Identificador | linea= 57 | columna Inicio= 7 | columna Final= 19
-, | Token: Coma| linea= 57 | columna Inicio= 19 | columna Final= 20
-CarrierTrackingNumber | Token: Identificador | linea= 57 | columna Inicio= 21 | columna Final= 42
-FROM | Token: FROM| linea= 58 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 58 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 58 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 58 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 59 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 59 | columna Inicio= 6 | columna Final= 8
-SalesOrderID | Token: Identificador | linea= 59 | columna Inicio= 9 | columna Final= 21
-, | Token: Coma| linea= 59 | columna Inicio= 21 | columna Final= 22
-CarrierTrackingNumber | Token: Identificador | linea= 59 | columna Inicio= 23 | columna Final= 44
-HAVING | Token: HAVING| linea= 60 | columna Inicio= 0 | columna Final= 6
-CarrierTrackingNumber | Token: Identificador | linea= 60 | columna Inicio= 7 | columna Final= 28
-LIKE | Token: LIKE| linea= 60 | columna Inicio= 29 | columna Final= 33
-'4BD%' | Token: String | linea= 60| columna Inicio= 34| columna Final= 40
-ORDER | Token: ORDER| linea= 61 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 61 | columna Inicio= 6 | columna Final= 8
-SalesOrderID | Token: Identificador | linea= 61 | columna Inicio= 9 | columna Final= 21
-; | Token: PuntoyComa| linea= 61 | columna Inicio= 22 | columna Final= 23
-SELECT | Token: SELECT| linea= 63 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 63 | columna Inicio= 7 | columna Final= 16
-FROM | Token: FROM| linea= 64 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 64 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 64 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 64 | columna Inicio= 11 | columna Final= 27
-WHERE | Token: WHERE| linea= 65 | columna Inicio= 0 | columna Final= 5
-UnitPrice | Token: Identificador | linea= 65 | columna Inicio= 6 | columna Final= 15
-< | Token: Menor| linea= 65 | columna Inicio= 16 | columna Final= 17
-25.00 | Token: Float | linea= 65| columna Inicio= 18| columna Final= 23
-GROUP | Token: GROUP| linea= 66 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 66 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 66 | columna Inicio= 9 | columna Final= 18
-HAVING | Token: HAVING| linea= 67 | columna Inicio= 0 | columna Final= 6
-AVG | Token: AVG| linea= 67 | columna Inicio= 7 | columna Final= 10
-( | Token: ParentesisAbierto| linea= 67 | columna Inicio= 10 | columna Final= 11
-OrderQty | Token: Identificador | linea= 67 | columna Inicio= 11 | columna Final= 19
-) | Token: ParentesisCerrado| linea= 67 | columna Inicio= 19 | columna Final= 20
-> | Token: Mayor| linea= 67 | columna Inicio= 21 | columna Final= 22
-5 | Token: Numero | linea= 67| columna Inicio= 23| columna Final= 24
-ORDER | Token: ORDER| linea= 68 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 68 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 68 | columna Inicio= 9 | columna Final= 18
-GO | Token: GO| linea= 69 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 71 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 71 | columna Inicio= 7 | columna Final= 16
-, | Token: Coma| linea= 71 | columna Inicio= 16 | columna Final= 17
-AVG | Token: AVG| linea= 71 | columna Inicio= 18 | columna Final= 21
-( | Token: ParentesisAbierto| linea= 71 | columna Inicio= 21 | columna Final= 22
-OrderQty | Token: Identificador | linea= 71 | columna Inicio= 22 | columna Final= 30
-) | Token: ParentesisCerrado| linea= 71 | columna Inicio= 30 | columna Final= 31
-AS | Token: AS| linea= 71 | columna Inicio= 32 | columna Final= 34
-AverageQuantity | Token: Identificador | linea= 71 | columna Inicio= 35 | columna Final= 50
-, | Token: Coma| linea= 71 | columna Inicio= 50 | columna Final= 51
-SUM | Token: SUM| linea= 71 | columna Inicio= 52 | columna Final= 55
-( | Token: ParentesisAbierto| linea= 71 | columna Inicio= 55 | columna Final= 56
-LineTotal | Token: Identificador | linea= 71 | columna Inicio= 56 | columna Final= 65
-) | Token: ParentesisCerrado| linea= 71 | columna Inicio= 65 | columna Final= 66
-AS | Token: AS| linea= 71 | columna Inicio= 67 | columna Final= 69
-Total | Token: Identificador | linea= 71 | columna Inicio= 70 | columna Final= 75
-FROM | Token: FROM| linea= 72 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 72 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 72 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 72 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 73 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 73 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 73 | columna Inicio= 9 | columna Final= 18
-HAVING | Token: HAVING| linea= 74 | columna Inicio= 0 | columna Final= 6
-SUM | Token: SUM| linea= 74 | columna Inicio= 7 | columna Final= 10
-( | Token: ParentesisAbierto| linea= 74 | columna Inicio= 10 | columna Final= 11
-LineTotal | Token: Identificador | linea= 74 | columna Inicio= 11 | columna Final= 20
-) | Token: ParentesisCerrado| linea= 74 | columna Inicio= 20 | columna Final= 21
-> | Token: Mayor| linea= 74 | columna Inicio= 22 | columna Final= 23
-1000000.00 | Token: Float | linea= 74| columna Inicio= 24| columna Final= 34
-AND | Token: AND| linea= 75 | columna Inicio= 0 | columna Final= 3
-AVG | Token: AVG| linea= 75 | columna Inicio= 4 | columna Final= 7
-( | Token: ParentesisAbierto| linea= 75 | columna Inicio= 7 | columna Final= 8
-OrderQty | Token: Identificador | linea= 75 | columna Inicio= 8 | columna Final= 16
-) | Token: ParentesisCerrado| linea= 75 | columna Inicio= 16 | columna Final= 17
-< | Token: Menor| linea= 75 | columna Inicio= 18 | columna Final= 19
-3 | Token: Numero | linea= 75| columna Inicio= 20| columna Final= 21
-GO | Token: GO| linea= 76 | columna Inicio= 0 | columna Final= 2
-SELECT | Token: SELECT| linea= 78 | columna Inicio= 0 | columna Final= 6
-ProductID | Token: Identificador | linea= 78 | columna Inicio= 7 | columna Final= 16
-, | Token: Coma| linea= 78 | columna Inicio= 16 | columna Final= 17
-SUM | Token: SUM| linea= 78 | columna Inicio= 18 | columna Final= 21
-( | Token: ParentesisAbierto| linea= 78 | columna Inicio= 21 | columna Final= 22
-LineTotal | Token: Identificador | linea= 78 | columna Inicio= 22 | columna Final= 31
-) | Token: ParentesisCerrado| linea= 78 | columna Inicio= 31 | columna Final= 32
-AS | Token: AS| linea= 78 | columna Inicio= 33 | columna Final= 35
-Total | Token: Identificador | linea= 78 | columna Inicio= 36 | columna Final= 41
-FROM | Token: FROM| linea= 79 | columna Inicio= 0 | columna Final= 4
-Sales | Token: Identificador | linea= 79 | columna Inicio= 5 | columna Final= 10
-. | Token: Punto| linea= 79 | columna Inicio= 10 | columna Final= 11
-SalesOrderDetail | Token: Identificador | linea= 79 | columna Inicio= 11 | columna Final= 27
-GROUP | Token: GROUP| linea= 80 | columna Inicio= 0 | columna Final= 5
-BY | Token: BY| linea= 80 | columna Inicio= 6 | columna Final= 8
-ProductID | Token: Identificador | linea= 80 | columna Inicio= 9 | columna Final= 18
-HAVING | Token: HAVING| linea= 81 | columna Inicio= 0 | columna Final= 6
-COUNT | Token: COUNT| linea= 81 | columna Inicio= 7 | columna Final= 12
-( | Token: ParentesisAbierto| linea= 81 | columna Inicio= 12 | columna Final= 13
-* | Token: Multiplicacion| linea= 81 | columna Inicio= 13 | columna Final= 14
-) | Token: ParentesisCerrado| linea= 81 | columna Inicio= 14 | columna Final= 15
-> | Token: Mayor| linea= 81 | columna Inicio= 16 | columna Final= 17
-1500 | Token: Numero | linea= 81| columna Inicio= 18| columna Final= 22
-GO | Token: GO| linea= 82 | columna Inicio= 0 | columna Final= 2
+CREATE | Token: CREATE| linea= 2 | columna Inicio= 0 | columna Final= 6
+DATABASE | Token: DATABASE| linea= 2 | columna Inicio= 7 | columna Final= 15
+prueba | Token: Identificador | linea= 2 | columna Inicio= 16 | columna Final= 22
+ON | Token: ON| linea= 2 | columna Inicio= 23 | columna Final= 25
+PRIMARY | Token: PRIMARY| linea= 2 | columna Inicio= 27 | columna Final= 34
+( | Token: ParentesisAbierto| linea= 3 | columna Inicio= 0 | columna Final= 1
+NAMES | Token: NAMES| linea= 3 | columna Inicio= 2 | columna Final= 7
+= | Token: Igual| linea= 3 | columna Inicio= 8 | columna Final= 9
+'prueba' | Token: String | linea= 3| columna Inicio= 10| columna Final= 18
+, | Token: Coma| linea= 3 | columna Inicio= 18 | columna Final= 19
+FILE | Token: FILE| linea= 3 | columna Inicio= 20 | columna Final= 24
+= | Token: Igual| linea= 3 | columna Inicio= 25 | columna Final= 26
+'C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\DATA\prueba.mdf' | Token: String | linea= 3| columna Inicio= 27| columna Final= 96
+, | Token: Coma| linea= 3 | columna Inicio= 97 | columna Final= 98
+SIZE | Token: SIZE| linea= 3 | columna Inicio= 99 | columna Final= 103
+= | Token: Igual| linea= 3 | columna Inicio= 104 | columna Final= 105
+60608 | Token: Numero | linea= 3| columna Inicio= 106| columna Final= 111
+) | Token: ParentesisCerrado| linea= 3 | columna Inicio= 111 | columna Final= 112
+, | Token: Coma| linea= 3 | columna Inicio= 112 | columna Final= 113
+( | Token: ParentesisAbierto| linea= 4 | columna Inicio= 0 | columna Final= 1
+NAMES | Token: NAMES| linea= 4 | columna Inicio= 2 | columna Final= 7
+= | Token: Igual| linea= 4 | columna Inicio= 8 | columna Final= 9
+'prueba2' | Token: String | linea= 4| columna Inicio= 10| columna Final= 19
+, | Token: Coma| linea= 4 | columna Inicio= 19 | columna Final= 20
+FILE | Token: FILE| linea= 4 | columna Inicio= 21 | columna Final= 25
+= | Token: Igual| linea= 4 | columna Inicio= 26 | columna Final= 27
+'H:\Data\prueba2.ndf' | Token: String | linea= 4| columna Inicio= 28| columna Final= 49
+, | Token: Coma| linea= 4 | columna Inicio= 50 | columna Final= 51
+SIZE | Token: SIZE| linea= 4 | columna Inicio= 52 | columna Final= 56
+= | Token: Igual| linea= 4 | columna Inicio= 57 | columna Final= 58
+1048576 | Token: Numero | linea= 4| columna Inicio= 59| columna Final= 66
+) | Token: ParentesisCerrado| linea= 4 | columna Inicio= 66 | columna Final= 67
+; | Token: PuntoyComa| linea= 4 | columna Inicio= 67 | columna Final= 68
+ALTER | Token: ALTER| linea= 6 | columna Inicio= 0 | columna Final= 5
+DATABASE | Token: DATABASE| linea= 6 | columna Inicio= 6 | columna Final= 14
+prueba | Token: Identificador | linea= 6 | columna Inicio= 15 | columna Final= 21
+COLLATE | Token: COLLATE| linea= 6 | columna Inicio= 22 | columna Final= 29
+SQL_Latin1_General_CP1_CI_AS | Token: Identificador | linea= 6 | columna Inicio= 30 | columna Final= 58
+GO | Token: GO| linea= 7 | columna Inicio= 0 | columna Final= 2
+CREATE | Token: CREATE| linea= 10 | columna Inicio= 0 | columna Final= 6
+TABLE | Token: TABLE| linea= 10 | columna Inicio= 7 | columna Final= 12
+test | Token: Identificador | linea= 10 | columna Inicio= 13 | columna Final= 17
+. | Token: Punto| linea= 10 | columna Inicio= 17 | columna Final= 18
+cqf | Token: Identificador | linea= 10 | columna Inicio= 18 | columna Final= 21
+. | Token: Punto| linea= 10 | columna Inicio= 21 | columna Final= 22
+DEXTask | Token: Identificador | linea= 10 | columna Inicio= 22 | columna Final= 29
+( | Token: ParentesisAbierto| linea= 10 | columna Inicio= 29 | columna Final= 30
+TaskId | Token: Identificador | linea= 11 | columna Inicio= 1 | columna Final= 7
+INT | Token: INT| linea= 11 | columna Inicio= 8 | columna Final= 11
+IDENTITY | Token: IDENTITY| linea= 11 | columna Inicio= 12 | columna Final= 20
+( | Token: ParentesisAbierto| linea= 11 | columna Inicio= 20 | columna Final= 21
+1 | Token: Bit | linea= 11| columna Inicio= 21| columna Final= 22
+, | Token: Coma| linea= 11 | columna Inicio= 22 | columna Final= 23
+1 | Token: Bit | linea= 11| columna Inicio= 23| columna Final= 24
+) | Token: ParentesisCerrado| linea= 11 | columna Inicio= 24 | columna Final= 25
+NOT | Token: NOT| linea= 11 | columna Inicio= 26 | columna Final= 29
+NULL | Token: NULL| linea= 11 | columna Inicio= 30 | columna Final= 34
+, | Token: Coma| linea= 11 | columna Inicio= 34 | columna Final= 35
+StartDate | Token: Identificador | linea= 12 | columna Inicio= 1 | columna Final= 10
+VARCHAR | Token: VARCHAR| linea= 12 | columna Inicio= 11 | columna Final= 18
+( | Token: ParentesisAbierto| linea= 12 | columna Inicio= 18 | columna Final= 19
+10 | Token: Numero | linea= 12| columna Inicio= 19| columna Final= 21
+) | Token: ParentesisCerrado| linea= 12 | columna Inicio= 21 | columna Final= 22
+NOT | Token: NOT| linea= 12 | columna Inicio= 23 | columna Final= 26
+NULL | Token: NULL| linea= 12 | columna Inicio= 27 | columna Final= 31
+, | Token: Coma| linea= 12 | columna Inicio= 31 | columna Final= 32
+EndDate | Token: Identificador | linea= 13 | columna Inicio= 1 | columna Final= 8
+VARCHAR | Token: VARCHAR| linea= 13 | columna Inicio= 9 | columna Final= 16
+( | Token: ParentesisAbierto| linea= 13 | columna Inicio= 16 | columna Final= 17
+10 | Token: Numero | linea= 13| columna Inicio= 17| columna Final= 19
+) | Token: ParentesisCerrado| linea= 13 | columna Inicio= 19 | columna Final= 20
+NOT | Token: NOT| linea= 13 | columna Inicio= 21 | columna Final= 24
+NULL | Token: NULL| linea= 13 | columna Inicio= 25 | columna Final= 29
+, | Token: Coma| linea= 13 | columna Inicio= 29 | columna Final= 30
+IsProcessed | Token: Identificador | linea= 14 | columna Inicio= 1 | columna Final= 12
+BIT | Token: BIT| linea= 14 | columna Inicio= 13 | columna Final= 16
+NOT | Token: NOT| linea= 14 | columna Inicio= 17 | columna Final= 20
+NULL | Token: NULL| linea= 14 | columna Inicio= 21 | columna Final= 25
+, | Token: Coma| linea= 14 | columna Inicio= 25 | columna Final= 26
+ProcessedDate | Token: Identificador | linea= 15 | columna Inicio= 1 | columna Final= 14
+VARCHAR | Token: VARCHAR| linea= 15 | columna Inicio= 15 | columna Final= 22
+( | Token: ParentesisAbierto| linea= 15 | columna Inicio= 22 | columna Final= 23
+10 | Token: Numero | linea= 15| columna Inicio= 23| columna Final= 25
+) | Token: ParentesisCerrado| linea= 15 | columna Inicio= 25 | columna Final= 26
+NULL | Token: NULL| linea= 15 | columna Inicio= 27 | columna Final= 31
+, | Token: Coma| linea= 15 | columna Inicio= 31 | columna Final= 32
+IsHorizontal | Token: Identificador | linea= 16 | columna Inicio= 1 | columna Final= 13
+BIT | Token: BIT| linea= 16 | columna Inicio= 14 | columna Final= 17
+NOT | Token: NOT| linea= 16 | columna Inicio= 18 | columna Final= 21
+NULL | Token: NULL| linea= 16 | columna Inicio= 22 | columna Final= 26
+, | Token: Coma| linea= 16 | columna Inicio= 26 | columna Final= 27
+CONSTRAINT | Token: CONSTRAINT| linea= 17 | columna Inicio= 1 | columna Final= 11
+PK_DEXTask | Token: Identificador | linea= 17 | columna Inicio= 12 | columna Final= 22
+PRIMARY | Token: PRIMARY| linea= 17 | columna Inicio= 23 | columna Final= 30
+KEY | Token: KEY| linea= 17 | columna Inicio= 31 | columna Final= 34
+CLUSTERED | Token: CLUSTERED| linea= 17 | columna Inicio= 35 | columna Final= 44
+( | Token: ParentesisAbierto| linea= 18 | columna Inicio= 0 | columna Final= 1
+TaskId | Token: Identificador | linea= 19 | columna Inicio= 1 | columna Final= 7
+ASC | Token: ASC| linea= 19 | columna Inicio= 8 | columna Final= 11
+) | Token: ParentesisCerrado| linea= 20 | columna Inicio= 0 | columna Final= 1
+) | Token: ParentesisCerrado| linea= 21 | columna Inicio= 0 | columna Final= 1
+ON | Token: ON| linea= 21 | columna Inicio= 2 | columna Final= 4
+PRIMARY | Token: PRIMARY| linea= 21 | columna Inicio= 5 | columna Final= 12
+GO | Token: GO| linea= 22 | columna Inicio= 0 | columna Final= 2
+ALTER | Token: ALTER| linea= 24 | columna Inicio= 0 | columna Final= 5
+VIEW | Token: VIEW| linea= 24 | columna Inicio= 6 | columna Final= 10
+dbo | Token: Identificador | linea= 24 | columna Inicio= 11 | columna Final= 14
+. | Token: Punto| linea= 24 | columna Inicio= 14 | columna Final= 15
+jr_JOURRSPPAG | Token: Identificador | linea= 24 | columna Inicio= 15 | columna Final= 28
+AS | Token: AS| linea= 24 | columna Inicio= 29 | columna Final= 31
+SELECT | Token: SELECT| linea= 25 | columna Inicio= 3 | columna Final= 9
+TaskId | Token: Identificador | linea= 25 | columna Inicio= 10 | columna Final= 16
+AS | Token: AS| linea= 25 | columna Inicio= 17 | columna Final= 19
+C1 | Token: Identificador | linea= 25 | columna Inicio= 20 | columna Final= 22
+, | Token: Coma| linea= 25 | columna Inicio= 22 | columna Final= 23
+COUNT | Token: COUNT| linea= 25 | columna Inicio= 24 | columna Final= 29
+( | Token: ParentesisAbierto| linea= 25 | columna Inicio= 29 | columna Final= 30
+1 | Token: Bit | linea= 25| columna Inicio= 30| columna Final= 31
+) | Token: ParentesisCerrado| linea= 25 | columna Inicio= 31 | columna Final= 32
+AS | Token: AS| linea= 25 | columna Inicio= 33 | columna Final= 35
+BeforeTruncateCount | Token: Identificador | linea= 25 | columna Inicio= 36 | columna Final= 55
+FROM | Token: FROM| linea= 26 | columna Inicio= 1 | columna Final= 5
+test | Token: Identificador | linea= 26 | columna Inicio= 6 | columna Final= 10
+. | Token: Punto| linea= 26 | columna Inicio= 10 | columna Final= 11
+cqf | Token: Identificador | linea= 26 | columna Inicio= 11 | columna Final= 14
+. | Token: Punto| linea= 26 | columna Inicio= 14 | columna Final= 15
+DEXTask | Token: Identificador | linea= 26 | columna Inicio= 15 | columna Final= 22
+WHERE | Token: WHERE| linea= 27 | columna Inicio= 1 | columna Final= 6
+( | Token: ParentesisAbierto| linea= 27 | columna Inicio= 7 | columna Final= 8
+( | Token: ParentesisAbierto| linea= 27 | columna Inicio= 8 | columna Final= 9
+TaskId | Token: Identificador | linea= 27 | columna Inicio= 9 | columna Final= 15
+> | Token: Mayor| linea= 27 | columna Inicio= 16 | columna Final= 17
+3240823408 | Token: Numero | linea= 27| columna Inicio= 18| columna Final= 28
+) | Token: ParentesisCerrado| linea= 27 | columna Inicio= 28 | columna Final= 29
+AND | Token: AND| linea= 27 | columna Inicio= 30 | columna Final= 33
+TaskId | Token: Identificador | linea= 27 | columna Inicio= 34 | columna Final= 40
+< | Token: Menor| linea= 27 | columna Inicio= 41 | columna Final= 42
+3240823408 | Token: Numero | linea= 27| columna Inicio= 43| columna Final= 53
+) | Token: ParentesisCerrado| linea= 27 | columna Inicio= 53 | columna Final= 54
+AND | Token: AND| linea= 27 | columna Inicio= 55 | columna Final= 58
+( | Token: ParentesisAbierto| linea= 27 | columna Inicio= 59 | columna Final= 60
+TaskId | Token: Identificador | linea= 27 | columna Inicio= 60 | columna Final= 66
+< | Token: Menor| linea= 27 | columna Inicio= 67 | columna Final= 68
+3240823408 | Token: Numero | linea= 27| columna Inicio= 69| columna Final= 79
+) | Token: ParentesisCerrado| linea= 27 | columna Inicio= 79 | columna Final= 80
+GROUP | Token: GROUP| linea= 28 | columna Inicio= 1 | columna Final= 6
+BY | Token: BY| linea= 28 | columna Inicio= 7 | columna Final= 9
+TaskId | Token: Identificador | linea= 28 | columna Inicio= 10 | columna Final= 16
+ORDER | Token: ORDER| linea= 29 | columna Inicio= 1 | columna Final= 6
+BY | Token: BY| linea= 29 | columna Inicio= 7 | columna Final= 9
+TaskId | Token: Identificador | linea= 29 | columna Inicio= 10 | columna Final= 16
+ASC | Token: ASC| linea= 29 | columna Inicio= 17 | columna Final= 20
+GO | Token: GO| linea= 30 | columna Inicio= 0 | columna Final= 2
+TRUNCATE | Token: TRUNCATE| linea= 32 | columna Inicio= 0 | columna Final= 8
+TABLE | Token: TABLE| linea= 32 | columna Inicio= 9 | columna Final= 14
+test | Token: Identificador | linea= 32 | columna Inicio= 15 | columna Final= 19
+. | Token: Punto| linea= 32 | columna Inicio= 19 | columna Final= 20
+cqf | Token: Identificador | linea= 32 | columna Inicio= 20 | columna Final= 23
+. | Token: Punto| linea= 32 | columna Inicio= 23 | columna Final= 24
+DEXTask | Token: Identificador | linea= 32 | columna Inicio= 24 | columna Final= 31
+GO | Token: GO| linea= 33 | columna Inicio= 0 | columna Final= 2
+INSERT | Token: INSERT| linea= 35 | columna Inicio= 0 | columna Final= 6
+INTO | Token: INTO| linea= 35 | columna Inicio= 7 | columna Final= 11
+test | Token: Identificador | linea= 35 | columna Inicio= 12 | columna Final= 16
+. | Token: Punto| linea= 35 | columna Inicio= 16 | columna Final= 17
+cqf | Token: Identificador | linea= 35 | columna Inicio= 17 | columna Final= 20
+. | Token: Punto| linea= 35 | columna Inicio= 20 | columna Final= 21
+DEXTask | Token: Identificador | linea= 35 | columna Inicio= 21 | columna Final= 28
+( | Token: ParentesisAbierto| linea= 35 | columna Inicio= 28 | columna Final= 29
+TaskId | Token: Identificador | linea= 35 | columna Inicio= 29 | columna Final= 35
+, | Token: Coma| linea= 35 | columna Inicio= 35 | columna Final= 36
+StartDate | Token: Identificador | linea= 35 | columna Inicio= 36 | columna Final= 45
+, | Token: Coma| linea= 35 | columna Inicio= 45 | columna Final= 46
+EndDate | Token: Identificador | linea= 35 | columna Inicio= 46 | columna Final= 53
+, | Token: Coma| linea= 35 | columna Inicio= 53 | columna Final= 54
+IsProcessed | Token: Identificador | linea= 35 | columna Inicio= 54 | columna Final= 65
+, | Token: Coma| linea= 35 | columna Inicio= 65 | columna Final= 66
+ProcessedDate | Token: Identificador | linea= 35 | columna Inicio= 66 | columna Final= 79
+, | Token: Coma| linea= 35 | columna Inicio= 79 | columna Final= 80
+IsHorizontal | Token: Identificador | linea= 35 | columna Inicio= 80 | columna Final= 92
+) | Token: ParentesisCerrado| linea= 35 | columna Inicio= 92 | columna Final= 93
+VALUES | Token: VALUES| linea= 36 | columna Inicio= 0 | columna Final= 6
+( | Token: ParentesisAbierto| linea= 36 | columna Inicio= 6 | columna Final= 7
+12345 | Token: Numero | linea= 36| columna Inicio= 7| columna Final= 12
+, | Token: Coma| linea= 36 | columna Inicio= 12 | columna Final= 13
+'2019-10-01' | Token: String | linea= 36| columna Inicio= 13| columna Final= 25
+, | Token: Coma| linea= 36 | columna Inicio= 25 | columna Final= 26
+'2019-10-03' | Token: String | linea= 36| columna Inicio= 26| columna Final= 38
+, | Token: Coma| linea= 36 | columna Inicio= 38 | columna Final= 39
+1 | Token: Bit | linea= 36| columna Inicio= 39| columna Final= 40
+, | Token: Coma| linea= 36 | columna Inicio= 40 | columna Final= 41
+'2019-10-02' | Token: String | linea= 36| columna Inicio= 41| columna Final= 53
+, | Token: Coma| linea= 36 | columna Inicio= 53 | columna Final= 54
+1 | Token: Bit | linea= 36| columna Inicio= 54| columna Final= 55
+) | Token: ParentesisCerrado| linea= 36 | columna Inicio= 55 | columna Final= 56
+; | Token: PuntoyComa| linea= 37 | columna Inicio= 0 | columna Final= 1
+SELECT | Token: SELECT| linea= 39 | columna Inicio= 0 | columna Final= 6
+COUNT | Token: COUNT| linea= 39 | columna Inicio= 7 | columna Final= 12
+( | Token: ParentesisAbierto| linea= 39 | columna Inicio= 12 | columna Final= 13
+* | Token: Multiplicacion| linea= 39 | columna Inicio= 13 | columna Final= 14
+) | Token: ParentesisCerrado| linea= 39 | columna Inicio= 14 | columna Final= 15
+FROM | Token: FROM| linea= 40 | columna Inicio= 2 | columna Final= 6
+Reservacion | Token: Identificador | linea= 40 | columna Inicio= 7 | columna Final= 18
+a | Token: Identificador | linea= 40 | columna Inicio= 19 | columna Final= 20
+WHERE | Token: WHERE| linea= 41 | columna Inicio= 2 | columna Final= 7
+a | Token: Identificador | linea= 41 | columna Inicio= 8 | columna Final= 9
+. | Token: Punto| linea= 41 | columna Inicio= 9 | columna Final= 10
+NumeroDeAsiento | Token: Identificador | linea= 41 | columna Inicio= 10 | columna Final= 25
+= | Token: Igual| linea= 41 | columna Inicio= 26 | columna Final= 27
+@ | Token: Arroba| linea= 41 | columna Inicio= 28 | columna Final= 29
+asiento | Token: Identificador | linea= 41 | columna Inicio= 29 | columna Final= 36
+AND | Token: AND| linea= 41 | columna Inicio= 37 | columna Final= 40
+a | Token: Identificador | linea= 41 | columna Inicio= 41 | columna Final= 42
+. | Token: Punto| linea= 41 | columna Inicio= 42 | columna Final= 43
+Seccion | Token: Identificador | linea= 41 | columna Inicio= 43 | columna Final= 50
+= | Token: Igual| linea= 41 | columna Inicio= 51 | columna Final= 52
+@ | Token: Arroba| linea= 41 | columna Inicio= 53 | columna Final= 54
+seccion | Token: Identificador | linea= 41 | columna Inicio= 54 | columna Final= 61
+AND | Token: AND| linea= 41 | columna Inicio= 62 | columna Final= 65
+@ | Token: Arroba| linea= 41 | columna Inicio= 66 | columna Final= 67
+vuelo | Token: Identificador | linea= 41 | columna Inicio= 67 | columna Final= 72
+= | Token: Igual| linea= 41 | columna Inicio= 73 | columna Final= 74
+a | Token: Identificador | linea= 41 | columna Inicio= 75 | columna Final= 76
+. | Token: Punto| linea= 41 | columna Inicio= 76 | columna Final= 77
+ID_Vuelo | Token: Identificador | linea= 41 | columna Inicio= 77 | columna Final= 85
+; | Token: PuntoyComa| linea= 41 | columna Inicio= 85 | columna Final= 86
+CREATE | Token: CREATE| linea= 43 | columna Inicio= 0 | columna Final= 6
+PROCEDURE | Token: PROCEDURE| linea= 43 | columna Inicio= 7 | columna Final= 16
+dbo | Token: Identificador | linea= 43 | columna Inicio= 17 | columna Final= 20
+. | Token: Punto| linea= 43 | columna Inicio= 20 | columna Final= 21
+uspINSERTarPersona | Token: Identificador | linea= 43 | columna Inicio= 21 | columna Final= 39
+@ | Token: Arroba| linea= 43 | columna Inicio= 40 | columna Final= 41
+URL | Token: Identificador | linea= 43 | columna Inicio= 41 | columna Final= 44
+VARCHAR | Token: VARCHAR| linea= 43 | columna Inicio= 45 | columna Final= 52
+( | Token: ParentesisAbierto| linea= 43 | columna Inicio= 52 | columna Final= 53
+200 | Token: Numero | linea= 43| columna Inicio= 53| columna Final= 56
+) | Token: ParentesisCerrado| linea= 43 | columna Inicio= 56 | columna Final= 57
+AS | Token: AS| linea= 44 | columna Inicio= 0 | columna Final= 2
+BEGIN | Token: BEGIN| linea= 45 | columna Inicio= 0 | columna Final= 5
+INSERT | Token: INSERT| linea= 46 | columna Inicio= 1 | columna Final= 7
+INTO | Token: INTO| linea= 46 | columna Inicio= 8 | columna Final= 12
+Persona | Token: Identificador | linea= 46 | columna Inicio= 13 | columna Final= 20
+( | Token: ParentesisAbierto| linea= 46 | columna Inicio= 21 | columna Final= 22
+Nombre | Token: Identificador | linea= 46 | columna Inicio= 22 | columna Final= 28
+, | Token: Coma| linea= 46 | columna Inicio= 28 | columna Final= 29
+Apellido | Token: Identificador | linea= 46 | columna Inicio= 30 | columna Final= 38
+, | Token: Coma| linea= 46 | columna Inicio= 38 | columna Final= 39
+Pasaporte | Token: Identificador | linea= 46 | columna Inicio= 40 | columna Final= 49
+, | Token: Coma| linea= 46 | columna Inicio= 49 | columna Final= 50
+TarjetaDeCredito | Token: Identificador | linea= 46 | columna Inicio= 51 | columna Final= 67
+) | Token: ParentesisCerrado| linea= 46 | columna Inicio= 67 | columna Final= 68
+DEFAULT | Token: DEFAULT| linea= 46 | columna Inicio= 69 | columna Final= 76
+VALUES | Token: VALUES| linea= 46 | columna Inicio= 77 | columna Final= 83
+; | Token: PuntoyComa| linea= 46 | columna Inicio= 83 | columna Final= 84
+SELECT | Token: SELECT| linea= 47 | columna Inicio= 1 | columna Final= 7
+PersonaTemp | Token: Identificador | linea= 47 | columna Inicio= 8 | columna Final= 19
+. | Token: Punto| linea= 47 | columna Inicio= 19 | columna Final= 20
+Nombre | Token: Identificador | linea= 47 | columna Inicio= 20 | columna Final= 26
+, | Token: Coma| linea= 47 | columna Inicio= 26 | columna Final= 27
+PersonaTemp | Token: Identificador | linea= 47 | columna Inicio= 28 | columna Final= 39
+. | Token: Punto| linea= 47 | columna Inicio= 39 | columna Final= 40
+Apellido | Token: Identificador | linea= 47 | columna Inicio= 40 | columna Final= 48
+, | Token: Coma| linea= 47 | columna Inicio= 48 | columna Final= 49
+PersonaTemp | Token: Identificador | linea= 47 | columna Inicio= 50 | columna Final= 61
+. | Token: Punto| linea= 47 | columna Inicio= 61 | columna Final= 62
+Pasaporte | Token: Identificador | linea= 47 | columna Inicio= 62 | columna Final= 71
+, | Token: Coma| linea= 47 | columna Inicio= 71 | columna Final= 72
+PersonaTemp | Token: Identificador | linea= 47 | columna Inicio= 73 | columna Final= 84
+. | Token: Punto| linea= 47 | columna Inicio= 84 | columna Final= 85
+TarjetaDeCredito | Token: Identificador | linea= 47 | columna Inicio= 85 | columna Final= 101
+FROM | Token: FROM| linea= 47 | columna Inicio= 102 | columna Final= 106
+PersonaTemp | Token: Identificador | linea= 47 | columna Inicio= 107 | columna Final= 118
+; | Token: PuntoyComa| linea= 47 | columna Inicio= 118 | columna Final= 119
+END | Token: END| linea= 48 | columna Inicio= 0 | columna Final= 3
+; | Token: PuntoyComa| linea= 48 | columna Inicio= 4 | columna Final= 5
+EXEC | Token: EXEC| linea= 51 | columna Inicio= 0 | columna Final= 4
+dbo | Token: Identificador | linea= 51 | columna Inicio= 5 | columna Final= 8
+. | Token: Punto| linea= 51 | columna Inicio= 8 | columna Final= 9
+uspINSERTarPersona | Token: Identificador | linea= 51 | columna Inicio= 9 | columna Final= 27
+'C:\Pruebas\Populate_JOSE_SQLEXPRESS_ABC_Persona1.csv' | Token: String | linea= 51| columna Inicio= 28| columna Final= 82
+; | Token: PuntoyComa| linea= 51 | columna Inicio= 83 | columna Final= 84
+DELETE | Token: DELETE| linea= 53 | columna Inicio= 0 | columna Final= 6
+FROM | Token: FROM| linea= 53 | columna Inicio= 7 | columna Final= 11
+Reservacion | Token: Identificador | linea= 53 | columna Inicio= 12 | columna Final= 23
+WHERE | Token: WHERE| linea= 53 | columna Inicio= 24 | columna Final= 29
+ID | Token: Identificador | linea= 53 | columna Inicio= 30 | columna Final= 32
+= | Token: Igual| linea= 53 | columna Inicio= 33 | columna Final= 34
+@ | Token: Arroba| linea= 53 | columna Inicio= 35 | columna Final= 36
+idReserva | Token: Identificador | linea= 53 | columna Inicio= 36 | columna Final= 45
+; | Token: PuntoyComa| linea= 53 | columna Inicio= 45 | columna Final= 46
+CREATE | Token: CREATE| linea= 57 | columna Inicio= 0 | columna Final= 6
+PROCEDURE | Token: PROCEDURE| linea= 57 | columna Inicio= 7 | columna Final= 16
+dbo | Token: Identificador | linea= 57 | columna Inicio= 17 | columna Final= 20
+. | Token: Punto| linea= 57 | columna Inicio= 20 | columna Final= 21
+uspRevisarFecha | Token: Identificador | linea= 57 | columna Inicio= 21 | columna Final= 36
+AS | Token: AS| linea= 58 | columna Inicio= 0 | columna Final= 2
+BEGIN | Token: BEGIN| linea= 59 | columna Inicio= 0 | columna Final= 5
+SELECT | Token: SELECT| linea= 60 | columna Inicio= 1 | columna Final= 7
+ID | Token: Identificador | linea= 60 | columna Inicio= 8 | columna Final= 10
+, | Token: Coma| linea= 60 | columna Inicio= 10 | columna Final= 11
+reservadoHasta | Token: Identificador | linea= 60 | columna Inicio= 12 | columna Final= 26
+, | Token: Coma| linea= 60 | columna Inicio= 26 | columna Final= 27
+confirmado | Token: Identificador | linea= 60 | columna Inicio= 28 | columna Final= 38
+, | Token: Coma| linea= 60 | columna Inicio= 38 | columna Final= 39
+Cola | Token: Identificador | linea= 60 | columna Inicio= 40 | columna Final= 44
+FROM | Token: FROM| linea= 60 | columna Inicio= 45 | columna Final= 49
+Reservacion | Token: Identificador | linea= 60 | columna Inicio= 50 | columna Final= 61
+; | Token: PuntoyComa| linea= 60 | columna Inicio= 61 | columna Final= 62
+INSERT | Token: INSERT| linea= 61 | columna Inicio= 1 | columna Final= 7
+INTO | Token: INTO| linea= 61 | columna Inicio= 8 | columna Final= 12
+Reservacion | Token: Identificador | linea= 61 | columna Inicio= 13 | columna Final= 24
+( | Token: ParentesisAbierto| linea= 61 | columna Inicio= 24 | columna Final= 25
+ID_Persona | Token: Identificador | linea= 61 | columna Inicio= 25 | columna Final= 35
+, | Token: Coma| linea= 61 | columna Inicio= 35 | columna Final= 36
+ID_Vuelo | Token: Identificador | linea= 61 | columna Inicio= 36 | columna Final= 44
+, | Token: Coma| linea= 61 | columna Inicio= 44 | columna Final= 45
+reservadoHasta | Token: Identificador | linea= 61 | columna Inicio= 45 | columna Final= 59
+, | Token: Coma| linea= 61 | columna Inicio= 59 | columna Final= 60
+FechaReservacion | Token: Identificador | linea= 61 | columna Inicio= 60 | columna Final= 76
+, | Token: Coma| linea= 61 | columna Inicio= 76 | columna Final= 77
+confirmado | Token: Identificador | linea= 61 | columna Inicio= 77 | columna Final= 87
+, | Token: Coma| linea= 61 | columna Inicio= 87 | columna Final= 88
+FormaDePago | Token: Identificador | linea= 61 | columna Inicio= 88 | columna Final= 99
+, | Token: Coma| linea= 61 | columna Inicio= 99 | columna Final= 100
+NumeroDeAsiento | Token: Identificador | linea= 61 | columna Inicio= 100 | columna Final= 115
+, | Token: Coma| linea= 61 | columna Inicio= 115 | columna Final= 116
+Canal | Token: Identificador | linea= 61 | columna Inicio= 116 | columna Final= 121
+, | Token: Coma| linea= 61 | columna Inicio= 121 | columna Final= 122
+Seccion | Token: Identificador | linea= 61 | columna Inicio= 122 | columna Final= 129
+, | Token: Coma| linea= 61 | columna Inicio= 129 | columna Final= 130
+Cola | Token: Identificador | linea= 61 | columna Inicio= 130 | columna Final= 134
+) | Token: ParentesisCerrado| linea= 61 | columna Inicio= 134 | columna Final= 135
+VALUES | Token: VALUES| linea= 61 | columna Inicio= 136 | columna Final= 142
+( | Token: ParentesisAbierto| linea= 62 | columna Inicio= 3 | columna Final= 4
+@ | Token: Arroba| linea= 63 | columna Inicio= 4 | columna Final= 5
+IdPersona | Token: Identificador | linea= 63 | columna Inicio= 5 | columna Final= 14
+, | Token: Coma| linea= 63 | columna Inicio= 14 | columna Final= 15
+@ | Token: Arroba| linea= 63 | columna Inicio= 16 | columna Final= 17
+vuelo | Token: Identificador | linea= 63 | columna Inicio= 17 | columna Final= 22
+, | Token: Coma| linea= 63 | columna Inicio= 22 | columna Final= 23
+@ | Token: Arroba| linea= 63 | columna Inicio= 24 | columna Final= 25
+fecha | Token: Identificador | linea= 63 | columna Inicio= 25 | columna Final= 30
+, | Token: Coma| linea= 63 | columna Inicio= 30 | columna Final= 31
+0 | Token: Bit | linea= 63| columna Inicio= 32| columna Final= 33
+, | Token: Coma| linea= 63 | columna Inicio= 33 | columna Final= 34
+@ | Token: Arroba| linea= 63 | columna Inicio= 35 | columna Final= 36
+FormaPago | Token: Identificador | linea= 63 | columna Inicio= 36 | columna Final= 45
+, | Token: Coma| linea= 63 | columna Inicio= 45 | columna Final= 46
+@ | Token: Arroba| linea= 63 | columna Inicio= 47 | columna Final= 48
+asiento | Token: Identificador | linea= 63 | columna Inicio= 48 | columna Final= 55
+, | Token: Coma| linea= 63 | columna Inicio= 55 | columna Final= 56
+@ | Token: Arroba| linea= 63 | columna Inicio= 57 | columna Final= 58
+Canal | Token: Identificador | linea= 63 | columna Inicio= 58 | columna Final= 63
+, | Token: Coma| linea= 63 | columna Inicio= 63 | columna Final= 64
+@ | Token: Arroba| linea= 63 | columna Inicio= 65 | columna Final= 66
+seccion | Token: Identificador | linea= 63 | columna Inicio= 66 | columna Final= 73
+, | Token: Coma| linea= 63 | columna Inicio= 73 | columna Final= 74
+0 | Token: Bit | linea= 63| columna Inicio= 75| columna Final= 76
+) | Token: ParentesisCerrado| linea= 64 | columna Inicio= 3 | columna Final= 4
+; | Token: PuntoyComa| linea= 64 | columna Inicio= 4 | columna Final= 5
+INSERT | Token: INSERT| linea= 65 | columna Inicio= 1 | columna Final= 7
+INTO | Token: INTO| linea= 65 | columna Inicio= 8 | columna Final= 12
+Reservacion | Token: Identificador | linea= 65 | columna Inicio= 13 | columna Final= 24
+( | Token: ParentesisAbierto| linea= 65 | columna Inicio= 24 | columna Final= 25
+ID_Persona | Token: Identificador | linea= 65 | columna Inicio= 25 | columna Final= 35
+, | Token: Coma| linea= 65 | columna Inicio= 35 | columna Final= 36
+ID_Vuelo | Token: Identificador | linea= 65 | columna Inicio= 36 | columna Final= 44
+, | Token: Coma| linea= 65 | columna Inicio= 44 | columna Final= 45
+reservadoHasta | Token: Identificador | linea= 65 | columna Inicio= 45 | columna Final= 59
+, | Token: Coma| linea= 65 | columna Inicio= 59 | columna Final= 60
+FechaReservacion | Token: Identificador | linea= 65 | columna Inicio= 60 | columna Final= 76
+, | Token: Coma| linea= 65 | columna Inicio= 76 | columna Final= 77
+confirmado | Token: Identificador | linea= 65 | columna Inicio= 77 | columna Final= 87
+, | Token: Coma| linea= 65 | columna Inicio= 87 | columna Final= 88
+FormaDePago | Token: Identificador | linea= 65 | columna Inicio= 88 | columna Final= 99
+, | Token: Coma| linea= 65 | columna Inicio= 99 | columna Final= 100
+NumeroDeAsiento | Token: Identificador | linea= 65 | columna Inicio= 100 | columna Final= 115
+, | Token: Coma| linea= 65 | columna Inicio= 115 | columna Final= 116
+Canal | Token: Identificador | linea= 65 | columna Inicio= 116 | columna Final= 121
+, | Token: Coma| linea= 65 | columna Inicio= 121 | columna Final= 122
+Seccion | Token: Identificador | linea= 65 | columna Inicio= 122 | columna Final= 129
+, | Token: Coma| linea= 65 | columna Inicio= 129 | columna Final= 130
+Cola | Token: Identificador | linea= 65 | columna Inicio= 130 | columna Final= 134
+) | Token: ParentesisCerrado| linea= 65 | columna Inicio= 134 | columna Final= 135
+VALUES | Token: VALUES| linea= 65 | columna Inicio= 136 | columna Final= 142
+( | Token: ParentesisAbierto| linea= 66 | columna Inicio= 3 | columna Final= 4
+@ | Token: Arroba| linea= 67 | columna Inicio= 4 | columna Final= 5
+IdPersona | Token: Identificador | linea= 67 | columna Inicio= 5 | columna Final= 14
+, | Token: Coma| linea= 67 | columna Inicio= 14 | columna Final= 15
+@ | Token: Arroba| linea= 67 | columna Inicio= 16 | columna Final= 17
+vuelo | Token: Identificador | linea= 67 | columna Inicio= 17 | columna Final= 22
+, | Token: Coma| linea= 67 | columna Inicio= 22 | columna Final= 23
+@ | Token: Arroba| linea= 67 | columna Inicio= 24 | columna Final= 25
+fechaVuelo | Token: Identificador | linea= 67 | columna Inicio= 25 | columna Final= 35
+, | Token: Coma| linea= 67 | columna Inicio= 35 | columna Final= 36
+0 | Token: Bit | linea= 67| columna Inicio= 37| columna Final= 38
+, | Token: Coma| linea= 67 | columna Inicio= 38 | columna Final= 39
+@ | Token: Arroba| linea= 67 | columna Inicio= 40 | columna Final= 41
+FormaPago | Token: Identificador | linea= 67 | columna Inicio= 41 | columna Final= 50
+, | Token: Coma| linea= 67 | columna Inicio= 50 | columna Final= 51
+@ | Token: Arroba| linea= 67 | columna Inicio= 52 | columna Final= 53
+asiento | Token: Identificador | linea= 67 | columna Inicio= 53 | columna Final= 60
+, | Token: Coma| linea= 67 | columna Inicio= 60 | columna Final= 61
+@ | Token: Arroba| linea= 67 | columna Inicio= 62 | columna Final= 63
+Canal | Token: Identificador | linea= 67 | columna Inicio= 63 | columna Final= 68
+, | Token: Coma| linea= 67 | columna Inicio= 68 | columna Final= 69
+@ | Token: Arroba| linea= 67 | columna Inicio= 70 | columna Final= 71
+seccion | Token: Identificador | linea= 67 | columna Inicio= 71 | columna Final= 78
+, | Token: Coma| linea= 67 | columna Inicio= 78 | columna Final= 79
+1 | Token: Bit | linea= 67| columna Inicio= 80| columna Final= 81
+) | Token: ParentesisCerrado| linea= 68 | columna Inicio= 3 | columna Final= 4
+; | Token: PuntoyComa| linea= 68 | columna Inicio= 4 | columna Final= 5
+END | Token: END| linea= 69 | columna Inicio= 0 | columna Final= 3
+GO | Token: GO| linea= 69 | columna Inicio= 4 | columna Final= 6
+DECLARE | Token: DECLARE| linea= 71 | columna Inicio= 0 | columna Final= 7
+fechaConfirmado | Token: Identificador | linea= 71 | columna Inicio= 8 | columna Final= 23
+CURSOR | Token: CURSOR| linea= 71 | columna Inicio= 24 | columna Final= 30
+FOR | Token: FOR| linea= 71 | columna Inicio= 31 | columna Final= 34
+SELECT | Token: SELECT| linea= 72 | columna Inicio= 0 | columna Final= 6
+ID | Token: Identificador | linea= 72 | columna Inicio= 7 | columna Final= 9
+, | Token: Coma| linea= 72 | columna Inicio= 9 | columna Final= 10
+reservadoHasta | Token: Identificador | linea= 72 | columna Inicio= 11 | columna Final= 25
+, | Token: Coma| linea= 72 | columna Inicio= 25 | columna Final= 26
+confirmado | Token: Identificador | linea= 72 | columna Inicio= 27 | columna Final= 37
+, | Token: Coma| linea= 72 | columna Inicio= 37 | columna Final= 38
+Cola | Token: Identificador | linea= 72 | columna Inicio= 39 | columna Final= 43
+FROM | Token: FROM| linea= 72 | columna Inicio= 44 | columna Final= 48
+Reservacion | Token: Identificador | linea= 72 | columna Inicio= 49 | columna Final= 60
+; | Token: PuntoyComa| linea= 72 | columna Inicio= 61 | columna Final= 62
+SELECT | Token: SELECT| linea= 74 | columna Inicio= 0 | columna Final= 6
+v | Token: Identificador | linea= 74 | columna Inicio= 7 | columna Final= 8
+. | Token: Punto| linea= 74 | columna Inicio= 8 | columna Final= 9
+IDVuelo | Token: Identificador | linea= 74 | columna Inicio= 9 | columna Final= 16
+, | Token: Coma| linea= 74 | columna Inicio= 16 | columna Final= 17
+v | Token: Identificador | linea= 74 | columna Inicio= 18 | columna Final= 19
+. | Token: Punto| linea= 74 | columna Inicio= 19 | columna Final= 20
+FechaSalida | Token: Identificador | linea= 74 | columna Inicio= 20 | columna Final= 31
+AS | Token: AS| linea= 74 | columna Inicio= 32 | columna Final= 34
+dia | Token: Identificador | linea= 74 | columna Inicio= 35 | columna Final= 38
+, | Token: Coma| linea= 74 | columna Inicio= 38 | columna Final= 39
+COUNT | Token: COUNT| linea= 74 | columna Inicio= 40 | columna Final= 45
+( | Token: ParentesisAbierto| linea= 74 | columna Inicio= 45 | columna Final= 46
+1 | Token: Bit | linea= 74| columna Inicio= 46| columna Final= 47
+) | Token: ParentesisCerrado| linea= 74 | columna Inicio= 47 | columna Final= 48
+AS | Token: AS| linea= 74 | columna Inicio= 49 | columna Final= 51
+cantidad | Token: Identificador | linea= 74 | columna Inicio= 52 | columna Final= 60
+FROM | Token: FROM| linea= 74 | columna Inicio= 61 | columna Final= 65
+Reservacion | Token: Identificador | linea= 74 | columna Inicio= 66 | columna Final= 77
+r | Token: Identificador | linea= 74 | columna Inicio= 78 | columna Final= 79
+INNER | Token: INNER| linea= 74 | columna Inicio= 80 | columna Final= 85
+JOIN | Token: JOIN| linea= 74 | columna Inicio= 86 | columna Final= 90
+Vuelo | Token: Identificador | linea= 74 | columna Inicio= 91 | columna Final= 96
+v | Token: Identificador | linea= 74 | columna Inicio= 97 | columna Final= 98
+ON | Token: ON| linea= 75 | columna Inicio= 0 | columna Final= 2
+r | Token: Identificador | linea= 75 | columna Inicio= 3 | columna Final= 4
+. | Token: Punto| linea= 75 | columna Inicio= 4 | columna Final= 5
+ID_Vuelo | Token: Identificador | linea= 75 | columna Inicio= 5 | columna Final= 13
+= | Token: Igual| linea= 75 | columna Inicio= 13 | columna Final= 14
+v | Token: Identificador | linea= 75 | columna Inicio= 14 | columna Final= 15
+. | Token: Punto| linea= 75 | columna Inicio= 15 | columna Final= 16
+IDVuelo | Token: Identificador | linea= 75 | columna Inicio= 16 | columna Final= 23
+INNER | Token: INNER| linea= 75 | columna Inicio= 24 | columna Final= 29
+JOIN | Token: JOIN| linea= 75 | columna Inicio= 30 | columna Final= 34
+Avion | Token: Identificador | linea= 75 | columna Inicio= 35 | columna Final= 40
+a | Token: Identificador | linea= 75 | columna Inicio= 41 | columna Final= 42
+ON | Token: ON| linea= 76 | columna Inicio= 0 | columna Final= 2
+a | Token: Identificador | linea= 76 | columna Inicio= 3 | columna Final= 4
+. | Token: Punto| linea= 76 | columna Inicio= 4 | columna Final= 5
+ID | Token: Identificador | linea= 76 | columna Inicio= 5 | columna Final= 7
+= | Token: Igual| linea= 76 | columna Inicio= 7 | columna Final= 8
+v | Token: Identificador | linea= 76 | columna Inicio= 8 | columna Final= 9
+. | Token: Punto| linea= 76 | columna Inicio= 9 | columna Final= 10
+ID_Avion | Token: Identificador | linea= 76 | columna Inicio= 10 | columna Final= 18
+WHERE | Token: WHERE| linea= 76 | columna Inicio= 19 | columna Final= 24
+r | Token: Identificador | linea= 76 | columna Inicio= 25 | columna Final= 26
+. | Token: Punto| linea= 76 | columna Inicio= 26 | columna Final= 27
+confirmado | Token: Identificador | linea= 76 | columna Inicio= 27 | columna Final= 37
+= | Token: Igual| linea= 76 | columna Inicio= 37 | columna Final= 38
+1 | Token: Bit | linea= 76| columna Inicio= 38| columna Final= 39
+GROUP | Token: GROUP| linea= 77 | columna Inicio= 0 | columna Final= 5
+BY | Token: BY| linea= 77 | columna Inicio= 6 | columna Final= 8
+V | Token: Identificador | linea= 77 | columna Inicio= 9 | columna Final= 10
+. | Token: Punto| linea= 77 | columna Inicio= 10 | columna Final= 11
+IDVuelo | Token: Identificador | linea= 77 | columna Inicio= 11 | columna Final= 18
+, | Token: Coma| linea= 77 | columna Inicio= 18 | columna Final= 19
+v | Token: Identificador | linea= 77 | columna Inicio= 19 | columna Final= 20
+. | Token: Punto| linea= 77 | columna Inicio= 20 | columna Final= 21
+FechaSalida | Token: Identificador | linea= 77 | columna Inicio= 21 | columna Final= 32
+CREATE | Token: CREATE| linea= 82 | columna Inicio= 0 | columna Final= 6
+PROCEDURE | Token: PROCEDURE| linea= 82 | columna Inicio= 7 | columna Final= 16
+MyBackgroundTask | Token: Identificador | linea= 82 | columna Inicio= 17 | columna Final= 33
+AS | Token: AS| linea= 83 | columna Inicio= 0 | columna Final= 2
+BEGIN | Token: BEGIN| linea= 84 | columna Inicio= 0 | columna Final= 5
+INSERT | Token: INSERT| linea= 87 | columna Inicio= 1 | columna Final= 7
+INTO | Token: INTO| linea= 87 | columna Inicio= 8 | columna Final= 12
+dbo | Token: Identificador | linea= 87 | columna Inicio= 13 | columna Final= 16
+. | Token: Punto| linea= 87 | columna Inicio= 16 | columna Final= 17
+Table2 | Token: Identificador | linea= 87 | columna Inicio= 17 | columna Final= 23
+VALUES | Token: VALUES| linea= 87 | columna Inicio= 24 | columna Final= 30
+( | Token: ParentesisAbierto| linea= 87 | columna Inicio= 30 | columna Final= 31
+1 | Token: Bit | linea= 87| columna Inicio= 31| columna Final= 32
+, | Token: Coma| linea= 87 | columna Inicio= 32 | columna Final= 33
+0 | Token: Bit | linea= 87| columna Inicio= 34| columna Final= 35
+) | Token: ParentesisCerrado| linea= 87 | columna Inicio= 35 | columna Final= 36
+; | Token: PuntoyComa| linea= 87 | columna Inicio= 36 | columna Final= 37
+UPDATE | Token: UPDATE| linea= 88 | columna Inicio= 1 | columna Final= 7
+dbo | Token: Identificador | linea= 88 | columna Inicio= 8 | columna Final= 11
+. | Token: Punto| linea= 88 | columna Inicio= 11 | columna Final= 12
+Table1 | Token: Identificador | linea= 88 | columna Inicio= 12 | columna Final= 18
+SET | Token: SET| linea= 89 | columna Inicio= 1 | columna Final= 4
+c2 | Token: Identificador | linea= 89 | columna Inicio= 5 | columna Final= 7
+= | Token: Igual| linea= 89 | columna Inicio= 8 | columna Final= 9
+c2 | Token: Identificador | linea= 89 | columna Inicio= 10 | columna Final= 12
++ | Token: Suma| linea= 89 | columna Inicio= 13 | columna Final= 14
+d2 | Token: Identificador | linea= 89 | columna Inicio= 15 | columna Final= 17
+FROM | Token: FROM| linea= 90 | columna Inicio= 1 | columna Final= 5
+dbo | Token: Identificador | linea= 90 | columna Inicio= 6 | columna Final= 9
+. | Token: Punto| linea= 90 | columna Inicio= 9 | columna Final= 10
+Table2 | Token: Identificador | linea= 90 | columna Inicio= 10 | columna Final= 16
+WHERE | Token: WHERE| linea= 91 | columna Inicio= 1 | columna Final= 6
+c2 | Token: Identificador | linea= 91 | columna Inicio= 7 | columna Final= 9
+!= | Token: NoIgual| linea= 91 | columna Inicio= 10 | columna Final= 12
+c3 | Token: Identificador | linea= 91 | columna Inicio= 13 | columna Final= 15
+; | Token: PuntoyComa| linea= 91 | columna Inicio= 16 | columna Final= 17
+END | Token: END| linea= 92 | columna Inicio= 0 | columna Final= 3
+GO | Token: GO| linea= 93 | columna Inicio= 0 | columna Final= 2
+CREATE | Token: CREATE| linea= 95 | columna Inicio= 0 | columna Final= 6
+FUNCTION | Token: FUNCTION| linea= 95 | columna Inicio= 7 | columna Final= 15
+dbo | Token: Identificador | linea= 95 | columna Inicio= 16 | columna Final= 19
+. | Token: Punto| linea= 95 | columna Inicio= 19 | columna Final= 20
+ISOweek | Token: Identificador | linea= 95 | columna Inicio= 20 | columna Final= 27
+( | Token: ParentesisAbierto| linea= 95 | columna Inicio= 28 | columna Final= 29
+@ | Token: Arroba| linea= 95 | columna Inicio= 29 | columna Final= 30
+Date | Token: Identificador | linea= 95 | columna Inicio= 30 | columna Final= 34
+DATETIME | Token: Identificador | linea= 95 | columna Inicio= 35 | columna Final= 43
+) | Token: ParentesisCerrado| linea= 95 | columna Inicio= 43 | columna Final= 44
+RETURNS | Token: Identificador | linea= 96 | columna Inicio= 0 | columna Final= 7
+INT | Token: INT| linea= 96 | columna Inicio= 8 | columna Final= 11
+AS | Token: AS| linea= 97 | columna Inicio= 0 | columna Final= 2
+BEGIN | Token: BEGIN| linea= 98 | columna Inicio= 0 | columna Final= 5
+DELETE | Token: DELETE| linea= 99 | columna Inicio= 4 | columna Final= 10
+FROM | Token: FROM| linea= 99 | columna Inicio= 11 | columna Final= 15
+Production | Token: Identificador | linea= 99 | columna Inicio= 16 | columna Final= 26
+. | Token: Punto| linea= 99 | columna Inicio= 26 | columna Final= 27
+ProductCostHistory | Token: Identificador | linea= 99 | columna Inicio= 27 | columna Final= 45
+WHERE | Token: WHERE| linea= 100 | columna Inicio= 1 | columna Final= 6
+StandardCost | Token: Identificador | linea= 100 | columna Inicio= 7 | columna Final= 19
+BETWEEN | Token: BETWEEN| linea= 100 | columna Inicio= 20 | columna Final= 27
+12.00 | Token: Float | linea= 100| columna Inicio= 28| columna Final= 33
+AND | Token: AND| linea= 100 | columna Inicio= 34 | columna Final= 37
+14.00 | Token: Float | linea= 100| columna Inicio= 38| columna Final= 43
+AND | Token: AND| linea= 101 | columna Inicio= 4 | columna Final= 7
+EndDate | Token: Identificador | linea= 101 | columna Inicio= 8 | columna Final= 15
+IS | Token: IS| linea= 101 | columna Inicio= 16 | columna Final= 18
+NULL | Token: NULL| linea= 101 | columna Inicio= 19 | columna Final= 23
+; | Token: PuntoyComa| linea= 101 | columna Inicio= 23 | columna Final= 24
+RETURN | Token: RETURN| linea= 102 | columna Inicio= 1 | columna Final= 7
+12 | Token: Numero | linea= 102| columna Inicio= 8| columna Final= 10
+END | Token: END| linea= 103 | columna Inicio= 0 | columna Final= 3
+GO | Token: GO| linea= 104 | columna Inicio= 0 | columna Final= 2
+CREATE | Token: CREATE| linea= 106 | columna Inicio= 0 | columna Final= 6
+FUNCTION | Token: FUNCTION| linea= 106 | columna Inicio= 7 | columna Final= 15
+Sales | Token: Identificador | linea= 106 | columna Inicio= 16 | columna Final= 21
+. | Token: Punto| linea= 106 | columna Inicio= 21 | columna Final= 22
+ufn_SalesByStore | Token: Identificador | linea= 106 | columna Inicio= 22 | columna Final= 38
+( | Token: ParentesisAbierto| linea= 106 | columna Inicio= 39 | columna Final= 40
+@ | Token: Arroba| linea= 106 | columna Inicio= 40 | columna Final= 41
+storeid | Token: Identificador | linea= 106 | columna Inicio= 41 | columna Final= 48
+INT | Token: INT| linea= 106 | columna Inicio= 49 | columna Final= 52
+) | Token: ParentesisCerrado| linea= 106 | columna Inicio= 52 | columna Final= 53
+RETURNS | Token: Identificador | linea= 107 | columna Inicio= 0 | columna Final= 7
+TABLE | Token: TABLE| linea= 107 | columna Inicio= 8 | columna Final= 13
+AS | Token: AS| linea= 108 | columna Inicio= 0 | columna Final= 2
+RETURN | Token: RETURN| linea= 109 | columna Inicio= 0 | columna Final= 6
+( | Token: ParentesisAbierto| linea= 110 | columna Inicio= 0 | columna Final= 1
+SELECT | Token: SELECT| linea= 111 | columna Inicio= 4 | columna Final= 10
+P | Token: Identificador | linea= 111 | columna Inicio= 11 | columna Final= 12
+. | Token: Punto| linea= 111 | columna Inicio= 12 | columna Final= 13
+ProductID | Token: Identificador | linea= 111 | columna Inicio= 13 | columna Final= 22
+, | Token: Coma| linea= 111 | columna Inicio= 22 | columna Final= 23
+P | Token: Identificador | linea= 111 | columna Inicio= 24 | columna Final= 25
+. | Token: Punto| linea= 111 | columna Inicio= 25 | columna Final= 26
+Name | Token: Identificador | linea= 111 | columna Inicio= 26 | columna Final= 30
+, | Token: Coma| linea= 111 | columna Inicio= 30 | columna Final= 31
+SUM | Token: SUM| linea= 111 | columna Inicio= 32 | columna Final= 35
+( | Token: ParentesisAbierto| linea= 111 | columna Inicio= 35 | columna Final= 36
+SD | Token: Identificador | linea= 111 | columna Inicio= 36 | columna Final= 38
+. | Token: Punto| linea= 111 | columna Inicio= 38 | columna Final= 39
+LineTotal | Token: Identificador | linea= 111 | columna Inicio= 39 | columna Final= 48
+) | Token: ParentesisCerrado| linea= 111 | columna Inicio= 48 | columna Final= 49
+AS | Token: AS| linea= 111 | columna Inicio= 50 | columna Final= 52
+'Total' | Token: String | linea= 111| columna Inicio= 53| columna Final= 60
+FROM | Token: FROM| linea= 112 | columna Inicio= 4 | columna Final= 8
+Production | Token: Identificador | linea= 112 | columna Inicio= 9 | columna Final= 19
+. | Token: Punto| linea= 112 | columna Inicio= 19 | columna Final= 20
+Product | Token: Identificador | linea= 112 | columna Inicio= 20 | columna Final= 27
+AS | Token: AS| linea= 112 | columna Inicio= 28 | columna Final= 30
+P | Token: Identificador | linea= 112 | columna Inicio= 31 | columna Final= 32
+JOIN | Token: JOIN| linea= 113 | columna Inicio= 4 | columna Final= 8
+Sales | Token: Identificador | linea= 113 | columna Inicio= 9 | columna Final= 14
+. | Token: Punto| linea= 113 | columna Inicio= 14 | columna Final= 15
+SalesOrderDetail | Token: Identificador | linea= 113 | columna Inicio= 15 | columna Final= 31
+AS | Token: AS| linea= 113 | columna Inicio= 32 | columna Final= 34
+SD | Token: Identificador | linea= 113 | columna Inicio= 35 | columna Final= 37
+ON | Token: ON| linea= 113 | columna Inicio= 38 | columna Final= 40
+SD | Token: Identificador | linea= 113 | columna Inicio= 41 | columna Final= 43
+. | Token: Punto| linea= 113 | columna Inicio= 43 | columna Final= 44
+ProductID | Token: Identificador | linea= 113 | columna Inicio= 44 | columna Final= 53
+= | Token: Igual| linea= 113 | columna Inicio= 54 | columna Final= 55
+P | Token: Identificador | linea= 113 | columna Inicio= 56 | columna Final= 57
+. | Token: Punto| linea= 113 | columna Inicio= 57 | columna Final= 58
+ProductID | Token: Identificador | linea= 113 | columna Inicio= 58 | columna Final= 67
+JOIN | Token: JOIN| linea= 114 | columna Inicio= 4 | columna Final= 8
+Sales | Token: Identificador | linea= 114 | columna Inicio= 9 | columna Final= 14
+. | Token: Punto| linea= 114 | columna Inicio= 14 | columna Final= 15
+SalesOrderHeader | Token: Identificador | linea= 114 | columna Inicio= 15 | columna Final= 31
+AS | Token: AS| linea= 114 | columna Inicio= 32 | columna Final= 34
+SH | Token: Identificador | linea= 114 | columna Inicio= 35 | columna Final= 37
+ON | Token: ON| linea= 114 | columna Inicio= 38 | columna Final= 40
+SH | Token: Identificador | linea= 114 | columna Inicio= 41 | columna Final= 43
+. | Token: Punto| linea= 114 | columna Inicio= 43 | columna Final= 44
+SalesOrderID | Token: Identificador | linea= 114 | columna Inicio= 44 | columna Final= 56
+= | Token: Igual| linea= 114 | columna Inicio= 57 | columna Final= 58
+SD | Token: Identificador | linea= 114 | columna Inicio= 59 | columna Final= 61
+. | Token: Punto| linea= 114 | columna Inicio= 61 | columna Final= 62
+SalesOrderID | Token: Identificador | linea= 114 | columna Inicio= 62 | columna Final= 74
+JOIN | Token: JOIN| linea= 115 | columna Inicio= 4 | columna Final= 8
+Sales | Token: Identificador | linea= 115 | columna Inicio= 9 | columna Final= 14
+. | Token: Punto| linea= 115 | columna Inicio= 14 | columna Final= 15
+Customer | Token: Identificador | linea= 115 | columna Inicio= 15 | columna Final= 23
+AS | Token: AS| linea= 115 | columna Inicio= 24 | columna Final= 26
+C | Token: Identificador | linea= 115 | columna Inicio= 27 | columna Final= 28
+ON | Token: ON| linea= 115 | columna Inicio= 29 | columna Final= 31
+SH | Token: Identificador | linea= 115 | columna Inicio= 32 | columna Final= 34
+. | Token: Punto| linea= 115 | columna Inicio= 34 | columna Final= 35
+CustomerID | Token: Identificador | linea= 115 | columna Inicio= 35 | columna Final= 45
+= | Token: Igual| linea= 115 | columna Inicio= 46 | columna Final= 47
+C | Token: Identificador | linea= 115 | columna Inicio= 48 | columna Final= 49
+. | Token: Punto| linea= 115 | columna Inicio= 49 | columna Final= 50
+CustomerID | Token: Identificador | linea= 115 | columna Inicio= 50 | columna Final= 60
+WHERE | Token: WHERE| linea= 116 | columna Inicio= 4 | columna Final= 9
+C | Token: Identificador | linea= 116 | columna Inicio= 10 | columna Final= 11
+. | Token: Punto| linea= 116 | columna Inicio= 11 | columna Final= 12
+StoreID | Token: Identificador | linea= 116 | columna Inicio= 12 | columna Final= 19
+= | Token: Igual| linea= 116 | columna Inicio= 20 | columna Final= 21
+@ | Token: Arroba| linea= 116 | columna Inicio= 22 | columna Final= 23
+storeid | Token: Identificador | linea= 116 | columna Inicio= 23 | columna Final= 30
+GROUP | Token: GROUP| linea= 117 | columna Inicio= 4 | columna Final= 9
+BY | Token: BY| linea= 117 | columna Inicio= 10 | columna Final= 12
+P | Token: Identificador | linea= 117 | columna Inicio= 13 | columna Final= 14
+. | Token: Punto| linea= 117 | columna Inicio= 14 | columna Final= 15
+ProductID | Token: Identificador | linea= 117 | columna Inicio= 15 | columna Final= 24
+, | Token: Coma| linea= 117 | columna Inicio= 24 | columna Final= 25
+P | Token: Identificador | linea= 117 | columna Inicio= 26 | columna Final= 27
+. | Token: Punto| linea= 117 | columna Inicio= 27 | columna Final= 28
+Name | Token: Identificador | linea= 117 | columna Inicio= 28 | columna Final= 32
+) | Token: ParentesisCerrado| linea= 118 | columna Inicio= 0 | columna Final= 1
+; | Token: PuntoyComa| linea= 118 | columna Inicio= 1 | columna Final= 2
 FIN

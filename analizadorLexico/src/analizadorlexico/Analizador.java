@@ -29,6 +29,7 @@ public class Analizador extends javax.swing.JFrame {
     /**
      * Creates new form Analizador
      */
+            String rutaArchivo;
     analizadorSintactico analizadorS;
         LinkedList<Token> instrucciones=new LinkedList();
     public Analizador() {
@@ -48,6 +49,8 @@ public class Analizador extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,18 +72,39 @@ public class Analizador extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton2.setText("Analizar Descendente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Analizar Ascendente");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,8 +115,12 @@ public class Analizador extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -102,7 +130,6 @@ public class Analizador extends javax.swing.JFrame {
         JFileChooser dialogo = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Sql", "sql");
         File fichero;
-        String rutaArchivo;
         dialogo.setFileFilter(filtro);
         int valor = dialogo.showOpenDialog(this);
         if (valor == JFileChooser.APPROVE_OPTION) {
@@ -113,7 +140,7 @@ public class Analizador extends javax.swing.JFrame {
       
             try {
                 Reader lector = new BufferedReader(new FileReader(rutaArchivo));
-                 Lexer analizador=new Lexer(lector);
+                 lexer2 analizador=new lexer2(lector);
                  boolean terminarCiclo=false;
                  while (!terminarCiclo) {
                 Tokens tokens = analizador.yylex();
@@ -159,15 +186,7 @@ public class Analizador extends javax.swing.JFrame {
                 }
                 }
              }
-                 analizadorS=new analizadorSintactico(instrucciones);
-                 if(analizadorS.errores.isEmpty()){
-                     jTextArea1.setText("no hay errores");
-                 }else{
-                    jTextArea1.setText(analizadorS.errores);  
-                    
-                 }
-                 
-               
+                jTextArea1.setText("");
                  
                  
             } catch (FileNotFoundException ex) {
@@ -177,6 +196,26 @@ public class Analizador extends javax.swing.JFrame {
         }
         }    
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+                    String[] archivoPrueba = {rutaArchivo};
+                    analisis_sintactico.main(archivoPrueba);
+                    jTextArea1.setText(analisis_sintactico.m.toString());
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+                   analizadorS=new analizadorSintactico(instrucciones);
+                 if(analizadorS.errores.isEmpty()){
+                     jTextArea1.setText("no hay errores");
+                 }else{
+                    jTextArea1.setText(analizadorS.errores);  
+                    
+                 }
+                 
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +254,8 @@ public class Analizador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

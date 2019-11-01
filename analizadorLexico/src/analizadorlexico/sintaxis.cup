@@ -1,0 +1,801 @@
+package analizadorlexico;
+import java_cup.runtime.Symbol;
+import java.io.FileReader;
+
+parser code
+{:
+   // private Symbol s;
+    
+  //  public void syntax_error(Symbol s){
+   //     this.s = s;
+   // }
+
+    //public Symbol getS(){
+     //   return this.s;
+//}
+             public static StringBuilder m = new StringBuilder("Error");
+     public void report_error(String message, Object info) {
+        if (info instanceof java_cup.runtime.Symbol) {
+            java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+            if (s.left >= 0) {                
+                m.append(" in line "+(s.right+1));
+                if (s.right >= 0)
+                    m.append(", column "+(s.left+1));
+            }
+        }
+        m.append(" : "+message);
+        
+    }
+   
+    /* Cuando se encuentra un error de donde el sistema no puede
+        recuperarse, se lanza un error fatal. Se despliega el mensaje
+        de error y se finaliza la ejecucion. */
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        System.exit(1);
+    }
+
+    /* Metodo main para garantizar la ejecucion del analizador
+       lexico y sintactico, ademas que se pase como parametro la tabla
+       de simbolos correspondiente. */
+    public static void main(String[] args){
+        try {
+            analisis_sintactico asin = new analisis_sintactico(
+                    new Lexer( new FileReader(args[0])));
+            Object result = asin.parse().value;
+            System.out.println("\n*** Resultados finales ***");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+:};
+terminal  ADD,
+	ALL,ALTER,AND,ANY,AS,ASC,AUTHORIZATION,BACKUP,BEGIN,BETWEEN,BREAK,BROWSE,BULK,BY,CASCADE,CASE,CHECK,CHECKPOINT,CLOSE,CLUSTERED,COALESCE,COLLATE,COLUMN,
+	COMMIT,COMPUTE,CONSTRAINT,CONTAINS,CONTAINSTABLE,CONTINUE,CONVERT,CREATE,CROSS,CURRENT,CURRENT_DATE,CURRENT_TIME,CURRENT_TIMESTAMP,CURRENT_USER,CURSOR,
+	DATABASE,DBCC,DEALLOCATE,DECLARE,DEFAULT,DELETE,DENY,DESC,DISK,DISTINCT,DISTRIBUTED,DOUBLE,DROP,DUMP,ELSE,END,ERRLVL,ESCAPE,EXCEPT,EXEC,EXECUTE,EXISTS,
+	EXIT,EXTERNAL,FETCH,FILE,FILLFACTOR,FOR,FOREIGN, FREETEXT,FREETEXTTABLE,FROM,FULL,FUNCTION,GOTO,GRANT,GROUP,HAVING,HOLDLOCK,IDENTITY,IDENTITY_INSERT,
+	IDENTITYCOL,IF,IN,INDEX,INNER,INSERT,INTERSECT,INTO,IS,JOIN,KEY,KILL,LEFT,LIKE,LINENO,LOAD,MERGE,NATIONAL,NOCHECK,NONCLUSTERED,NOT,NULL,NULLIF,OF,OFF,
+	OFFSETS,ON,OPEN,OPENDATASOURCE,OPENQUERY,OPENROWSET,OPENXML,OPTION,OR,ORDER,OUTER,OVER,PERCENT,PIVOT,PLAN,PRECISION,PRIMARY,PRINT,PROC,PROCEDURE,PUBLIC,
+	RAISERROR,READ,READTEXT,RECONFIGURE,REFERENCES,REPLICATION,RESTORE,RESTRICT,RETURN,REVERT,REVOKE,RIGHT,ROLLBACK,ROWCOUNT,ROWGUIDCOL,RULE,SAVE,SCHEMA,
+	SECURITYAUDIT,SELECT,SEMANTICKEYPHRASETABLE,SEMANTICSIMILARITYDETAILSTABLE,SEMANTICSIMILARITYTABLE,SESSION_USER,SET,SETUSER,SHUTDOWN,SOME,STATISTICS,
+       SYSTEM_USER,TABLE,TABLESAMPLE,TEXTSIZE,THEN,TO,TOP,TRAN,TRANSACTION,TRIGGER,TRUNCATE,TRY_CONVERT,TSEQUAL,UNION,UNIQUE,UNPIVOT,UPDATE,UPDATETEXT,USE,USER,
+	VALUES,VARYING,VIEW,WAITFOR,WHEN,WHERE,WHILE,WITH,ABSOLUTE,ACTION,ADA,ALLOCATE,ARE,ASSERTION,AT,AVG,BIT,BIT_LENGTH,BOTH,CASCADED,CAST,CATALOG,CHAR,
+	CHAR_LENGTH,CHARACTER,CHARACTER_LENGTH,COLLATION,CONNECT,CONNECTION,CONSTRAINTS,CORRESPONDING,COUNT,DATE,DAY,DEC,DECIMAL,DESCRIBE,DESCRIPTOR,DIAGNOSTICS,
+	DISCONNECT,DOMAIN,ENDEXEC,EXCEPTION,EXTRACT,FALSE,FIRST,FLOAT,FORTRAN,FOUND,GET,GLOBAL,GO,HOUR,IMMEDIATE,INCLUDE,INDICATOR,INITIALLY,INPUT,INSENSITIVE,INT,
+	INTEGER,INTERVAL,ISOLARION,LENGUAGE,LAST,LEADING,LEVEL,LOCAL,LOWER,MATCH,MAX,MIN,MINUTE,MODULE,MONTH,NAMES,NATURAL,NCHAR,NEXT,NO,NONE,NUMERIC,OCTET_LENGTH,
+	ONLY,OUTPUT,OVERLAPS,PAD,PARTIAL,PASCAL,POSITION,PREPARE,PRESERVE,PRIOR,PRIVILEGES,REAL,RELATIVE,ROWS,SCROLL,SECOND,SECTION,SESSION,SIZE,SMALLINT,SPACE,SQL,
+	SQLCA,SQLCODE,SQLERROR,SQLSTATE,SQLWARNING,SUBSTRING,SUM,TEMPORARY,TIME,TIMESTAMP,TIMEZONE_HOUR,TIMEZONE_MINUTE,TRAILING,TRANSLATE,TRANSLATION,TRIM,TRUE,
+	UNKNOWN,UPPER,USAGE,USING,VALUE,VARCHAR,WHENEVER,WORK,WRITE,YEAR,ZONE,WRITETEXT,Igual,Suma,Resta,Multiplicacion,Division,Identificador,Numero,Guionbajo,
+    Porcentaje,Menor,Mayor,MenorIgual,MayorIgual,IgualIgual,NoIgual,y,andS,or,SignoExclamacion,PuntoyComa,Coma,Punto,CorcheteAbierto,CorcheteCerrado,Corchetes,
+    ParentesisAbierto,ParentesisCerrado,Parentesis,LlaveAbierta,LlaveCerrada,Llaves,Arroba,Numeral,DobleNumeral,Bit,Float,String,FETCH_STATUS,DISABLED,
+	ENABLED,LOG,FILENAME,BYTE,SAVEPOINT,READ_ONLY,TRANSACTION_ISOLATION,READ_COMMITTED,READ_UNCOMMITTED,LIMIT,RENAME,AFTER,INSTEADOF,RETURNS,RESULT_SET
+        ,OUT,IN_OUT,ENUM,IFF,OJ,READ_COMMITED,READ_UNCOMMITED,ERRORS,MODIFY;
+	
+non terminal statement_list,statement,cursor_state,cluster,boolean_value,isolation,call_params,top,limit_select,alter_table,alter_table_constraint,
+	alter_table_constraint_type,references_col_list,select_union,union_qual,select,update,
+	insert,insert_values_list,alter_function,alter_procedure,
+	as_opt,ascdesc_state,boolean_exp,col_const,col_const_list,col_qual,col_type,col_val,collate_state,comparison,create_database_enhanced,
+	create_database_legacy,create_func,create_index,create_procedure,create_table,create_view,
+	date_format,date_suffix,db_item_ref,del,drop_database,drop_index,drop_procedure,drop_table,drop_view,expression,file_group,
+	file_spec,fn,for_update,for_update_column_list,func_arg,func_args,func_qual,group_by,group_by_list,having
+        ,id_for_update,id_list,id_puntos,index_col,index_col_list
+        ,muchos_statement,neg,not,oj,on_state,op,order_by,order_by_item,order_by_list,outer_join,param_dir,proc_param,
+	proc_param_list,proc_return_type,real,scalar,select_cols,select_item,select_list,select_op,select_qual,set,set_list,simple_term,size_status,
+	supplement,table_col,table_col_list,table_list,table_list_item,table_ref,term,times,value_list,when_expression_list,
+	when_list,where,with_check_option,fin_state,create_viewwith_check_option,id,idcursor_state,func,and,createState,alterState,dropState,
+        alias_state,sizevar,on_state2,argument,retorno, if_exist,alter_database,alter_data_list,alter_data,alter_view,variable, default_v;
+precedence left ALTER; 
+precedence left BEGIN;
+precedence left COMMIT;
+precedence left Identificador;
+precedence left ASC;
+precedence left DESC;
+precedence left ParentesisAbierto;
+start with statement_list;
+
+
+
+statement_list ::=
+        muchos_statement
+      | error
+      ;
+fin_state ::=      PuntoyComa
+			| GO
+			| PuntoyComa GO
+			| /*Nothing*/
+			;
+statement ::=
+        SELECT select_union fin_state
+      | UPDATE update fin_state
+      | INSERT insert fin_state
+      | INSERT INTO insert fin_state
+      | CREATE createState fin_state
+      | DROP dropState fin_state
+      | ALTER alterState fin_state
+      | DELETE del fin_state
+      | BEGIN TRANSACTION 
+     | BEGIN TRAN
+      | ROLLBACK id fin_state
+      | ROLLBACK fin_state
+	  | ROLLBACK TRAN fin_state
+	  | ROLLBACK TRANSACTION fin_state
+      | COMMIT fin_state
+	  |COMMIT TRAN fin_state
+	  | COMMIT TRANSACTION fin_state
+      | SET READ_ONLY boolean_value
+      | SET TRANSACTION_ISOLATION isolation
+	  | TRUNCATE TABLE id_puntos fin_state
+	  | DECLARE id cursor_state fin_state
+	  |EXEC id_puntos select_list fin_state
+          | EXEC id_puntos fin_state
+      ;
+createState::= DATABASE create_database_legacy
+                | TABLE create_table
+                | VIEW create_viewwith_check_option
+                | cluster INDEX create_index
+                | UNIQUE cluster INDEX create_index
+                | PROCEDURE create_procedure
+                | SAVEPOINT id
+                | FUNCTION create_func
+                | USER id;
+alterState::=  PROCEDURE alter_procedure
+                |FUNCTION alter_function
+                | TABLE alter_table
+                | DATABASE alter_database
+                | VIEW alter_view
+;
+
+alter_view ::= id_puntos ParentesisAbierto id_puntos ParentesisCerrado AS SELECT select_union
+                | id_puntos AS SELECT select_union;
+
+alter_database::= LlaveAbierta id_puntos LlaveCerrada LlaveAbierta alter_data_list LlaveCerrada
+                   | id_puntos collate_state;
+
+alter_data_list::= alter_data Coma alter_data_list;
+
+alter_data ::= MODIFY NAMES Igual id_puntos
+                | collate_state
+                | file_spec
+                | SET id;
+dropState::=  DATABASE drop_database
+                | TABLE drop_table
+                | PROCEDURE drop_procedure
+                | VIEW drop_view
+                | INDEX drop_index;
+	  
+cursor_state ::= 
+	CURSOR FOR SELECT select_union
+	|CURSOR FOR SELECT select_union OPEN id FETCH NEXT FROM id INTO proc_param WHILE  Arroba Arroba FETCH_STATUS Igual Numero BEGIN muchos_statement END CLOSE DEALLOCATE id
+	|CURSOR FOR SELECT select_union OPEN id FETCH NEXT FROM id INTO proc_param
+				;
+
+cluster ::= CLUSTERED
+	| NONCLUSTERED
+	|/* empty*/ ;
+
+boolean_value ::=
+                TRUE
+                  | FALSE
+      ;
+
+isolation ::=
+      READ_COMMITTED
+      | READ_UNCOMMITTED
+      ;
+
+call_params ::=
+                                /* Nothing */
+                  | ParentesisAbierto value_list ParentesisCerrado
+                  ;
+
+
+top ::=
+        /* Nothing */
+      | TOP ParentesisAbierto expression ParentesisCerrado
+      ;
+
+limit_select ::=
+        /* Nothing */
+      | LIMIT Numero Coma Numero
+      ;
+
+alter_table ::=
+        id_puntos ADD COLUMN table_col_list
+      | id_puntos ADD INDEX id_list ParentesisAbierto index_col_list ParentesisCerrado
+      | id_puntos ADD COLUMN ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos ADD table_col_list
+      | id_puntos ADD ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos WITH NOCHECK ADD table_col_list
+      | id_puntos WITH NOCHECK ADD ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos WITH CHECK ADD table_col_list 
+      | id_puntos WITH CHECK ADD ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos RENAME COLUMN id TO id 
+      | id_puntos ALTER COLUMN table_col_list 
+      | id_puntos ALTER COLUMN ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos ALTER table_col_list collate_state
+      | id_puntos ALTER ParentesisAbierto table_col_list ParentesisCerrado collate_state
+      | id_puntos DROP COLUMN id if_exist
+      | id_puntos DROP INDEX id_list
+      | id_puntos DROP id if_exist
+      | id_puntos DROP CONSTRAINT id 
+      ;
+if_exist::= IF EXISTS
+            |/*empty*/ ;
+
+alter_table_constraint ::=
+      CONSTRAINT id alter_table_constraint_type 
+      | ADD CONSTRAINT id alter_table_constraint_type 
+      ;
+
+alter_table_constraint_type ::=
+        PRIMARY KEY ParentesisAbierto id ParentesisCerrado
+      | UNIQUE ParentesisAbierto id ParentesisCerrado
+      | FOREIGN KEY ParentesisAbierto id ParentesisCerrado REFERENCES id_puntos references_col_list
+      | FOREIGN KEY id REFERENCES id_puntos references_col_list 
+      ;
+
+references_col_list ::=
+      | ParentesisAbierto id ParentesisCerrado
+      ;
+
+select_union ::=
+        select 
+      | select UNION union_qual SELECT select_union 
+      ;
+
+union_qual ::=
+      | ALL
+      ;
+
+select ::=
+        select_cols 
+      | select_cols FROM table_list where group_by having order_by for_update 
+      | select_cols INTO id_list FROM table_list where group_by having order_by 
+      ;
+
+update ::=
+        top id SET set_list where 
+      | id SET set_list FROM table_list where 
+      | /* empty*/
+      ;
+
+insert ::=
+      id_puntos ParentesisAbierto id_list ParentesisCerrado VALUES insert_values_list
+      | id_puntos ParentesisAbierto id_list ParentesisCerrado default_v
+      | id_puntos VALUES insert_values_list
+      ;
+default_v ::= DEFAULT VALUES
+            | /*EMPTY*/;
+
+insert_values_list ::=
+        ParentesisAbierto value_list ParentesisCerrado
+      | insert_values_list Coma ParentesisAbierto value_list ParentesisCerrado
+      ;
+
+create_table ::=
+        id_puntos ParentesisAbierto table_col_list ParentesisCerrado
+      | id_puntos ParentesisAbierto table_col_list ParentesisCerrado on_state2
+      ;
+on_state2::=
+    ON
+    | ON PRIMARY
+    | LOG ON;
+
+create_procedure ::=
+                                id_puntos ParentesisAbierto proc_param_list ParentesisCerrado as_opt BEGIN muchos_statement END 
+                  | id_list  proc_param_list as_opt BEGIN muchos_statement END
+                  ;
+create_func ::=                id_puntos ParentesisAbierto proc_param_list ParentesisCerrado RETURNS col_type as_opt BEGIN muchos_statement RETURN retorno END 
+                  | id_puntos  proc_param_list RETURNS col_type as_opt BEGIN muchos_statement RETURN retorno END;
+as_opt ::= AS
+			| /*empty */;
+muchos_statement ::= muchos_statement statement | statement;
+
+alter_procedure ::=
+                                        id_puntos ParentesisAbierto proc_param_list ParentesisCerrado as_opt BEGIN muchos_statement END 
+                  | id_list  proc_param_list as_opt BEGIN muchos_statement END
+                  ;
+alter_function ::=      id_puntos ParentesisAbierto proc_param_list ParentesisCerrado RETURNS col_type as_opt BEGIN muchos_statement RETURN retorno END 
+                  | id_list  proc_param_list RETURNS col_type as_opt BEGIN muchos_statement RETURN retorno END;
+
+proc_return_type ::=
+                                NONE 
+                  | RESULT_SET 
+                  | col_type 
+      | col_type ParentesisAbierto Numero  ParentesisCerrado
+      | col_type ParentesisAbierto Numero  Coma Numero  ParentesisCerrado
+      ;
+
+proc_param_list ::=
+      | Arroba proc_param
+      |  Arroba proc_param Coma  proc_param_list
+      ;
+retorno::= expression;
+proc_param ::=
+        id col_type param_dir 
+      | id col_type ParentesisAbierto Numero  ParentesisCerrado param_dir 
+      | id col_type ParentesisAbierto Numero  Coma Numero  ParentesisCerrado param_dir 
+      ;
+
+param_dir ::=
+                    IN
+      | OUT
+      | IN_OUT
+      |/* EMPTY*/
+      ;
+
+create_view ::=
+        id_puntos ParentesisAbierto id ParentesisCerrado AS SELECT select_union 
+      | id_puntos AS SELECT select_union 
+      ;
+
+with_check_option ::=
+      | WITH CHECK OPTION
+      | WITH LOCAL CHECK OPTION
+      | WITH CASCADE CHECK OPTION
+      ;
+
+create_index ::=
+        id_puntos  ON id_puntos  ParentesisAbierto index_col_list ascdesc_state ParentesisCerrado
+      ;
+ascdesc_state ::= ASC
+				| DESC
+				| /*empty*/;
+del ::=
+        top FROM id_puntos where 
+      ;
+
+drop_table ::=
+        id_puntos 
+      | id_puntos CASCADE
+      | id_puntos CASCADE CONSTRAINTS
+      ;
+
+drop_procedure ::=
+        id_puntos 
+      ;
+
+drop_database ::=
+                    id_puntos
+				  | IF EXISTS id_puntos
+                  ;
+
+create_database_legacy ::=
+                    Identificador on_state collate_state
+                  ;
+on_state ::=
+			ON  file_group 
+			| ON PRIMARY file_group
+			| LOG ON file_group
+			| /*empty*/
+			;
+file_group ::= file_spec | file_group Coma file_spec
+;
+file_spec ::= ParentesisAbierto NAMES Igual String Coma FILE Igual String Coma size_status ParentesisCerrado;
+size_status::= SIZE Igual Numero
+				| /* empty */;
+collate_state ::= COLLATE Identificador 
+                | /*empty*/;
+                 
+create_database_enhanced ::=
+        String String String
+      | String String String String String
+      ;
+
+drop_view ::=
+        id_puntos 
+      ;
+
+drop_index ::=
+        id_puntos 
+      ;
+
+index_col_list ::=
+        index_col 
+      | index_col_list Coma index_col 
+      ;
+
+index_col ::=
+        id_puntos ascdesc_state 
+      ;
+
+table_col_list ::=
+        table_col 
+      | table_col_list Coma table_col 
+      ;
+
+table_col ::=
+                   id col_type col_qual 
+      | id ENUM ParentesisAbierto value_list ParentesisCerrado col_qual 
+      | id SET ParentesisAbierto value_list ParentesisCerrado col_qual 
+      | id col_type ParentesisAbierto Numero  ParentesisCerrado col_qual 
+      | id col_type ParentesisAbierto Numero  Coma Numero  ParentesisCerrado col_qual 
+      | id AS expression 
+      | alter_table_constraint 
+      | PRIMARY ParentesisAbierto id ParentesisCerrado
+      | PRIMARY KEY ParentesisAbierto id ParentesisCerrado
+      | INDEX ParentesisAbierto id ParentesisCerrado
+      | KEY ParentesisAbierto id ParentesisCerrado
+      |CONSTRAINT id col_const
+      | CONSTRAINT id col_const ON id_puntos 
+      | PRIMARY KEY ParentesisAbierto id ParentesisCerrado id_puntos 
+      | INDEX ParentesisAbierto id ParentesisCerrado id_puntos
+      | KEY ParentesisAbierto id ParentesisCerrado id_puntos
+      | KEY id_puntos ParentesisAbierto id ParentesisCerrado
+      | UNIQUE INDEX ParentesisAbierto id ParentesisCerrado id_puntos
+      | UNIQUE INDEX ParentesisAbierto id ParentesisCerrado
+      | FOREIGN ParentesisAbierto id ParentesisCerrado
+      | FOREIGN KEY ParentesisAbierto id ParentesisCerrado
+      | FOREIGN KEY ParentesisAbierto id ParentesisCerrado REFERENCES id_puntos references_col_list 
+      | UNIQUE ParentesisAbierto id ParentesisCerrado
+      | UNIQUE KEY ParentesisAbierto id ParentesisCerrado
+      | UNIQUE KEY id_puntos ParentesisAbierto id ParentesisCerrado
+      | NOT NULL ParentesisAbierto id ParentesisCerrado
+      | CHECK ParentesisAbierto boolean_exp ParentesisCerrado
+      ;
+
+
+col_type ::=
+        CHAR
+      | CHARACTER
+      | CHARACTER VARYING
+      | CHAR VARYING
+      | VARCHAR sizevar
+      | FLOAT
+      | DOUBLE
+      | REAL
+      | BYTE
+      | INT
+      | INTEGER
+      | TIMESTAMP
+      | TIME
+      | BIT
+      | DECIMAL
+      | NUMERIC
+      | DATE
+      ;
+sizevar::= ParentesisAbierto Numero ParentesisCerrado;
+
+col_qual ::=
+      /* EMPTY */
+      | col_val col_const_list 
+      | col_const_list col_val 
+      | col_const_list 
+      | col_val 
+      ;
+
+col_val ::=
+      DEFAULT NULL
+      | DEFAULT expression 
+      | IDENTITY
+      | IDENTITY ParentesisAbierto Numero Coma Numero ParentesisCerrado
+      ;
+
+col_const_list ::=
+        col_const 
+        |  col_const_list col_const 
+        | col_const_list CONSTRAINT id col_const 
+        | CONSTRAINT id col_const 
+        ;
+
+col_const ::=
+        PRIMARY
+        | PRIMARY KEY cluster
+        | PRIMARY KEY cluster ParentesisAbierto id ascdesc_state ParentesisCerrado
+        | FOREIGN
+        | FOREIGN KEY cluster
+        | INDEX
+        | UNIQUE
+        | UNIQUE KEY
+        | NOT NULL
+        | NULL
+        | CHECK ParentesisAbierto boolean_exp ParentesisCerrado
+        | REFERENCES id_puntos references_col_list 
+        ;
+
+set_list ::=
+        set 
+      | set_list Coma set 
+      ;
+
+set ::=
+        id_puntos Igual NULL
+      | id_puntos Igual expression 
+      ;
+
+select_cols ::=
+        select_qual top select_list 
+      ;
+
+select_qual ::=
+        /* empty */
+      | ALL
+      | DISTINCT
+      ;
+
+select_list ::=
+        select_item 
+      | select_list Coma select_item 
+      ;
+
+select_item ::=
+        argument 
+      | expression id 
+      | expression AS id 
+      | expression AS CorcheteAbierto id CorcheteCerrado
+      | expression AS String 
+      | expression String 
+      | String
+	  |COUNT ParentesisAbierto argument ParentesisCerrado alias_state
+	  |MAX ParentesisAbierto argument ParentesisCerrado alias_state
+	  |MIN ParentesisAbierto argument ParentesisCerrado alias_state
+	  |AVG ParentesisAbierto argument ParentesisCerrado alias_state
+	  |SUM ParentesisAbierto argument ParentesisCerrado alias_state
+      ;
+
+argument::= expression 
+               | Multiplicacion ;
+alias_state::= /*empty*/
+            | id
+            | AS id
+            | AS String;
+expression ::=
+        expression Suma times 
+      | expression Resta times 
+      | times 
+      ;
+
+times ::=
+        times Multiplicacion neg 
+      | times Division neg 
+      | neg 
+      ;
+
+neg ::=
+        term 
+      | Suma term 
+      | Resta term 
+      ;
+
+term ::=
+        ParentesisAbierto expression ParentesisCerrado
+      | ParentesisAbierto SELECT select_union ParentesisCerrado
+      | simple_term 
+      | scalar 
+      ;
+
+db_item_ref ::=
+        id 
+      | IFF ParentesisAbierto boolean_exp Coma expression  Coma expression  ParentesisCerrado
+      | CAST ParentesisAbierto expression  AS id  ParentesisCerrado
+      | CONVERT ParentesisAbierto expression  Coma id  ParentesisCerrado
+      | NULLIF ParentesisAbierto expression  Coma expression  ParentesisCerrado
+      | COALESCE ParentesisAbierto func_arg ParentesisCerrado
+      | CASE when_list END
+      | CASE when_list ELSE expression END
+      | CASE expression  when_expression_list END
+      | CASE expression  when_expression_list ELSE expression  END
+      ;
+
+when_list ::=
+      WHEN boolean_exp THEN expression 
+      | when_list WHEN boolean_exp THEN expression 
+      ;
+
+when_expression_list ::=
+      WHEN expression  THEN expression 
+      | when_expression_list WHEN expression  THEN expression 
+      ;
+
+func_qual ::=
+        /* empty */
+      | ALL
+      | DISTINCT
+      ;
+
+simple_term ::=
+        real 
+      | id_puntos ;
+
+real ::=
+        Numero 
+      | Float
+      | variable
+      ;
+
+scalar ::=
+        func 
+      ;
+
+func ::=
+        LlaveAbierta fn LlaveCerrada
+      ;
+
+fn ::=
+        id ParentesisAbierto func_arg ParentesisCerrado
+      ;
+
+func_arg ::=
+        /* empty */
+      | Multiplicacion
+      | func_args 
+      ;
+
+func_args ::=
+        expression 
+      | func_args Coma expression 
+      ;
+
+for_update ::=
+                                /* empty */
+      |        FOR UPDATE
+      | FOR UPDATE OF for_update_column_list 
+      |        FOR READ ONLY
+      ;
+
+for_update_column_list ::=
+                id_puntos 
+                  | for_update_column_list  Coma id_puntos 
+      ;
+
+table_list ::=
+        table_list_item 
+      | table_list Coma table_list_item 
+      ;
+
+table_list_item ::=
+        table_ref 
+      | outer_join 
+      | oj 
+      | ParentesisAbierto table_list ParentesisCerrado
+      | ParentesisAbierto SELECT select_union ParentesisCerrado
+      | ParentesisAbierto SELECT select_union ParentesisCerrado id 
+      | ParentesisAbierto SELECT select_union ParentesisCerrado CorcheteAbierto id CorcheteCerrado
+      | ParentesisAbierto SELECT select_union ParentesisCerrado AS id 
+      | ParentesisAbierto SELECT select_union ParentesisCerrado AS CorcheteAbierto id CorcheteCerrado
+      ;
+
+table_ref ::=
+        id_puntos 
+      | id_puntos id 
+      | id_puntos CorcheteAbierto id CorcheteCerrado
+      | id_puntos AS id 
+      | id_puntos AS CorcheteAbierto id CorcheteCerrado
+      ;
+
+outer_join ::=
+        LlaveAbierta OJ oj LlaveCerrada
+      ;
+
+oj ::=
+        table_list_item  LEFT OUTER JOIN table_list_item  ON boolean_exp 
+      | table_list_item  RIGHT OUTER JOIN table_list_item  ON boolean_exp 
+      | table_list_item  LEFT JOIN table_list_item  ON boolean_exp 
+      | table_list_item  RIGHT JOIN table_list_item  ON boolean_exp 
+      | table_list_item  FULL OUTER JOIN table_list_item  ON boolean_exp 
+      | table_list_item  FULL JOIN table_list_item  ON boolean_exp 
+      | table_list_item  INNER JOIN table_list_item  ON boolean_exp 
+      ;
+
+where ::=
+        /* empty */
+      | WHERE boolean_exp 
+      ;
+
+group_by ::=
+        /* empty */
+      | GROUP BY group_by_list
+      ;
+group_by_list ::=
+        expression 
+      | group_by_list Coma expression 
+      ;
+
+having ::=
+        /* empty */
+      | HAVING boolean_exp
+      ;
+
+order_by ::=
+        /* empty */
+      | ORDER BY  order_by_list
+	  |COUNT ParentesisAbierto argument ParentesisCerrado alias_state
+	  |MAX ParentesisAbierto argument ParentesisCerrado alias_state
+	  |MIN ParentesisAbierto argument ParentesisCerrado alias_state
+	  |AVG ParentesisAbierto argument ParentesisCerrado alias_state
+	  |SUM ParentesisAbierto argument ParentesisCerrado alias_state
+      ;
+
+order_by_list ::=
+        order_by_item 
+      | order_by_list Coma order_by_item 
+      ;
+
+order_by_item ::=
+        expression ascdesc_state
+	  |COUNT ParentesisAbierto argument ParentesisCerrado ascdesc_state
+	  |MAX ParentesisAbierto argument ParentesisCerrado ascdesc_state
+	  |MIN ParentesisAbierto argument ParentesisCerrado ascdesc_state
+	  |AVG ParentesisAbierto argument ParentesisCerrado ascdesc_state
+	  |SUM ParentesisAbierto argument ParentesisCerrado ascdesc_state 
+      ;
+boolean_exp ::=
+        and 
+      | and OR boolean_exp 
+      ;
+
+and ::=
+        not 
+      | not AND and 
+      ;
+
+not ::=
+        comparison 
+      | NOT comparison 
+      ;
+
+comparison ::=
+        ParentesisAbierto boolean_exp ParentesisCerrado
+      | db_item_ref IS NULL
+      | db_item_ref IS NOT NULL
+      | expression  LIKE expression 
+      |expression  LIKE String
+      | expression  NOT LIKE expression 
+      |expression  NOT LIKE String
+      | expression IN ParentesisAbierto value_list ParentesisCerrado
+      | expression NOT IN ParentesisAbierto value_list ParentesisCerrado
+      | expression  op expression
+      | expression Igual String
+      | expression  op ParentesisAbierto boolean_exp  ParentesisCerrado
+      | ParentesisAbierto boolean_exp  ParentesisCerrado op expression 
+      | ParentesisAbierto boolean_exp  ParentesisCerrado op ParentesisAbierto boolean_exp  ParentesisCerrado
+      | EXISTS ParentesisAbierto SELECT select_union ParentesisCerrado
+      | expression IN ParentesisAbierto SELECT select_union ParentesisCerrado
+      | expression NOT IN ParentesisAbierto SELECT select_union ParentesisCerrado
+      | expression  BETWEEN expression  AND expression 
+      | expression  NOT BETWEEN expression  AND expression 
+       |COUNT ParentesisAbierto argument ParentesisCerrado op expression
+	  |MAX ParentesisAbierto argument ParentesisCerrado op expression
+	  |MIN ParentesisAbierto argument ParentesisCerrado op expression
+	  |AVG ParentesisAbierto argument ParentesisCerrado op expression
+	  |SUM ParentesisAbierto argument ParentesisCerrado op expression 
+      ;
+
+select_op ::=
+        ALL
+      | SOME
+      | ANY
+      ;
+
+op ::=
+        Mayor
+      | MayorIgual
+      | Menor
+      | MenorIgual
+      | Igual
+      | NoIgual
+      ;
+
+value_list ::=
+        NULL
+      | expression 
+      | value_list Coma NULL
+      | value_list Coma expression 
+      | value_list Coma String
+      | String
+      ;
+
+id ::=
+       Identificador 
+	   | Identificador Punto Identificador
+	   | Identificador Punto Identificador Punto Identificador
+      ;
+variable::= Arroba id ;
+
+id_list ::=
+        id 
+	  | id_list Coma id
+      ;
+	  
+id_puntos::= id ;
